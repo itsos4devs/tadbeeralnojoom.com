@@ -19,7 +19,7 @@ const MaidsSections = () => {
         <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
           Our Maids
         </h1>
-        <p className="md:w-[500px] sm:w-[300px] w-[250px] sm:text-xs text-[10px] mx-auto">
+        <p className="md:w-[500px] sm:w-[300px] w-[250px] lg:text-base md:text-sm text-[10px] mx-auto">
           Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
           nostrud oratio aperiri legimus eu.
         </p>

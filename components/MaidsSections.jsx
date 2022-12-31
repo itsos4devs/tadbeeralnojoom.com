@@ -14,40 +14,46 @@ const MaidsSections = () => {
     return i;
   });
   return (
-    <div className="max-w-6xl mx-auto space-y-20">
-      <div className="text-center mt-36 space-y-5">
-        <h1 className="text-[#E48100] font-lato font-bold text-5xl">
+    <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5">
+      <div className="text-center xl:mt-36 md:mt-20  mt-10 space-y-5">
+        <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
           Our Maids
         </h1>
-        <p className="w-[500px] mx-auto">
+        <p className="md:w-[500px] sm:w-[300px] w-[250px] sm:text-xs text-[10px] mx-auto">
           Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
           nostrud oratio aperiri legimus eu.
         </p>
       </div>
 
-      <div className="grid grid-cols-5 gap-x-10 gap-y-28">
+      <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10">
         {arr.map((item) => (
           <div
             key={item}
             className="flex flex-col items-center space-y-1 group"
           >
             {/* Image */}
-            <Image
-              src={data.img}
-              alt="Maid Photo"
-              className="rounded-full group-hover:border-2 group-hover:border-yellow-500"
-              width={117}
-              height={117}
-            />
+            <div className="md:h-28 md:w-28 sm:h-16 sm:w-16 h-10 w-10">
+              <Image
+                src={data.img}
+                alt="Maid Photo"
+                className="rounded-full group-hover:border-2 group-hover:border-yellow-500"
+                width={117}
+                height={117}
+              />
+            </div>
             {/* Name */}
-            <h1 className="text-lg font-semibold">{data.name}</h1>
+            <h1 className="md:text-lg sm:text-sm text-xs font-semibold">
+              {data.name}
+            </h1>
             {/* Job */}
-            <h1 className="text-base font-semibold">{data.job}</h1>
+            <h1 className="md:text-base sm:text-sm text-xs font-semibold">
+              {data.job}
+            </h1>
             {/* Location */}
-            <h1 className="text-sm">{data.location}</h1>
+            <h1 className="md:text-sm text-xs">{data.location}</h1>
             {/* Experience Years */}
-            <h1 className="text-sm">{data.experienceYear} Years</h1>
-            <button className="clickButton bg-[#E48100] px-3 py-0.5 text-white rounded-xl">
+            <h1 className="md:text-sm text-xs">{data.experienceYear} Years</h1>
+            <button className="clickButton bg-[#E48100] md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[10px] text-white rounded-xl">
               View Profile
             </button>
           </div>
@@ -55,7 +61,7 @@ const MaidsSections = () => {
       </div>
 
       <div className="w-fit mx-auto">
-        <button className="clickButton bg-[#234F7E] w-60 mx-auto py-3 rounded-full text-white">
+        <button className="clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white">
           View All
         </button>
       </div>

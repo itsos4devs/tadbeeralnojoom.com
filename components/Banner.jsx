@@ -21,14 +21,14 @@ const Banner = () => {
           priority
         />
       </div>
-      <div className="absolute top-1/3 right-60 space-y-3 text-center">
-        <h1 className="text-white text-7xl font-lato font-black">
+      <div className="absolute top-1/3 xl:right-60 md:right-20 right-5 md:space-y-3 space-y-0 text-center">
+        <h1 className="text-white lg:text-7xl md:text-5xl sm:text-2xl text-lg font-lato font-black">
           Life’s busy.
         </h1>
-        <h1 className="text-white text-7xl font-lato font-black">
+        <h1 className="text-white lg:text-7xl md:text-5xl sm:text-2xl text-lg font-lato font-black">
           We can help.
         </h1>
-        <p className="text-3xl w-[500px] text-white">
+        <p className="lg:text-3xl md:text-xl sm:text-sm text-[10px] lg:w-[500px] md:w-[400px] sm:w-[250px] w-[150px] text-white">
           Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
           nostrud oratio aperiri legimus eu.
         </p>

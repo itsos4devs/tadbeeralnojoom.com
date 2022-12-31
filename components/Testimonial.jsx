@@ -17,23 +17,23 @@ const Testimonial = () => {
     return i;
   });
   return (
-    <div className="h-screen max-w-6xl mx-auto">
+    <div className="md:h-screen h-full mb-20 md:mb-0 lg:max-w-6xl md:max-w-4xl max-w-sm mx-auto">
       <div className="text-center mt-36 space-y-5">
-        <h1 className="text-[#E48100] font-lato font-bold text-4xl">
+        <h1 className="text-[#E48100] font-lato font-bold md:text-4xl sm:text-3xl text-xl">
           Testimonials From Clients
         </h1>
-        <p className="w-[500px] mx-auto">
+        <p className="md:w-[500px] sm:w-[300px] w-[200px] sm:text-base text-sm mx-auto">
           Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
           nostrud oratio aperiri legimus eu.
         </p>
       </div>
-      <div className="flex mt-10">
+      <div className="flex md:flex-row flex-col md:space-y-0 space-y-5 md:mt-10 mt-5">
         {arr.map((item) => (
           <div
             key={item}
-            className="bg-[#234F7E] flex flex-col space-y-3 p-5 w-80 mx-auto"
+            className="bg-[#234F7E] flex flex-col space-y-3 p-5 lg:w-80 md:w-56 w-44 mx-auto"
           >
-            <div className="flex items-center space-x-5">
+            <div className="flex items-center space-x-5 lg:w-20 md:w-14 w-12">
               <Image
                 src={data.img}
                 alt="Client Photo"
@@ -41,9 +41,11 @@ const Testimonial = () => {
                 width={82}
                 height={82}
               />
-              <div className="flex flex-col space-y-2 col-span-2">
+              <div className="flex flex-col space-y-2 md:col-span-2">
                 {/* Name */}
-                <h1 className="text-white text-2xl">{data.name}</h1>
+                <h1 className="text-white lg:text-2xl md:text-lg text-sm">
+                  {data.name}
+                </h1>
                 {/* Rate */}
                 <div className="flex items-center" title={data.rate}>
                   {/* Catching the rate from data and loop on them */}
@@ -54,7 +56,7 @@ const Testimonial = () => {
                         <svg
                           key={item}
                           aria-hidden="true"
-                          className="w-5 h-5 text-yellow-400"
+                          className="md:w-5 md:h-5 w-2 h-2 text-yellow-400"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +70,7 @@ const Testimonial = () => {
                         <svg
                           key={item}
                           aria-hidden="true"
-                          className="w-5 h-5 text-gray-300"
+                          className="md:w-5 md:h-5 w-2 h-2 text-gray-300"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -82,11 +84,13 @@ const Testimonial = () => {
               </div>
             </div>
             {/* Content header */}
-            <h1 className="text-white text-2xl text-left">
+            <h1 className="text-white lg:text-2xl md:text-lg text-xs text-left">
               {data.contentHeader}
             </h1>
             {/* Description */}
-            <p className="text-white text-base">{data.description}</p>
+            <p className="text-white lg:text-base md:text-sm text-xs">
+              {data.description}
+            </p>
           </div>
         ))}
       </div>

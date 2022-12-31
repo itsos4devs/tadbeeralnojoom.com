@@ -3,38 +3,46 @@ import React from "react";
 import icon from "../public/icon.png";
 const Footer = () => {
   return (
-    <div className="max-w-6xl mx-auto mb-10">
+    <div className="xl:max-w-6xl lg:max-w-4xl md:max-w-2xl sm:max-w-sm max-w-[300px] mx-auto mb-10 relative">
       {/* Newsletters */}
-      <div className="bg-[#234F7E] h-52 flex items-center justify-center space-x-20">
-        <h1 className="text-white text-4xl font-roboto font-normal">
+      <div className="bg-[#234F7E] xl:h-52 lg:h-44 md:h-36 h-20 flex items-center justify-center md:space-x-20 space-x-5">
+        <h1 className="text-white xl:text-4xl lg:text-3xl md:text-xl sm:text-xs text-[10px] font-roboto font-normal">
           Subscribe Newsletters
         </h1>
         <div className="relative">
           <input
-            className="w-[450px] px-5 py-4 rounded-lg focus:outline-blue-500"
+            className="lg:w-[450px] md:w-[300px] sm:w-[200px] w-[150px] px-5 md:py-4 md:text-base text-xs py-1 rounded-lg focus:outline-blue-500"
             type="email"
           />
-          <button className="absolute right-5 top-2 clickButton bg-[#0081FE] px-5 py-2 rounded-xl text-white">
+          <button className="absolute md:right-5 right-1 lg:top-2 md:top-3 top-1.5 clickButton bg-[#0081FE] lg:px-5 md:px-3 lg:py-2 md:py-1 px-2 md:text-lg sm:text-[10px] text-[8px] py-0.5 rounded-xl text-white">
             Subscribe now
           </button>
         </div>
       </div>
 
       <div className="flex items-center justify-between mt-20">
-        <div className="flex space-x-16">
-          <h3 className="text-gray-700 cursor-pointer">About us</h3>
-          <h3 className="text-gray-700 cursor-pointer">Our Services</h3>
-          <h3 className="text-gray-700 cursor-pointer">Our Team</h3>
-          <h3 className="text-gray-700 cursor-pointer">Contact Us</h3>
+        <div className="flex lg:space-x-16 md:space-x-8 space-x-4">
+          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+            About us
+          </h3>
+          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+            Our Services
+          </h3>
+          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+            Our Team
+          </h3>
+          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+            Contact Us
+          </h3>
         </div>
         {/* Icons */}
-        <div className="flex space-x-5 items-center">
+        <div className="flex md:space-x-5 space-x-2 items-center">
           {/* Linked in */}
           <div className="bg-[#234F7E]/25 p-2 rounded-full text-[#234F7E] cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
-              class="w-5 h-5"
+              class="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
             >
               <path
                 fill="currentColor"
@@ -47,7 +55,7 @@ const Footer = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512"
-              class="w-5 h-5"
+              class="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
             >
               <path
                 fill="currentColor"
@@ -60,7 +68,7 @@ const Footer = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
-              class="w-5 h-5"
+              class="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
             >
               <path
                 fill="currentColor"
@@ -71,16 +79,18 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="my-8 h-px bg-gray-200 border-0 mt-14" />
+      <hr className="my-8 h-px bg-gray-200 border-0 md:mt-14 mt-5" />
 
       {/* bottom */}
       <div className="flex items-center justify-between">
-        <Image src={icon} alt="Icon" width={36} height={50} />
+        <div className="md:w-9 md:h-9 sm:w-6 sm:h-6 w-4 h-4">
+          <Image src={icon} alt="Icon" width={36} height={50} />
+        </div>
         <div className="flex space-x-5">
-          <h3 className="text-gray-700 cursor-pointer text-sm">
+          <h3 className="text-gray-700 sm:text-[10px] cursor-pointer md:text-sm text-[8px]">
             Terms of Service
           </h3>
-          <h3 className="text-gray-700 cursor-pointer text-sm">
+          <h3 className="text-gray-700 sm:text-[10px] cursor-pointer md:text-sm text-[8px]">
             Privacy Policy
           </h3>
         </div>

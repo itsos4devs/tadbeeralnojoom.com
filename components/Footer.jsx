@@ -51,7 +51,7 @@ const Footer = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
-              class="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
+              className="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
             >
               <path
                 fill="currentColor"
@@ -64,7 +64,7 @@ const Footer = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512"
-              class="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
+              className="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
             >
               <path
                 fill="currentColor"
@@ -77,7 +77,7 @@ const Footer = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
-              class="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
+              className="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
             >
               <path
                 fill="currentColor"

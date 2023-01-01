@@ -1,21 +1,30 @@
 import Image from "next/image";
 import React from "react";
 import icon from "../public/icon.png";
+import { useTranslation } from "react-i18next";
+
 const Footer = () => {
+  const { t, i18n } = useTranslation();
   return (
     <div className="xl:max-w-6xl lg:max-w-4xl md:max-w-2xl sm:max-w-sm max-w-[300px] mx-auto mb-10 relative">
       {/* Newsletters */}
-      <div className="bg-[#234F7E] xl:h-52 lg:h-44 md:h-36 h-20 flex items-center justify-center md:space-x-20 space-x-5">
-        <h1 className="text-white xl:text-4xl lg:text-3xl md:text-xl sm:text-xs text-[10px] font-roboto font-normal">
-          Subscribe Newsletters
+      <div
+        className={
+          i18n.language === "ar"
+            ? "bg-[#234F7E] xl:h-52 lg:h-44 md:h-36 h-20 flex flex-row-reverse items-center justify-between lg:space-x-20 space-x-5"
+            : "bg-[#234F7E] xl:h-52 lg:h-44 md:h-36 h-20 flex flex-row items-center justify-center lg:space-x-20 space-x-5"
+        }
+      >
+        <h1 className="text-white xl:text-4xl lg:text-3xl md:text-xl  sm:text-xs text-[10px] md:mr-5 mr-2 font-roboto font-normal">
+          {t("newsletters")}
         </h1>
         <div className="relative">
           <input
-            className="lg:w-[450px] md:w-[300px] sm:w-[200px] w-[150px] px-5 md:py-4 md:text-base text-xs py-1 rounded-lg focus:outline-blue-500"
+            className="lg:w-[450px] md:w-[350px] sm:w-[200px] w-[150px] lg:px-5 px-1 md:py-3 md:text-base text-[5px] py-2.5 md:rounded-lg rounded-xs focus:outline-blue-500"
             type="email"
           />
-          <button className="absolute md:right-5 right-1 lg:top-2 md:top-3 top-1.5 clickButton bg-[#0081FE] lg:px-5 md:px-3 lg:py-2 md:py-1 px-2 md:text-lg sm:text-[10px] text-[8px] py-0.5 rounded-xl text-white">
-            Subscribe now
+          <button className="absolute lg:right-2 right-1 lg:top-0.5 md:top-3 top-[11px] clickButton bg-[#0081FE] lg:px-5 md:px-3 lg:py-2 md:py-1 px-2 lg:text-lg md:text-xs sm:text-[10px] text-[5px] py-0.5 rounded-sm lg:rounded-xl text-white">
+            {t("subscribeNow")}
           </button>
         </div>
       </div>
@@ -23,22 +32,22 @@ const Footer = () => {
       <div className="flex items-center justify-between mt-20">
         <div className="flex lg:space-x-16 md:space-x-8 space-x-4">
           <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
-            About us
+            {t("about")}
           </h3>
           <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
-            Our Services
+            {t("services")}
           </h3>
           <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
-            Our Team
+            {t("team")}
           </h3>
           <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
-            Contact Us
+            {t("contact")}
           </h3>
         </div>
         {/* Icons */}
         <div className="flex md:space-x-5 space-x-2 items-center">
           {/* Linked in */}
-          <div className="bg-[#234F7E]/25 p-2 rounded-full text-[#234F7E] cursor-pointer">
+          <div className="bg-[#234F7E]/25 md:p-2 p-1 rounded-full text-[#234F7E] cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
@@ -51,7 +60,7 @@ const Footer = () => {
             </svg>
           </div>
           {/* Facebook */}
-          <div className="bg-[#234F7E]/25 p-2 rounded-full text-[#234F7E] cursor-pointer">
+          <div className="bg-[#234F7E]/25 md:p-2 p-1 rounded-full text-[#234F7E] cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512"
@@ -64,7 +73,7 @@ const Footer = () => {
             </svg>
           </div>
           {/* Twitter */}
-          <div className="bg-[#234F7E]/25 p-2 rounded-full text-[#234F7E] cursor-pointer">
+          <div className="bg-[#234F7E]/25 md:p-2 p-1 rounded-full text-[#234F7E] cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -88,10 +97,10 @@ const Footer = () => {
         </div>
         <div className="flex space-x-5">
           <h3 className="text-gray-700 sm:text-[10px] cursor-pointer md:text-sm text-[8px]">
-            Terms of Service
+            {t("terms")}
           </h3>
           <h3 className="text-gray-700 sm:text-[10px] cursor-pointer md:text-sm text-[8px]">
-            Privacy Policy
+            {t("privacy")}
           </h3>
         </div>
       </div>

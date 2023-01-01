@@ -28,11 +28,11 @@ const ServiceSection = () => {
                   <p className="xl:text-xl lg:text-base md:text-sm sm:text-[10px] text-[8px] text-gray-500 ">
                     {data.description1}
                   </p>
-                  <p className="xl:text-xl lg:text-base md:text-sm text-[10px] text-gray-500 hidden">
+                  <p className="xl:text-xl lg:text-base md:text-sm text-[10px] text-gray-500 lg:block hidden">
                     {data.description3}
                   </p>
                 </div>
-                <h1 className="text-[#234F7E] font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer">
+                <h1 className="text-[#234F7E] w-fit font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer">
                   Know more
                 </h1>
               </div>
@@ -52,11 +52,11 @@ const ServiceSection = () => {
                   <p className="xl:text-xl lg:text-base md:text-sm sm:text-[10px] text-[8px] text-gray-500 ">
                     {data.description1}
                   </p>
-                  <p className="xl:text-xl lg:text-base md:text-sm text-[10px] text-gray-500 hidden">
+                  <p className="xl:text-xl lg:text-base md:text-sm text-[10px] text-gray-500 lg:block hidden">
                     {data.description3}
                   </p>
                 </div>
-                <h1 className="text-[#234F7E] font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer">
+                <h1 className="text-[#234F7E] w-fit font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer">
                   Know more
                 </h1>
               </div>

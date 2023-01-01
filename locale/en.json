@@ -1,0 +1,21 @@
+{
+    "home": "Home",
+    "about": "About Us",
+    "team": "Our Team",
+    "services": "Services",
+    "contact": "Contact Us",
+    "life": "Life’s busy.",
+    "help": "We can help.",
+    "bannerDesc": "Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum nostrud oratio aperiri legimus eu.",
+    "maid": "Our Maids",
+    "maidDesc": "Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum nostrud oratio aperiri legimus eu.",
+    "maidJob": "Cook",
+    "maidViewProfile": "View Profile",
+    "maidViewAll": "View All",
+    "testimonials": "Testimonials From Clients",
+    "testimonialsDesc": "Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum nostrud oratio aperiri legimus eu.",
+    "newsletters": "Subscribe Newsletters",
+    "subscribeNow": "Subscribe Now",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+}

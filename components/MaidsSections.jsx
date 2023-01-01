@@ -22,8 +22,9 @@ const MaidsSections = () => {
         <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
           {t("maid")}
         </h1>
-        <p className="md:w-[500px] sm:w-[300px] w-[250px] md:text-base sm:text-xs text-[10px] mx-auto">
-          {t("maidDesc")}
+        <p className="md:w-[500px] sm:w-[300px] w-[250px] sm:text-xs text-[10px] mx-auto">
+          Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
+          nostrud oratio aperiri legimus eu.
         </p>
       </div>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Maids from "./maids";
+import Maids from "../components/Maids";
 import maidPhoto from "../public/maidPhoto.png";
 
 const MaidsSection = () => {

@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import { useTranslation } from "react-i18next";
 import Banner from "../../components/Banner";
 import Header from "../../components/Header";
 import MaidProfile from "../../components/MaidProfile";
 import profileDetails from "../../public/profileDetails.jpeg";
-const Pid = () => {
+const pid = () => {
   const { t } = useTranslation();
 
   return (
@@ -37,4 +38,4 @@ const Pid = () => {
   );
 };
 
-export default Pid;
+export default pid;

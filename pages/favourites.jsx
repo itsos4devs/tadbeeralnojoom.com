@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
-import Maids from "../components/maids";
+import Maids from "../components/Maids";
 import favourit from "../public/favourit.jpeg";
 import maidPhoto from "../public/maidPhoto.png";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 
-const Favourites = () => {
+const favourites = () => {
   const { t } = useTranslation();
 
   const data = {
@@ -51,4 +52,4 @@ const Favourites = () => {
   );
 };
 
-export default Favourites;
+export default favourites;

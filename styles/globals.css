@@ -8,4 +8,7 @@
     .clickButton {
         @apply cursor-pointer transition duration-100 ease-out active:scale-95
       }
+      .button {
+        @apply bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white
+      }
 }

@@ -1,27 +1,29 @@
 import Image from "next/image";
-import React from "react";
+import React, { useRef, useState } from "react";
 import logo from "../public/logo.png";
+import profile from "../public/profile.png";
 import { PhoneArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { useOnClickOutside } from "usehooks-ts";
 
 const Header = () => {
-  // const [dropDown, setDropDown] = useState(false);
-  // const dropDownRef = useRef(null);
-  // useOnClickOutside(dropDownRef, () => setDropDown(false));
+  const [dropDown, setDropDown] = useState(false);
+  const dropDownRef = useRef(null);
+  useOnClickOutside(dropDownRef, () => setDropDown(false));
   const router = useRouter();
   const { t, i18n } = useTranslation();
   return (
     <div className="bg-[#000]/50 md:h-[71px] h-[30px] absolute left-0 right-0">
-      <div className="flex justify-between items-center xl:max-w-[1500px] lg:max-w-[1000px] md:max-w-[750px] sm:max-w-[400px] max-w-[300px] m-auto h-full">
+      <div className="flex justify-between items-center xl:max-w-[1200px] lg:max-w-[1000px] md:max-w-[750px] sm:max-w-[400px] max-w-[300px] m-auto h-full">
         {/* Logo */}
-        <div className="md:w-40 md:h-10 sm:w-12 w-10">
+        <div className="md:w-32 md:h-10 sm:w-12 w-10">
           <Image
             src={logo}
             alt="LOGO"
             width={151}
             height={40}
-            className="rounded-lg cursor-pointer"
+            className="rounded-lg cursor-pointer select-none"
             onClick={() =>
               router.push({
                 pathname: "/",
@@ -119,6 +121,70 @@ const Header = () => {
           <h1 className="text-white md:text-base sm:text-[10px] text-[5px]">
             0504664093
           </h1>
+          <div className="relative" ref={dropDownRef}>
+            <div className="w-4 h-4 md:w-10 md:h-10 lg:w-12 lg:h-12">
+              <Image
+                src={profile}
+                alt="Profile"
+                className="rounded-full cursor-pointer select-none"
+                width={50}
+                height={50}
+                onClick={() => setDropDown(!dropDown)}
+              />
+            </div>
+            <div
+              className={
+                dropDown
+                  ? "z-10 absolute right-0 md:w-44 w-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                  : "hidden"
+              }
+            >
+              {/* Email and name */}
+              <div className="md:py-3 md:px-4 py-2 px-2 md:text-sm text-[10px] text-gray-900 dark:text-white">
+                <div>Bonnie Green</div>
+                <div className="font-medium truncate">name@flowbite.com</div>
+              </div>
+              {/* categories */}
+              <ul
+                className="md:py-1 py-0 md:text-sm text-[10px] text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownUserAvatarButton"
+              >
+                <li>
+                  <a
+                    href="#"
+                    className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Settings
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Earnings
+                  </a>
+                </li>
+              </ul>
+              {/* Sign out */}
+              <div className="py-1">
+                <a
+                  href="#"
+                  className="block md:py-2 md:px-4 py-2 px-2 md:text-sm text-[10px] text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Sign out
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

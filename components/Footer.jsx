@@ -92,7 +92,7 @@ const Footer = () => {
 
       {/* bottom */}
       <div className="flex items-center justify-between">
-        <div className="md:w-9 md:h-9 sm:w-6 sm:h-6 w-4 h-4">
+        <div className="md:w-9 md:h-9 sm:w-6 sm:h-6 w-4 h-4 select-none">
           <Image src={icon} alt="Icon" width={36} height={50} />
         </div>
         <div className="flex space-x-5">

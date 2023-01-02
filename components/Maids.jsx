@@ -1,0 +1,61 @@
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+
+const Maids = ({ data }) => {
+  const router = useRouter();
+  const { t, i18n } = useTranslation();
+
+  const arr = Array.apply(null, Array(15)).map(function (x, i) {
+    return i;
+  });
+
+  return (
+    <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10">
+      {arr.map((item) => (
+        <div key={item} className="flex flex-col items-center space-y-1 group">
+          {/* Image */}
+          <div className="md:h-28 md:w-28 sm:h-16 sm:w-16 h-10 w-10">
+            <Image
+              src={data.img}
+              alt="Maid Photo"
+              className="rounded-full group-hover:border-2 group-hover:border-yellow-500"
+              width={117}
+              height={117}
+            />
+          </div>
+          {/* Name */}
+          <h1 className="md:text-lg sm:text-sm text-xs font-semibold">
+            {data.name}
+          </h1>
+          {/* Job */}
+          <h1 className="md:text-base sm:text-sm text-xs font-semibold">
+            {data.job}
+          </h1>
+          {/* Location */}
+          <h1 className="md:text-sm text-xs">{data.location}</h1>
+          {/* Experience Years */}
+          <h1 className="md:text-sm text-xs">{data.experienceYear} Years</h1>
+          <button
+            onClick={() => {
+              router.push({
+                pathname: `/profile/[pid]`,
+                query: { pid: data.id },
+              });
+            }}
+            className={
+              i18n.language === "ar"
+                ? "clickButton bg-[#E48100] md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-xl"
+                : "clickButton bg-[#E48100] md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[10px] text-white rounded-xl"
+            }
+          >
+            {t("maidViewProfile")}
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Maids;

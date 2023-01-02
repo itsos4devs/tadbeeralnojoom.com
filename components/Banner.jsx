@@ -1,12 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Header from "./Header";
-import banner from "../public/banner.jpeg";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
 
-const Banner = () => {
-  const { t, i18n } = useTranslation();
+const Banner = ({ imageSrc, imageUlt, text1, text2, text3, textPosition }) => {
   return (
     <div className="relative">
       {/* a blue color on top of the image */}
@@ -15,24 +12,26 @@ const Banner = () => {
       <Header />
       <div>
         <Image
-          src={banner}
-          alt="Banner Photo"
+          src={imageSrc}
+          alt={imageUlt}
           style={{
             objectFit: "fill",
           }}
-          className="w-full"
+          className="w-full select-none"
           priority
         />
       </div>
-      <div className="absolute top-1/3 xl:right-60 md:right-20 right-5 md:space-y-3 space-y-0 text-center">
+      <div
+        className={`absolute ${textPosition} md:space-y-3 space-y-0 text-center`}
+      >
         <h1 className="text-white lg:text-7xl md:text-5xl sm:text-2xl text-lg font-lato font-black">
-          {t("life")}
+          {text1}
         </h1>
         <h1 className="text-white lg:text-7xl md:text-5xl sm:text-2xl text-lg font-lato font-black">
-          {t("help")}
+          {text2}
         </h1>
         <p className="lg:text-3xl md:text-xl sm:text-sm text-[10px] lg:w-[500px] md:w-[400px] sm:w-[250px] w-[150px] text-white">
-          {t("bannerDesc")}
+          {text3}
         </p>
       </div>
     </div>

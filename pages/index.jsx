@@ -1,11 +1,14 @@
 import Head from "next/head";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
-import MaidsSections from "../components/MaidsSections";
+import MaidsSection from "../components/MaidsSection";
 import ServiceSection from "../components/ServiceSection";
 import Testimonial from "../components/Testimonial";
-
+import banner from "../public/banner.jpeg";
+import { useTranslation } from "react-i18next";
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
     <div>
       <Head>
@@ -16,11 +19,18 @@ export default function Home() {
       </Head>
       {/* Banner and Header */}
       <section>
-        <Banner />
+        <Banner
+          imageSrc={banner}
+          imageUlt={"Home Banner"}
+          text1={t("life")}
+          text2={t("help")}
+          text3={t("bannerDesc")}
+          textPosition={"top-1/3 xl:right-60 md:right-20 right-5"}
+        />
       </section>
       {/* Maids section */}
       <section>
-        <MaidsSections />
+        <MaidsSection />
       </section>
       {/* Services section */}
       <section>

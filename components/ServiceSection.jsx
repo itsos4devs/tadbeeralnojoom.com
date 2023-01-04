@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import servicePhoto from "../public/servicePhoto.png";
 const ServiceSection = () => {
+  const router = useRouter();
   const data = {
     img: servicePhoto,
     serviceName: "Service will go here just a single line",
@@ -14,7 +16,7 @@ const ServiceSection = () => {
     return i;
   });
   return (
-    <div className="md:my-32 mt-10">
+    <div className="md:mb-32">
       {arr.map((item) => {
         if (item % 2) {
           return (
@@ -32,18 +34,31 @@ const ServiceSection = () => {
                     {data.description3}
                   </p>
                 </div>
-                <h1 className="text-[#234F7E] w-fit font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer">
+                <h1
+                  onClick={() =>
+                    router.push({
+                      pathname: "/requestService",
+                    })
+                  }
+                  className="text-[#234F7E] w-fit font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer"
+                >
                   Know more
                 </h1>
               </div>
-              <Image src={data.img} alt="Service Photo" height={616} />
+              <div className="relative">
+                <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
+                <Image src={data.img} alt="Service Photo" height={616} />
+              </div>
             </div>
           );
         } else {
           return (
             // Left Photo
             <div key={item} className="grid grid-cols-2">
-              <Image src={data.img} alt="Service Photo" height={616} />
+              <div className="relative">
+                <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
+                <Image src={data.img} alt="Service Photo" height={616} />
+              </div>
               <div className="xl:w-[600px] xl:mt-10 md:mt-2 mt-0 lg:w-[500px] md:w-[300px] sm:w-[200px] w-fit mx-2 md:mx-auto lg:space-y-5">
                 <h1 className="xl:text-5xl lg:text-3xl md:text-xl sm:text-sm text-xs font-lato font-bold text-[#F48830]">
                   {data.serviceName}
@@ -56,7 +71,14 @@ const ServiceSection = () => {
                     {data.description3}
                   </p>
                 </div>
-                <h1 className="text-[#234F7E] w-fit font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer">
+                <h1
+                  onClick={() =>
+                    router.push({
+                      pathname: "/requestService",
+                    })
+                  }
+                  className="text-[#234F7E] w-fit font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer"
+                >
                   Know more
                 </h1>
               </div>

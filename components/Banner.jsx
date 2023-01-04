@@ -7,7 +7,7 @@ const Banner = ({ imageSrc, imageUlt, text1, text2, text3, textPosition }) => {
   return (
     <div className="relative">
       {/* a blue color on top of the image */}
-      <div className="bg-[#005AAA4D]/30 absolute w-full h-full filter contrast-150 brightness-110" />
+      <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
       {/* Using header with banner to combine the 2 components while loading */}
       <Header />
       <div>

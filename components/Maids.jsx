@@ -3,7 +3,17 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const Maids = ({ data }) => {
+const Maids = ({
+  data,
+  viewProfile,
+  up,
+  live,
+  history,
+  viewProfileColor,
+  upColor,
+  historyColor,
+  liveColor,
+}) => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
 
@@ -20,7 +30,7 @@ const Maids = ({ data }) => {
             <Image
               src={data.img}
               alt="Maid Photo"
-              className="rounded-full group-hover:border-2 group-hover:border-yellow-500"
+              className={`rounded-full group-hover:border-2 group-hover:border-yellow-500`}
               width={117}
               height={117}
             />
@@ -44,13 +54,12 @@ const Maids = ({ data }) => {
                 query: { pid: data.id },
               });
             }}
-            className={
-              i18n.language === "ar"
-                ? "clickButton bg-[#E48100] md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-xl"
-                : "clickButton bg-[#E48100] md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[10px] text-white rounded-xl"
-            }
+            className={`clickButton ${
+              viewProfileColor ||
+              (item < 7 ? upColor : item > 7 ? historyColor : liveColor)
+            } md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-md`}
           >
-            {t("maidViewProfile")}
+            {viewProfile || (item < 7 ? up : item > 7 ? history : live)}
           </button>
         </div>
       ))}

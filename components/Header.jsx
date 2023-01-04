@@ -6,6 +6,7 @@ import { PhoneArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { useOnClickOutside } from "usehooks-ts";
+import Link from "next/link";
 
 const Header = () => {
   const [dropDown, setDropDown] = useState(false);
@@ -38,7 +39,7 @@ const Header = () => {
             className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none"
             onClick={() =>
               router.push({
-                pathname: "/",
+                pathname: i18n.language === "ar" ? "" : "/",
               })
             }
           >
@@ -50,7 +51,14 @@ const Header = () => {
           <h1 className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none">
             {t("team")}
           </h1>
-          <h1 className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none">
+          <h1
+            onClick={() =>
+              router.push({
+                pathname: i18n.language === "ar" ? "" : "/ourServices",
+              })
+            }
+            className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none"
+          >
             {i18n.language === "ar" ? t("about") : t("services")}
           </h1>
           <h1 className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none">
@@ -150,28 +158,28 @@ const Header = () => {
                 aria-labelledby="dropdownUserAvatarButton"
               >
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/favourites"
                     className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-                    Dashboard
-                  </a>
+                    WishList/Favourites
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/upcomingInterviews"
                     className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-                    Settings
-                  </a>
+                    Upcoming Interviews
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="#"
                     className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-                    Earnings
-                  </a>
+                    Setttings
+                  </Link>
                 </li>
               </ul>
               {/* Sign out */}

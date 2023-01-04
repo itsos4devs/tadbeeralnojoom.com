@@ -1,9 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { CalendarDaysIcon, ClockIcon } from "@heroicons/react/24/outline";
+import {
+  CalendarDaysIcon,
+  ClockIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import Head from "next/head";
 import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useOnClickOutside } from "usehooks-ts";
 import Banner from "../../components/Banner";
 import MaidProfile from "../../components/MaidProfile";
 import profileDetails from "../../public/profileDetails.jpeg";
@@ -12,10 +15,9 @@ import TimePicker from "rc-time-picker";
 import DatePicker from "react-datepicker";
 import "rc-time-picker/assets/index.css";
 import "react-datepicker/dist/react-datepicker.css";
+
 const pid = () => {
   const [dropDownInterview, setDropDownInterview] = useState(false);
-  const dropDownRefInterview = useRef(null);
-  useOnClickOutside(dropDownRefInterview, () => setDropDownInterview(false));
   const { t } = useTranslation();
   const format = "h:mm a";
   const now = moment().hour(0).minute(0);
@@ -41,7 +43,7 @@ const pid = () => {
         }
       />
       <div className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row items-center justify-center md:mt-20 mt-10">
-        <div ref={dropDownRefInterview} className="relative">
+        <div className="relative">
           <button
             onClick={() => setDropDownInterview(!dropDownInterview)}
             className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]"
@@ -57,9 +59,15 @@ const pid = () => {
           >
             <div className="md:py-1 py-0 space-y-5 px-4">
               <div>
-                <h1 className="block text-[#234F7E] font-bold md:py-2 py-1">
-                  Preferred time for call
-                </h1>
+                <div className="flex justify-between items-center">
+                  <h1 className="block text-[#234F7E] font-bold md:py-2 py-1">
+                    Preferred time for call
+                  </h1>
+                  <XMarkIcon
+                    className="h-5 w-5 text-[#234F7E] cursor-pointer"
+                    onClick={() => setDropDownInterview(!dropDownInterview)}
+                  />
+                </div>
                 <div className="space-y-1">
                   <div className="flex justify-center space-x-2 w-full">
                     <div className="relative">

@@ -5,7 +5,7 @@ import ourTeams from "../public/ourTeam.jpeg";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import Team from "../components/team";
+import Team from "../components/Team";
 
 const ourTeam = () => {
   return (

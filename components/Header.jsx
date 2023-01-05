@@ -39,29 +39,50 @@ const Header = () => {
             className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none"
             onClick={() =>
               router.push({
-                pathname: i18n.language === "ar" ? "" : "/",
+                pathname: i18n.language === "ar" ? "/contactUs" : "/",
               })
             }
           >
             {i18n.language === "ar" ? t("contact") : t("home")}
           </h1>
-          <h1 className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none">
+          <h1
+            onClick={() =>
+              router.push({
+                pathname: i18n.language === "ar" ? "/ourServices" : "/aboutUs",
+              })
+            }
+            className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none"
+          >
             {i18n.language === "ar" ? t("services") : t("about")}
           </h1>
-          <h1 className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none">
+          <h1
+            onClick={() =>
+              router.push({
+                pathname: "/ourTeam",
+              })
+            }
+            className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none"
+          >
             {t("team")}
           </h1>
           <h1
             onClick={() =>
               router.push({
-                pathname: i18n.language === "ar" ? "" : "/ourServices",
+                pathname: i18n.language === "ar" ? "/aboutUs" : "/ourServices",
               })
             }
             className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none"
           >
             {i18n.language === "ar" ? t("about") : t("services")}
           </h1>
-          <h1 className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none">
+          <h1
+            onClick={() =>
+              router.push({
+                pathname: i18n.language === "ar" ? "/" : "/contactUs",
+              })
+            }
+            className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer select-none"
+          >
             {i18n.language === "ar" ? t("home") : t("contact")}
           </h1>
         </div>
@@ -171,14 +192,6 @@ const Header = () => {
                     className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Upcoming Interviews
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Setttings
                   </Link>
                 </li>
               </ul>

@@ -50,7 +50,7 @@ const contactUs = () => {
           <h1 className="text-[#E48100] font-lato font-extrabold md:text-2xl text-lg">
             Connect with us
           </h1>
-          <div className="flex xs:flex-row flex-col lg:space-x-16 md:space-x-10 xs:sapce-x-4 space-y-2 xs:space-y-0 space-x-4">
+          <div className="flex xs:flex-row flex-col lg:space-x-16 md:space-x-10 xs:sapce-x-4 space-y-2 xs:space-y-0 xs:space-x-4 space-x-0">
             <div className="">
               <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
                 Location

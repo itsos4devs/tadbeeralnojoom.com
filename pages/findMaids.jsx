@@ -38,7 +38,7 @@ const findMaids = () => {
       />
       <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-44 mb-16">
         <div className="text-center xl:mt-36 md:mt-20 mt-10 space-y-2">
-          <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
+          <h1 className="text-[#E48100] font-lato font-bold lg:text-5xl md:text-3xl text-xl">
             We have wide range of Skillful & Professional Maids
           </h1>
           <p className="md:w-[500px] sm:w-[300px] w-[250px] md:text-sm sm:text-xs text-[10px] mx-auto">

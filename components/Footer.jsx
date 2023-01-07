@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 const Footer = () => {
   const { t, i18n } = useTranslation();
   return (
-    <div className="xl:max-w-6xl lg:max-w-4xl md:max-w-2xl sm:max-w-sm max-w-[300px] mx-auto mb-10 relative">
+    <div className="xl:max-w-6xl lg:max-w-4xl md:max-w-2xl sm:max-w-sm max-w-[300px] mx-auto md:mt-32 mb-10 relative">
       {/* Newsletters */}
       <div
         className={

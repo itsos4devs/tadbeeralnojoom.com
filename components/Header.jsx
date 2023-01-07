@@ -15,7 +15,7 @@ const Header = () => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   return (
-    <div className="bg-[#000]/50 md:h-[71px] h-[30px] absolute left-0 right-0">
+    <div className="bg-[#000]/50 md:h-[71px] h-[20px] absolute left-0 right-0">
       <div className="flex justify-between items-center xl:max-w-[1200px] lg:max-w-[1000px] md:max-w-[750px] sm:max-w-[400px] max-w-[300px] m-auto h-full">
         {/* Logo */}
         <div className="md:w-32 md:h-10 sm:w-12 w-10">
@@ -171,7 +171,7 @@ const Header = () => {
               {/* Email and name */}
               <div className="md:py-3 md:px-4 py-2 px-2 md:text-sm text-[10px] text-gray-900 dark:text-white">
                 <div>Bonnie Green</div>
-                <div className="font-medium truncate">name@flowbite.com</div>
+                {/* <div className="font-medium truncate">name@flowbite.com</div> */}
               </div>
               {/* categories */}
               <ul

@@ -42,7 +42,7 @@ const pid = () => {
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
       />
-      <div className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row items-center justify-center md:mt-20 mt-10">
+      <div className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row lg:space-x-20 md:space-x-5 xs:space-x-8 xxs:space-x-5 space-x-3 justify-center md:mt-20 mt-10">
         <div className="relative">
           <button
             onClick={() => setDropDownInterview(!dropDownInterview)}
@@ -53,36 +53,36 @@ const pid = () => {
           <div
             className={
               dropDownInterview
-                ? "z-10 absolute top-14 md:w-[350px] h-fit w-28 bg-[#ADCBEA] rounded-xl divide-y divide-gray-100 shadow pb-4"
+                ? "z-10 absolute md:top-14 md:w-[350px] top-8 h-fit w-32 bg-[#ADCBEA] md:rounded-xl rounded-sm divide-y divide-gray-100 shadow md:pb-4 pb-1"
                 : "hidden"
             }
           >
-            <div className="md:py-1 py-0 space-y-5 px-4">
+            <div className="md:py-1 p-1 md:space-y-5 space-y-1 md:px-4 px-1">
               <div>
                 <div className="flex justify-between items-center">
-                  <h1 className="block text-[#234F7E] font-bold md:py-2 py-1">
+                  <h1 className="block text-[#234F7E] md:text-base text-[7px] font-bold md:py-2 py-1">
                     Preferred time for call
                   </h1>
                   <XMarkIcon
-                    className="h-5 w-5 text-[#234F7E] cursor-pointer"
+                    className="md:h-5 h-2 md:w-5 w-2 text-[#234F7E] cursor-pointer"
                     onClick={() => setDropDownInterview(!dropDownInterview)}
                   />
                 </div>
                 <div className="space-y-1">
-                  <div className="flex justify-center space-x-2 w-full">
+                  <div className="flex justify-center md:space-x-2 space-x-1 w-full">
                     <div className="relative">
-                      <div className="absolute z-20 inset-y-0 right-2 flex items-center pl-3 pointer-events-none">
-                        <CalendarDaysIcon className="h-5 w-5 text-[#234F7E]" />
+                      <div className="absolute z-20 md:inset-y-0 md:right-4 top-1 bottom-0 right-0.5 flex items-center md:pl-3 pl-1 pointer-events-none">
+                        <CalendarDaysIcon className="md:h-5 md:w-5 h-2 w-2 text-[#234F7E]" />
                       </div>
                       <DatePicker
-                        className="h-12 w-full text-lg text-[#234F7E] font-semibold rounded-lg cursor-pointer pl-2"
+                        className="md:h-12 h-5 w-full md:text-lg text-[7px] text-[#234F7E] font-semibold rounded-lg cursor-pointer md:pl-2 pl-1"
                         selected={startDate}
                         onChange={(date) => setStartDate(date)}
                       />
                     </div>
                     <div className="relative">
-                      <div className="absolute z-20 inset-y-0 right-2 flex items-center pl-3 pointer-events-none">
-                        <ClockIcon className="h-5 w-5 text-[#234F7E]" />
+                      <div className="absolute z-20 md:inset-y-0 md:right-4 top-1 bottom-0 right-2 flex items-center md:pl-3 pl-1 pointer-events-none">
+                        <ClockIcon className="md:h-5 md:w-5 h-2 w-2 text-[#234F7E]" />
                       </div>
                       <TimePicker
                         showSecond={false}
@@ -95,32 +95,38 @@ const pid = () => {
                       />
                     </div>
                   </div>
-                  <p className="text-xs font-semibold">
+                  <p className="md:text-xs text-[5px] font-semibold">
                     We’ll try and match your chosen time, but will be in touch
                     if we need to reschedule.
                   </p>
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <button className="clickButton bg-[#234F7E] p-3 px-5 text-white rounded-xl font-semibold">
+                <button className="clickButton bg-[#234F7E] md:p-3 md:px-5 md:text-base text-[7px] p-1 text-white rounded-xl md:font-semibold">
                   Submit
                 </button>
-                <button className="clickButton border border-[#234F7E] p-3 text-[#234F7E] text-base font-bold rounded-xl">
+                <button className="clickButton border border-[#234F7E] md:p-3 p-1 text-[#234F7E] md:text-base text-[7px] font-bold rounded-xl">
                   View results
                 </button>
               </div>
             </div>
           </div>
         </div>
-        <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
-          {t("saveLater")}
-        </button>
-        <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
-          {t("call")}
-        </button>
-        <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
-          Whatsapp
-        </button>
+        <div>
+          <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
+            {t("saveLater")}
+          </button>
+        </div>
+        <div>
+          <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
+            {t("call")}
+          </button>
+        </div>
+        <div>
+          <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
+            Whatsapp
+          </button>
+        </div>
       </div>
       <MaidProfile />
     </div>

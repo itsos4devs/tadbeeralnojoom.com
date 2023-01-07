@@ -19,39 +19,41 @@ const requestService = () => {
       <Banner
         imageSrc={ourService}
         imageUlt="Our Services banner"
-        text1={"Service Name 01"}
+        text1={"Service Name"}
         textPosition={
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
       />
-      <div className="grid grid-cols-2">
-        <div className="flex flex-col justify-center items-center space-y-5">
-          <h1 className="text-4xl text-[#E48100] font-lato font-extrabold">
+      <div className="grid grid-cols-2 md:mt-2 mt-1 md:ml-2">
+        <div className="flex flex-col lg:justify-center lg:items-center md:space-y-5 space-y-2">
+          <h1 className="lg:text-4xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
             We are Skillful & Professional
           </h1>
-          <p className="w-[521px] ml-10">
+          <p className="lg:w-[521px] lg:ml-10 md:text-base xs:text-[10px] text-[7px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
             ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua.
           </p>
           <div className="space-y-2">
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit:</h3>
+            <h3 className="md:text-base xs:text-[10px] text-[7px]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit:
+            </h3>
             <div className="ml-5 space-y-3">
-              <h3 className="text-blue-500">
+              <h3 className="text-blue-500 md:text-sm xs:text-[8px] text-[5px]">
                 🔵 Lorem ipsum dolor sit amet, consectetur adipiscing elit
               </h3>
-              <h3 className="text-blue-500">
+              <h3 className="text-blue-500 md:text-sm xs:text-[8px] text-[5px]">
                 🔵 Lorem ipsum dolor sit amet, consectetur adipiscing elit
               </h3>
-              <h3 className="text-blue-500">
+              <h3 className="text-blue-500 md:text-sm xs:text-[8px] text-[5px]">
                 🔵 Lorem ipsum dolor sit amet, consectetur adipiscing elit
               </h3>
             </div>
           </div>
         </div>
-        <div className="relative cursor-pointer md:my-20 my-10">
-          <div className="lg:w-[500px] md:w-full w-72 mx-auto">
+        <div className="relative cursor-pointer md:my-20 my-10 h-fit">
+          <div className="xl:w-[500px] md:w-[350px] xs:w-[200px] w-[150px] mx-auto">
             <Image
               src={thumbnail}
               alt="Thumbnail"
@@ -60,13 +62,13 @@ const requestService = () => {
               className="rounded-xl"
             />
           </div>
-          <div className="md:w-[90px] w-12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hover:scale-105 transition duration-100 ease-out">
+          <div className="md:w-[70px] xs:w-10 w-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hover:scale-105 transition duration-100 ease-out">
             <Image src={play} alt="play" width={90} height={90} className="" />
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto space-y-5 ">
-        <p>
+      <div className="xl:max-w-7xl lg:max-w-4xl md:max-w-2xl xs:max-w-sm max-w-[280px] mt-1 mx-auto space-y-5 ">
+        <p className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
           Lorem ipsum dolor sit amet. Aut internos temporibusAut quas vel
           eveniet repellendus 33 impedit sunt? Sit voluptatem reiciendisCum
           galisum in vitae saepe ut distinctio dolore. Ad aspernatur impedit in
@@ -86,7 +88,7 @@ const requestService = () => {
           non earum quasi et expedita similique ut nobis nihil ut fugiat fuga!
           Est iure accusantiumAut iusto ut libero vero ex dolore dolorem.
         </p>
-        <p>
+        <p className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
           Eos officiis perspiciatisnon officiis est similique facilis? Aut
           voluptas quis ut voluptatibus quiaUt consequuntur rem tempore beatae
           et velit optio hic nihil voluptatibus et ratione aperiam. Aut dolores
@@ -116,7 +118,7 @@ const requestService = () => {
           Et voluptatem suntCum deleniti ea maiores cumque aut illo optio sit
           quis impedit. Est consequatur nulla vel nihil quibusdamIn galisum.
         </p>
-        <p>
+        <p className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
           A explicabo magnam In sint eos possimus nulla et dolor voluptas quo
           fugit laudantium sit internos minima? Ab deleniti consequaturEa ipsam
           est consectetur tempore qui Quis nostrum qui amet deserunt sit odit
@@ -141,7 +143,7 @@ const requestService = () => {
           non omnis facilis et pariatur omnis. In odio voluptatum vel deleniti
           commodi aut architecto nostrum et quam odit.
         </p>
-        <p>
+        <p className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
           Aut autem voluptates aut itaque nobiseum dolores cum maxime
           voluptatum. Sit autem odio Ea reiciendis non facere eaque ut unde
           libero. Vel dolorum numquamEa atque et galisum enim sed enim
@@ -153,28 +155,28 @@ const requestService = () => {
           accusamus 33 dolorum consequatur.
         </p>
         <div className="space-y-1">
-          <h1>
+          <h1 className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
             {" "}
             Est enim quia eum sint quam et officiis iure aut fuga facere. Aut
             saepe nobis qui facilis laboriosam ea odit odio a temporibus dolore.
           </h1>
           <div className="ml-5 space-y-2">
-            <h1>
+            <h1 className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
               1- Est enim quia eum sint quam et officiis iure aut fuga facere.
               Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
               dolore.
             </h1>
-            <h1>
+            <h1 className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
               2- Est enim quia eum sint quam et officiis iure aut fuga facere.
               Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
               dolore.
             </h1>
-            <h1>
+            <h1 className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
               3- Est enim quia eum sint quam et officiis iure aut fuga facere.
               Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
               dolore.
             </h1>
-            <h1>
+            <h1 className="xl:text-base lg:text-sm xs:text-[10px] text-[7px]">
               4- Est enim quia eum sint quam et officiis iure aut fuga facere.
               Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
               dolore.
@@ -182,24 +184,32 @@ const requestService = () => {
           </div>
         </div>
       </div>
-      <div className="md:my-32 my-10 bg-[#E7EDF3] p-20">
+      <div className="md:my-22 my-10 bg-[#E7EDF3] md:p-20 p-10">
         <form action="" method="post" className="max-w-xl mx-auto space-y-5">
-          <h1 className="block text-4xl text-center font-medium text-[#234F7E]">
+          <h1 className="block md:text-4xl xs:text-xl text-sm text-center font-medium text-[#234F7E]">
             Service Request Form
           </h1>
           <div className="flex flex-col items-start space-y-3">
-            <label className="text-[#234F7E] text-lg">Service</label>
-            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm w-60 rounded-lg focus:outline-none block p-2.5">
-              <option className="text-[#234F7E] text-base">service 01</option>
-              <option className="text-[#234F7E] text-base">service 02</option>
-              <option className="text-[#234F7E] text-base">service 03</option>
-              <option className="text-[#234F7E] text-base">service 04</option>
+            <label className="text-[#234F7E] xs:text-lg text-sm">Service</label>
+            <select className="bg-gray-50 border border-gray-300 text-gray-900 xs:text-sm text-[10px] w-60 rounded-lg focus:outline-none block p-2.5">
+              <option className="text-[#234F7E] xs:text-base text-sm">
+                service 01
+              </option>
+              <option className="text-[#234F7E] xs:text-base text-sm">
+                service 02
+              </option>
+              <option className="text-[#234F7E] xs:text-base text-sm">
+                service 03
+              </option>
+              <option className="text-[#234F7E] xs:text-base text-sm">
+                service 04
+              </option>
             </select>
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="text"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -210,7 +220,7 @@ const requestService = () => {
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="email"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -221,7 +231,7 @@ const requestService = () => {
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="tel"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -231,7 +241,7 @@ const requestService = () => {
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <textarea
-              className="block py-6 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-6 px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=""
               rows={5}
               required
@@ -242,9 +252,9 @@ const requestService = () => {
           </div>
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto sm:px-5 sm:py-2.5 px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Submit
+            Send a message
           </button>
         </form>
       </div>

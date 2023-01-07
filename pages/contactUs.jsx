@@ -46,79 +46,92 @@ const contactUs = () => {
             ></Marker>
           </Map>
         </div>
-        <div className="m-10 space-y-10 max-w-xl mx-auto">
-          <h1 className="text-[#E48100] font-lato font-extrabold md:text-4xl md:w-[600px] text-2xl">
+        <div className="md:m-10 xs:m-2 lg:space-y-10 md:space-y-7 xl:max-w-xl lg:w-full mx-auto">
+          <h1 className="text-[#E48100] font-lato font-extrabold md:text-2xl text-lg">
             Connect with us
           </h1>
-          <div className="flex space-x-16">
+          <div className="flex xs:flex-row flex-col lg:space-x-16 md:space-x-10 xs:sapce-x-4 space-y-2 xs:space-y-0 space-x-4">
             <div className="">
-              <h2 className="text-xl font-roboto text-[#234F7E]">Location</h2>
-              <p className="text-base ">Agriculture Building,</p>
-              <p className="text-base "> Stores land, Maliha Road,</p>
-              <p className="text-base ">Sharjah, UAE.</p>
+              <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
+                Location
+              </h2>
+              <p className="lg:text-base text-xs text-[6px] ">
+                Agriculture Building,
+              </p>
+              <p className="lg:text-base text-xs text-[6px] ">
+                {" "}
+                Stores land, Maliha Road,
+              </p>
+              <p className="lg:text-base text-xs text-[6px] ">Sharjah, UAE.</p>
             </div>
             <div className="space-y-4">
               <div>
-                <h2 className="text-xl font-roboto text-[#234F7E]">
+                <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
                   Call Center
                 </h2>
-                <p className="text-base ">06-767-4222 / 054-995-3973</p>
+                <p className="lg:text-base text-xs text-[7px] ">
+                  06-767-4222 / 054-995-3973
+                </p>
               </div>
               <div>
-                <h2 className="text-xl font-roboto text-[#234F7E]">Email</h2>
-                <p className="text-base ">tadbeer.alnujoom@gmail.com</p>
+                <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
+                  Email
+                </h2>
+                <p className="lg:text-base text-xs text-[7px] ">
+                  tadbeer.alnujoom@gmail.com
+                </p>
               </div>
             </div>
           </div>
-          <div className="bg-[#E7EDF3] py-5 ">
-            <form action="" method="post" className="space-y-5">
-              <div className="relative z-0 w-full mb-6 group">
+          <div className="bg-[#E7EDF3] py-5 md:px-4 xs:px-2">
+            <form action="" method="post" className="md:space-y-5 space-y-2">
+              <div className="relative z-0 w-full md:mb-6 mb-4 group">
                 <input
                   type="text"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-2.5 px-0 w-full md:text-sm xs:text-xs text-[10px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
                 />
-                <label className="peer-focus:font-medium absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                <label className="peer-focus:font-medium absolute md:text-sm xs:text-xs text-[10px] text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                   Name
                 </label>
               </div>
-              <div className="relative z-0 w-full mb-6 group">
+              <div className="relative z-0 w-full md:mb-6 mb-4 group">
                 <input
                   type="email"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-2.5 px-0 w-full md:text-sm xs:text-xs text-[10px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
                 />
-                <label className="peer-focus:font-medium absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                <label className="peer-focus:font-medium absolute md:text-sm xs:text-xs text-[10px] text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                   Email address
                 </label>
               </div>
-              <div className="relative z-0 w-full mb-6 group">
+              <div className="relative z-0 w-full md:mb-6 mb-4 group">
                 <input
                   type="tel"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-2.5 px-0 w-full md:text-sm xs:text-xs text-[10px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
                 />
-                <label className="peer-focus:font-medium absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                <label className="peer-focus:font-medium absolute md:text-sm xs:text-xs text-[10px] text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                   Phone number
                 </label>
               </div>
-              <div className="relative z-0 w-full mb-6 group">
+              <div className="relative z-0 w-full md:mb-6 mb-4 group">
                 <textarea
-                  className="block py-6 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block py-6 px-0 w-full md:text-sm xs:text-xs text-[10px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
                   rows={3}
                   required
                 />
-                <label className="peer-focus:font-medium absolute text-sm text-[#234F7E] duration-300 transform -translate-y-1 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                <label className="peer-focus:font-medium absolute md:text-sm xs:text-xs text-[10px] text-[#234F7E] duration-300 transform -translate-y-1 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                   Message
                 </label>
               </div>
               <button
                 type="submit"
-                className="text-white bg-[#234F7E] clickButton focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                className="text-white bg-[#234F7E] clickButton focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg xs:text-sm text-[10px] w-full sm:w-auto md:px-5 xs:px-3 px-2 md:py-2.5 xs:py-1.5 py-1 text-center"
               >
                 Send Message
               </button>

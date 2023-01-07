@@ -17,24 +17,24 @@ const SearchMaids = () => {
   });
   return (
     <div className="space-y-10">
-      <div className="relative xl:w-[1000px] lg:w-[800px] mx-auto">
+      <div className="relative xl:w-[1000px] lg:w-[800px] md:w-[500px] xs:w-[300px] w-[250px] mx-auto">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <MagnifyingGlassIcon className="h-5 w-5 text-gray-600" />
         </div>
         <input
           type="search"
-          className="block p-3 xl:w-[1000px] lg:w-[800px] pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-[#D2DFED] focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+          className="block p-3 xl:w-[1000px] lg:w-[800px] md:w-[500px] xs:w-[300px] w-[250px] pl-10 text-sm  text-gray-900 border border-gray-300 rounded-lg bg-[#D2DFED] focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
           placeholder="Search here your desired CV"
         />
       </div>
       <div
         ref={dropDownRef}
-        className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row items-center justify-center lg:space-x-16"
+        className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row items-center justify-center lg:space-x-16 md:space-x-10 xxs:space-x-2 space-x-1"
       >
         <div className="relative">
           <button
             onClick={() => setDropDownCountry(!dropDownCountry)}
-            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg w-[280px] text-base px-4 py-2.5 text-center inline-flex justify-between items-center"
+            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[6px] px-4 py-2.5 text-center inline-flex justify-between items-center"
             type="button"
           >
             Country Status{" "}
@@ -46,7 +46,7 @@ const SearchMaids = () => {
           <div
             className={
               dropDownCountry
-                ? "z-10 absolute right-0 md:w-[280px] w-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                ? "z-10 absolute right-0 lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 : "hidden"
             }
           >
@@ -65,7 +65,7 @@ const SearchMaids = () => {
         <div className="relative">
           <button
             onClick={() => setDropDownProfession(!dropDownProfession)}
-            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg w-[280px] text-base px-4 py-2.5 text-center inline-flex justify-between items-center"
+            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[7px] px-4 py-2.5 text-center inline-flex justify-between items-center"
             type="button"
           >
             Profession{" "}
@@ -77,7 +77,7 @@ const SearchMaids = () => {
           <div
             className={
               dropDownProfession
-                ? "z-10 absolute right-0 md:w-[280px] w-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                ? "z-10 absolute right-0 lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 : "hidden"
             }
           >
@@ -96,7 +96,7 @@ const SearchMaids = () => {
         <div className="relative">
           <button
             onClick={() => setDropDownNationality(!dropDownNationality)}
-            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg w-[280px] text-base px-4 py-2.5 text-center inline-flex justify-between items-center"
+            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[7px] px-4 py-2.5 text-center inline-flex justify-between items-center"
             type="button"
           >
             Nationality{" "}
@@ -108,7 +108,7 @@ const SearchMaids = () => {
           <div
             className={
               dropDownNationality
-                ? "z-10 absolute right-0 md:w-[280px] w-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                ? "z-10 absolute right-0 lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 : "hidden"
             }
           >
@@ -128,7 +128,7 @@ const SearchMaids = () => {
       <div className="w-44 mx-auto">
         <button
           type="submit"
-          className="text-white w-44 bg-[#234F7E] clickButton font-medium rounded-lg text-sm py-2"
+          className="text-white w-44 bg-[#234F7E] clickButton font-medium rounded-lg text-sm md:py-2 py-1"
         >
           Search
         </button>

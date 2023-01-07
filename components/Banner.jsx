@@ -24,7 +24,7 @@ const Banner = ({ imageSrc, imageUlt, text1, text2, text3, textPosition }) => {
       <div
         className={`absolute ${textPosition} md:space-y-3 space-y-0 text-center`}
       >
-        <h1 className="text-white lg:text-7xl md:text-5xl sm:text-2xl text-lg font-lato font-black">
+        <h1 className="text-white xl:text-7xl lg:text-5xl md:text-3xl sm:text-2xl xs:text-lg xxs:text-sm text-xs font-lato font-black">
           {text1}
         </h1>
         <h1 className="text-white lg:text-7xl md:text-5xl sm:text-2xl text-lg font-lato font-black">

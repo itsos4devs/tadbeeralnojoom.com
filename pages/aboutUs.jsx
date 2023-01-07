@@ -23,18 +23,18 @@ const aboutUs = () => {
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
       />
-      <div className="h-full md:mb-44 lg:max-w-6xl md:max-w-4xl max-w-sm mx-auto space-y-20">
-        <div className="text-center xl:mt-32 md:mt-20 mt-10 space-y-5">
+      <div className="h-full md:mb-44 mb-16 lg:max-w-6xl md:max-w-4xl max-w-sm mx-auto md:space-y-20 space-y-10">
+        <div className="text-center xl:mt-32 md:mt-20 mt-5 md:space-y-5 space-y-2">
           <h1 className="text-[#E48100] font-lato font-extrabold md:text-4xl md:w-[600px] mx-auto text-2xl">
             TItle of the Content
           </h1>
-          <p className="md:w-[400px] sm:w-[300px] w-[250px] font-semibold text-[#234F7E] md:text-sm sm:text-xs text-[10px] mx-auto">
+          <p className="md:w-[400px] sm:w-[300px] w-[250px] font-semibold text-[#234F7E] md:text-sm sm:text-xs text-[8px] mx-auto">
             Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
             nostrud oratio aperiri legimus eu.
           </p>
         </div>
         <div className="text-center space-y-5">
-          <p>
+          <p className="text-[10px] md:text-base">
             Lorem ipsum dolor sit amet. Aut internos temporibusAut quas vel
             eveniet repellendus 33 impedit sunt? Sit voluptatem reiciendisCum
             galisum in vitae saepe ut distinctio dolore. Ad aspernatur impedit
@@ -73,7 +73,7 @@ const aboutUs = () => {
             aut ipsum nihil qui facilis facilis ut ipsa expedita. Ea labore
             delectusQui deleniti a internos consectetur ea assumenda dolore. Aut
           </p>
-          <p>
+          <p className="text-[10px] md:text-base">
             autem voluptates aut itaque nobiseum dolores cum maxime voluptatum.
             Sit autem odio Ea reiciendis non facere eaque ut unde libero. Vel
             dolorum numquamEa atque et galisum enim sed enim repudiandae. Cum
@@ -89,7 +89,7 @@ const aboutUs = () => {
             Est enim quia eum sint quam et officiis iure aut fuga facere. Aut
             saepe nobis qui facilis laboriosam ea odit odio a temporibus dolore.
           </p>
-          <p>
+          <p className="text-[10px] md:text-base">
             autem voluptates aut itaque nobiseum dolores cum maxime voluptatum.
             Sit autem odio Ea reiciendis non facere eaque ut unde libero. Vel
             dolorum numquamEa atque et galisum enim sed enim repudiandae. Cum
@@ -105,7 +105,7 @@ const aboutUs = () => {
             Est enim quia eum sint quam et officiis iure aut fuga facere. Aut
             saepe nobis qui facilis laboriosam ea odit odio a temporibus dolore.
           </p>
-          <p>
+          <p className="text-[10px] md:text-base">
             autem voluptates aut itaque nobiseum dolores cum maxime voluptatum.
             Sit autem odio Ea reiciendis non facere eaque ut unde libero. Vel
             dolorum numquamEa atque et galisum enim sed enim repudiandae. Cum
@@ -122,29 +122,29 @@ const aboutUs = () => {
             saepe nobis qui facilis laboriosam ea odit odio a temporibus dolore.
           </p>
           <div className="space-y-1 text-left">
-            <h1>
+            <h1 className="text-[10px] md:text-base">
               {" "}
               Est enim quia eum sint quam et officiis iure aut fuga facere. Aut
               saepe nobis qui facilis laboriosam ea odit odio a temporibus
               dolore.
             </h1>
             <div className="ml-5 space-y-2">
-              <h1>
+              <h1 className="text-[10px] md:text-base">
                 1- Est enim quia eum sint quam et officiis iure aut fuga facere.
                 Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
                 dolore.
               </h1>
-              <h1>
+              <h1 className="text-[10px] md:text-base">
                 2- Est enim quia eum sint quam et officiis iure aut fuga facere.
                 Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
                 dolore.
               </h1>
-              <h1>
+              <h1 className="text-[10px] md:text-base">
                 3- Est enim quia eum sint quam et officiis iure aut fuga facere.
                 Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
                 dolore.
               </h1>
-              <h1>
+              <h1 className="text-[10px] md:text-base">
                 4- Est enim quia eum sint quam et officiis iure aut fuga facere.
                 Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
                 dolore.

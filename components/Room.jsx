@@ -8,9 +8,6 @@ import {
   VideoCameraIcon,
   VideoCameraSlashIcon,
 } from "@heroicons/react/24/solid";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
 
 const Room = () => {
   let localVideoRef = useRef();

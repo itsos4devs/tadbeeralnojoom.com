@@ -3,7 +3,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
-import Room from "../../components/room";
+import Room from "../../components/Room";
 
 const pid = () => {
   const [currentPage, setCurrentPage] = useState("create");

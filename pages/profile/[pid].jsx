@@ -5,7 +5,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Head from "next/head";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Banner from "../../components/Banner";
 import MaidProfile from "../../components/MaidProfile";
@@ -15,16 +15,54 @@ import TimePicker from "rc-time-picker";
 import DatePicker from "react-datepicker";
 import "rc-time-picker/assets/index.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { firestore } from "../../utils";
 
 const pid = () => {
   const [dropDownInterview, setDropDownInterview] = useState(false);
   const { t } = useTranslation();
-  const format = "h:mm a";
-  const now = moment().hour(0).minute(0);
-  function onChange(value) {
-    console.log(value && value.format(format));
-  }
+
   const [startDate, setStartDate] = useState(new Date());
+  const [startTime, setStartTime] = useState("12:00");
+
+  const createRoom = async () => {
+    const servers = {
+      iceServers: [
+        {
+          urls: [
+            "stun:stun1.l.google.com:19302",
+            "stun:stun2.l.google.com:19302",
+          ],
+        },
+      ],
+      iceCandidatePoolSize: 10,
+    };
+    const pc = new RTCPeerConnection(servers);
+    // Reference Firestore collections for signaling
+    const callDoc = firestore.collection("calls").doc();
+
+    // Create offer
+    const offerDescription = await pc.createOffer();
+    await pc.setLocalDescription(offerDescription);
+
+    const offer = {
+      sdp: offerDescription.sdp,
+      type: offerDescription.type,
+    };
+
+    const dateTime = {
+      date: startDate.toLocaleDateString("es-AR"),
+      time: startTime,
+    };
+
+    const callFor = {
+      // Client Name/ID
+      name: "Karim",
+      // User Name/ID
+    };
+
+    await callDoc.set({ offer, dateTime, callFor });
+    setDropDownInterview(!dropDownInterview);
+  };
 
   return (
     <div className="relative">
@@ -86,9 +124,11 @@ const pid = () => {
                       </div>
                       <TimePicker
                         showSecond={false}
-                        defaultValue={now}
-                        onChange={onChange}
-                        format={format}
+                        defaultValue={moment().hour(0).minute(0)}
+                        onChange={(value) =>
+                          setStartTime(value && value.format("HH:mm"))
+                        }
+                        format={"h:mm a"}
                         use12Hours
                         inputReadOnly
                         clearIcon={""}
@@ -102,7 +142,10 @@ const pid = () => {
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <button className="clickButton bg-[#234F7E] md:p-3 md:px-5 md:text-base text-[7px] p-1 text-white rounded-xl md:font-semibold">
+                <button
+                  onClick={createRoom}
+                  className="clickButton bg-[#234F7E] md:p-3 md:px-5 md:text-base text-[7px] p-1 text-white rounded-xl md:font-semibold"
+                >
                   Submit
                 </button>
                 <button className="clickButton border border-[#234F7E] md:p-3 p-1 text-[#234F7E] md:text-base text-[7px] font-bold rounded-xl">

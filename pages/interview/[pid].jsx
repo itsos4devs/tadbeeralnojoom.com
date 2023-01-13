@@ -97,7 +97,7 @@ const pid = () => {
 
         callData.answer
           ? await callDoc.update({ answer })
-          : await callDoc.set({ answer });
+          : await callDoc.update({ answer });
 
         // Listen to offer candidates
         offerCandidates.onSnapshot((snapshot) => {
@@ -151,7 +151,7 @@ const pid = () => {
     callData.answer ? await callDoc.update({ answer }) : null;
     callData.offer
       ? await callDoc.update({ offer })
-      : await callDoc.set({ offer });
+      : await callDoc.update({ offer });
 
     // Listen for remote answer
     callDoc.onSnapshot((snapshot) => {

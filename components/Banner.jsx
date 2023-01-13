@@ -11,15 +11,17 @@ const Banner = ({ imageSrc, imageUlt, text1, text2, text3, textPosition }) => {
       {/* Using header with banner to combine the 2 components while loading */}
       <Header />
       <div>
-        <Image
-          src={imageSrc}
-          alt={imageUlt}
-          style={{
-            objectFit: "fill",
-          }}
-          className="w-full select-none"
-          priority
-        />
+        {imageSrc && (
+          <Image
+            src={imageSrc}
+            alt={imageUlt}
+            style={{
+              objectFit: "fill",
+            }}
+            className="w-full select-none"
+            priority
+          />
+        )}
       </div>
       <div
         className={`absolute ${textPosition} md:space-y-3 space-y-0 text-center`}

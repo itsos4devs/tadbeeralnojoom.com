@@ -16,8 +16,10 @@ import DatePicker from "react-datepicker";
 import "rc-time-picker/assets/index.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { firestore } from "../../utils";
+import { useRouter } from "next/router";
 
 const pid = () => {
+  const router = useRouter();
   const [dropDownInterview, setDropDownInterview] = useState(false);
   const { t } = useTranslation();
 
@@ -40,15 +42,6 @@ const pid = () => {
     // Reference Firestore collections for signaling
     const callDoc = firestore.collection("calls").doc();
 
-    // Create offer
-    const offerDescription = await pc.createOffer();
-    await pc.setLocalDescription(offerDescription);
-
-    const offer = {
-      sdp: offerDescription.sdp,
-      type: offerDescription.type,
-    };
-
     const dateTime = {
       date: startDate.toLocaleDateString("es-AR"),
       time: startTime,
@@ -60,8 +53,12 @@ const pid = () => {
       // User Name/ID
     };
 
-    await callDoc.set({ offer, dateTime, callFor });
+    await callDoc.set({ dateTime, callFor });
     setDropDownInterview(!dropDownInterview);
+    router.push({
+      pathname: `/interview/${callDoc.id}`,
+      query: { pid: callDoc.id },
+    });
   };
 
   return (

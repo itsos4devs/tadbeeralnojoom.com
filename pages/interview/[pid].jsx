@@ -67,61 +67,6 @@ const pid = () => {
     stream();
   }, [meeting]);
 
-  useEffect(() => {
-    const remoteUser = async () => {
-      if (meeting) {
-        const callDoc = firestore.collection("calls").doc(router.query.pid);
-        const offerCandidates = callDoc.collection("offerCandidates");
-        const answerCandidates = callDoc.collection("answerCandidates");
-
-        pc.onicecandidate = (event) => {
-          event.candidate && answerCandidates.add(event.candidate.toJSON());
-        };
-
-        // Fetch data, then set the offer & answer
-
-        const callData = (await callDoc.get()).data();
-
-        await pc.setRemoteDescription(
-          new RTCSessionDescription(callData.offer)
-        );
-
-        const answerDescription = await pc.createAnswer();
-        console.log(answerDescription);
-        await pc.setLocalDescription(answerDescription);
-
-        const answer = {
-          type: answerDescription.type,
-          sdp: answerDescription.sdp,
-        };
-
-        callData.answer
-          ? await callDoc.update({ answer })
-          : await callDoc.update({ answer });
-
-        // Listen to offer candidates
-        offerCandidates.onSnapshot((snapshot) => {
-          snapshot.docChanges().forEach((change) => {
-            if (change.type === "added") {
-              let data = change.doc.data();
-              pc.addIceCandidate(new RTCIceCandidate(data));
-            }
-          });
-        });
-        // Listen for remote ICE candidates
-        answerCandidates.onSnapshot((snapshot) => {
-          snapshot.docChanges().forEach((change) => {
-            if (change.type === "added") {
-              const candidate = new RTCIceCandidate(change.doc.data());
-              pc.addIceCandidate(candidate);
-            }
-          });
-        });
-      }
-    };
-    remoteUser();
-  }, [meeting]);
-
   const localUser = async () => {
     setMeeting(true);
     const targetDoc = await firestore
@@ -130,6 +75,11 @@ const pid = () => {
     const callDoc = firestore.doc("calls/" + `${router.query.pid}`);
     const offerCandidates = callDoc.collection("offerCandidates");
     const answerCandidates = callDoc.collection("answerCandidates");
+    const callData = (await callDoc.get()).data();
+    await callDoc.set({
+      callFor: callData.callFor,
+      dateTime: callData.dateTime,
+    });
     // Get candidates for caller, save to db
     pc.onicecandidate = (event) => {
       event.candidate && offerCandidates.add(event.candidate.toJSON());
@@ -138,20 +88,27 @@ const pid = () => {
     // Create offer
     const offerDescription = await pc.createOffer();
     await pc.setLocalDescription(offerDescription);
-
     const offer = {
       sdp: offerDescription.sdp,
       type: offerDescription.type,
     };
-    const callData = (await callDoc.get()).data();
-    const answer = {
-      type: "",
-      sdp: "",
-    };
-    callData.answer ? await callDoc.update({ answer }) : null;
-    callData.offer
-      ? await callDoc.update({ offer })
-      : await callDoc.update({ offer });
+    await callDoc.update({ offer });
+
+    // Create Answer
+    if (!callData.answer && callData.offer) {
+      pc.onicecandidate = (event) => {
+        event.candidate && answerCandidates.add(event.candidate.toJSON());
+      };
+      // Fetch data, then set the offer & answer
+      await pc.setRemoteDescription(new RTCSessionDescription(callData.offer));
+      const answerDescription = await pc.createAnswer();
+      await pc.setLocalDescription(answerDescription);
+      const answer = {
+        type: answerDescription.type,
+        sdp: answerDescription.sdp,
+      };
+      await callDoc.update({ answer });
+    }
 
     // Listen for remote answer
     callDoc.onSnapshot((snapshot) => {
@@ -160,6 +117,26 @@ const pid = () => {
         const answerDescription = new RTCSessionDescription(data.answer);
         pc.setRemoteDescription(answerDescription);
       }
+    });
+
+    // Listen to offer candidates
+    offerCandidates.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          let data = change.doc.data();
+          pc.addIceCandidate(new RTCIceCandidate(data));
+        }
+      });
+    });
+
+    // Listen for remote ICE candidates
+    answerCandidates.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          const candidate = new RTCIceCandidate(change.doc.data());
+          pc.addIceCandidate(candidate);
+        }
+      });
     });
   };
 
@@ -189,9 +166,10 @@ const pid = () => {
       <div className="pt-[70px] h-screen flex">
         {/* <div className="flex flex-col w-screen "> */}
         {meeting && (
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col relative w-full">
             <div className="flex-grow space-x-10 bg-black flex justify-center items-center p-10">
               <div className="relative w-[750px] bg-black h-[416px] rounded-xl">
+                <h1 className="text-white">Local User</h1>
                 <video
                   ref={localRef}
                   autoPlay
@@ -204,6 +182,7 @@ const pid = () => {
                 />
               </div>
               <div className="relative w-[750px] bg-black h-[416px] rounded-xl">
+                <h1 className="text-white">Remote User</h1>
                 <video
                   ref={remoteRef}
                   autoPlay
@@ -269,6 +248,39 @@ const pid = () => {
                 </div>
               </div>
             </div>
+            <div
+              className={
+                chat
+                  ? "flex absolute right-0 h-[81.5vh] flex-col bg-[#1C1E20] border-l-1 border-[#3D3D42] w-[400px]"
+                  : "hidden"
+              }
+            >
+              <div className="pt-[5px] text-[#F5F5F5] text-center mb-2">
+                <h1 className="text-xl font-lato font-bold">Chat</h1>
+              </div>
+              <div className="flex-grow list-none">
+                <ul className="space-y-2">
+                  <li className="text-white mx-2">
+                    <b>user1</b>
+                    <br />
+                    Hi
+                  </li>
+                  <li className="text-white mx-2">
+                    <b>user2</b>
+                    <br />
+                    Hello
+                  </li>
+                </ul>
+              </div>
+              <div className="py-5 px-3 flex">
+                <input
+                  id="chat_message"
+                  type="text"
+                  placeholder="Type message here..."
+                  className="flex-grow bg-transparent border-none text-[#F5F5F5] outline-none h-3 py-3"
+                />
+              </div>
+            </div>
           </div>
         )}
         {!meeting && (
@@ -290,7 +302,11 @@ const pid = () => {
                 <div className="flex space-x-5">
                   <div
                     onClick={() => setMic(!mic)}
-                    className="clickButton border border-white flex h-[3.5rem] w-[3.5rem] rounded-full flex-col justify-center relative items-center cursor-pointer hover:bg-[#ffff]/40"
+                    className={`clickButton border ${
+                      mic ? `border-white` : `border-red-500`
+                    } flex h-[3.5rem] w-[3.5rem] rounded-full flex-col justify-center relative items-center cursor-pointer ${
+                      mic ? `hover:bg-[#ffff]/40` : `hover:bg-[#FF0000]/5`
+                    }`}
                   >
                     {mic ? (
                       <MicrophoneIcon className="h-6 w-6 text-white" />
@@ -303,7 +319,11 @@ const pid = () => {
                   </div>
                   <div
                     onClick={() => setVideo(!video)}
-                    className="clickButton border border-white flex h-[3.5rem] w-[3.5rem] rounded-full flex-col justify-center relative items-center cursor-pointer hover:bg-[#ffff]/40"
+                    className={`clickButton border ${
+                      video ? `border-white` : `border-red-500`
+                    } flex h-[3.5rem] w-[3.5rem] rounded-full flex-col justify-center relative items-center cursor-pointer ${
+                      video ? `hover:bg-[#ffff]/40` : `hover:bg-[#FF0000]/5`
+                    }`}
                   >
                     {video ? (
                       <VideoCameraIcon className="h-6 w-6 text-white" />
@@ -328,39 +348,6 @@ const pid = () => {
             </div>
           </div>
         )}
-        <div
-          className={
-            chat
-              ? "flex flex-col bg-[#242324] border-l-1 border-[#3D3D42] w-[400px]"
-              : "hidden"
-          }
-        >
-          <div className="pt-[5px] text-[#F5F5F5] text-center mb-2">
-            <h1 className="text-xl font-lato font-bold">Chat</h1>
-          </div>
-          <div className="flex-grow list-none">
-            <ul className="space-y-2">
-              <li className="text-white mx-2">
-                <b>user1</b>
-                <br />
-                Hi
-              </li>
-              <li className="text-white mx-2">
-                <b>user2</b>
-                <br />
-                Hello
-              </li>
-            </ul>
-          </div>
-          <div className="py-5 px-3 flex">
-            <input
-              id="chat_message"
-              type="text"
-              placeholder="Type message here..."
-              className="flex-grow bg-transparent border-none text-[#F5F5F5] outline-none h-3 py-3"
-            />
-          </div>
-        </div>
       </div>
       <Footer />
     </div>

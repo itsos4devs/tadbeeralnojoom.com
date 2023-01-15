@@ -1,22 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-// TODO: implement Leave meating
-// TODO: if local stream is off send to the remote
-// TODO: if remote stream is off send to the local
-// TODO: if user left the meeting send to other user
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import Head from "next/head";
 import Footer from "../../components/Footer";
-import {
-  ChatBubbleBottomCenterIcon,
-  MicrophoneIcon,
-  ShieldCheckIcon,
-  UsersIcon,
-  VideoCameraIcon,
-  VideoCameraSlashIcon,
-} from "@heroicons/react/24/outline";
 import Header from "../../components/Header";
 import { useRouter } from "next/router";
+import { useEffectOnce } from "usehooks-ts";
 const servers = {
   iceServers: [
     {
@@ -30,7 +18,7 @@ let pc;
 const pid = () => {
   const router = useRouter();
   const { pid } = router.query;
-  useEffect(() => {
+  useEffectOnce(() => {
     const stream = async () => {
       pc = new RTCPeerConnection(servers);
       const localStream = await navigator.mediaDevices.getUserMedia({

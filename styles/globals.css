@@ -18,3 +18,4 @@
 .rc-time-picker-input {
   @apply md:h-12 h-5 md:pl-4 w-full md:text-lg text-[7px]  text-[#234F7E] font-semibold rounded-lg cursor-pointer !important
 }
+

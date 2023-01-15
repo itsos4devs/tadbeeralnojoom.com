@@ -15,8 +15,8 @@ import TimePicker from "rc-time-picker";
 import DatePicker from "react-datepicker";
 import "rc-time-picker/assets/index.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { firestore } from "../../utils";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const pid = () => {
   const router = useRouter();
@@ -27,37 +27,19 @@ const pid = () => {
   const [startTime, setStartTime] = useState("12:00");
 
   const createRoom = async () => {
-    const servers = {
-      iceServers: [
-        {
-          urls: [
-            "stun:stun1.l.google.com:19302",
-            "stun:stun2.l.google.com:19302",
-          ],
-        },
-      ],
-      iceCandidatePoolSize: 10,
-    };
-    const pc = new RTCPeerConnection(servers);
-    // Reference Firestore collections for signaling
-    const callDoc = firestore.collection("calls").doc();
-
-    const dateTime = {
-      date: startDate.toLocaleDateString("es-AR"),
-      time: startTime,
+    const options = {
+      method: "POST",
+      url: "https://sfu.mirotalk.com/api/v1/meeting",
+      headers: { authorization: "mirotalksfu_default_secret" },
     };
 
-    const callFor = {
-      // Client Name/ID
-      name: "Karim",
-      // User Name/ID
-    };
-
-    await callDoc.set({ dateTime, callFor });
-    setDropDownInterview(!dropDownInterview);
+    const res = await axios.request(options);
+    const id = res.data.meeting.substring(
+      res.data.meeting.indexOf("join/") + 5,
+      res.data.meeting.length
+    );
     router.push({
-      pathname: `/interview/${callDoc.id}`,
-      query: { pid: callDoc.id },
+      pathname: `/interview/${id}`,
     });
   };
 

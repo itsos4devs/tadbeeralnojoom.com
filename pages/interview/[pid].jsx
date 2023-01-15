@@ -17,11 +17,33 @@ import {
 } from "@heroicons/react/24/outline";
 import Header from "../../components/Header";
 import { useRouter } from "next/router";
+const servers = {
+  iceServers: [
+    {
+      urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
+    },
+  ],
+  iceCandidatePoolSize: 10,
+};
 
+let pc;
 const pid = () => {
   const router = useRouter();
   const { pid } = router.query;
-  console.log(pid);
+  useEffect(() => {
+    const stream = async () => {
+      pc = new RTCPeerConnection(servers);
+      const localStream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true,
+      });
+      localStream.getTracks().forEach((track) => {
+        pc.addTrack(track, localStream);
+      });
+      return localStream;
+    };
+    stream();
+  });
   return (
     <div>
       <Head>

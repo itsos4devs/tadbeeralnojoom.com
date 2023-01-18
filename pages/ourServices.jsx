@@ -5,6 +5,7 @@ import ourService from "../public/ourServices.jpeg";
 import ServiceSection from "../components/ServiceSection";
 import Footer from "../components/Footer";
 import Head from "next/head";
+import withAuth from "../auth/withAuth";
 
 const ourServices = () => {
   return (
@@ -29,4 +30,4 @@ const ourServices = () => {
   );
 };
 
-export default ourServices;
+export default withAuth(ourServices);

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import Map, { Marker } from "react-map-gl";
+import withAuth from "../auth/withAuth";
 
 const contactUs = () => {
   return (
@@ -77,9 +78,12 @@ const contactUs = () => {
                 <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
                   Email
                 </h2>
-                <p className="lg:text-base text-xs text-[7px] ">
+                <a
+                  href="mailto:tadbeer.alnujoom@gmail.com"
+                  className="lg:text-base text-xs text-[7px] underline"
+                >
                   tadbeer.alnujoom@gmail.com
-                </p>
+                </a>
               </div>
             </div>
           </div>
@@ -144,4 +148,4 @@ const contactUs = () => {
   );
 };
 
-export default contactUs;
+export default withAuth(contactUs);

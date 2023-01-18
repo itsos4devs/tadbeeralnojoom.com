@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import SearchMaids from "../components/SearchMaids";
+import withAuth from "../auth/withAuth";
 
 const findMaids = () => {
   const { t } = useTranslation();
@@ -63,4 +64,4 @@ const findMaids = () => {
   );
 };
 
-export default findMaids;
+export default withAuth(findMaids);

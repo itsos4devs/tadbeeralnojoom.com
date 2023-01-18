@@ -125,6 +125,32 @@ const SearchMaids = () => {
           </div>
         </div>
       </div>
+      <div className="w-fit mx-auto flex items-center space-x-10">
+        <h1 className="font-roboto text-xl text-[#234F7E]">Experience</h1>
+        <div className="space-x-2 flex items-center">
+          <input
+            type="radio"
+            id="default-radio-1"
+            value=""
+            name="default-radio"
+          />
+          <label
+            className="text-[#234F7E] text-lg font-roboto"
+            for="default-radio-1"
+          >
+            Yes
+          </label>
+        </div>
+        <div className="space-x-2 flex items-center">
+          <input
+            type="radio"
+            id="default-radio-2"
+            value=""
+            name="default-radio"
+          />
+          <label className="text-[#234F7E] text-lg font-roboto">No</label>
+        </div>
+      </div>
       <div className="w-44 mx-auto">
         <button
           type="submit"

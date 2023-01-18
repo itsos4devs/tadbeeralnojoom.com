@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { useOnClickOutside } from "usehooks-ts";
 import Link from "next/link";
+import withAuth from "../auth/withAuth";
+import { useUser } from "../auth/useUser";
+import Signin from "./signin";
 
 const Header = () => {
   const [dropDown, setDropDown] = useState(false);
@@ -14,6 +17,7 @@ const Header = () => {
   useOnClickOutside(dropDownRef, () => setDropDown(false));
   const router = useRouter();
   const { t, i18n } = useTranslation();
+  const { user, logout } = useUser();
   return (
     <div className="bg-[#000]/50 md:h-[71px] h-[20px] absolute left-0 right-0">
       <div className="flex justify-between items-center xl:max-w-[1200px] lg:max-w-[1000px] md:max-w-[750px] sm:max-w-[400px] max-w-[300px] m-auto h-full">
@@ -86,10 +90,131 @@ const Header = () => {
             {i18n.language === "ar" ? t("home") : t("contact")}
           </h1>
         </div>
-        {/* Phone */}
+        {/* right side */}
         <div className="flex items-center lg:space-x-5 md:space-x-2 space-x-1 relative">
-          {/* Language Dropdown */}
-          {/* <div>
+          {/* Language change */}
+          <div className="flex space-x-1 md:space-x-2">
+            <h1
+              className={
+                i18n.language === "en"
+                  ? "text-[5px] md:text-base cursor-pointer text-yellow-500"
+                  : "text-white text-[5px] md:text-base cursor-pointer hover:text-yellow-500"
+              }
+              onClick={() => i18n.changeLanguage("en")}
+            >
+              EN
+            </h1>
+            <h1 className="text-white text-[5px] md:text-base">|</h1>
+            <h1
+              className={
+                i18n.language === "ar"
+                  ? "text-[5px] md:text-base cursor-pointer text-yellow-500"
+                  : "text-white text-[5px] md:text-base cursor-pointer hover:text-yellow-500"
+              }
+              onClick={() => i18n.changeLanguage("ar")}
+            >
+              AR
+            </h1>
+          </div>
+          {/* Phone */}
+          <PhoneArrowUpRightIcon className="lg:h-5 md:h-4 lg:w-5 md:w-4 sm:w-2 w-1.5 sm:h-2 h-1.5 text-white cursor-pointer" />
+          <h1 className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer">
+            054-992-9926
+          </h1>
+          {/* User handler */}
+          <div className="relative" ref={dropDownRef}>
+            {user?.email ? (
+              <div
+                className="w-4 h-4 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-500 relative rounded-full select-none cursor-pointer"
+                onClick={() => setDropDown(!dropDown)}
+              >
+                <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl font-lato font-bold uppercase">
+                  {user.email[0]}
+                </h1>
+              </div>
+            ) : (
+              <div className="md:w-24 sm:w-16 w-8 flex items-center justify-center">
+                <button
+                  className="clickButton bg-gray-500 md:w-24 sm:w-16 w-8 mx-auto sm:py-1 py-1 md:text-base text-xs rounded-full text-white"
+                  onClick={() => setDropDown(!dropDown)}
+                >
+                  Sign in
+                </button>
+              </div>
+            )}
+            {/* DropDown */}
+            {user?.email ? (
+              <div
+                className={
+                  dropDown
+                    ? "z-10 absolute top-14 right-0 md:w-44 w-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                    : "hidden"
+                }
+              >
+                {/* Email and name */}
+                <div className="md:py-3 md:px-4 py-2 px-2 md:text-sm text-[10px] text-gray-900 dark:text-white">
+                  <div>
+                    <h1 className="font-medium truncate">{user.email}</h1>
+                  </div>
+                  {/* <div className="font-medium truncate">name@flowbite.com</div> */}
+                </div>
+                {/* categories */}
+                <ul
+                  className="md:py-1 py-0 md:text-sm text-[10px] text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdownUserAvatarButton"
+                >
+                  <li>
+                    <Link
+                      href="/favourites"
+                      className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      WishList/Favourites
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/upcomingInterviews"
+                      className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Upcoming Interviews
+                    </Link>
+                  </li>
+                </ul>
+                {/* Sign out */}
+                <div className="py-1">
+                  <button
+                    onClick={() => logout()}
+                    className="block md:py-2 md:px-4 py-2 w-full px-2 md:text-sm text-[10px] text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div
+                className={
+                  dropDown
+                    ? "z-10 absolute right-0 top-14 md:w-72 w-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                    : "hidden"
+                }
+              >
+                <Signin />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default withAuth(Header);
+
+{
+  /* Language Dropdown */
+}
+{
+  /* <div>
             <div
               className="flex items-center hover:cursor-pointer space-x-1 select-none relative"
               onClick={() => setDropDown(!dropDown)}
@@ -121,95 +246,5 @@ const Header = () => {
                 </ul>
               </div>
             </div>
-          </div> */}
-          {/* Language change */}
-          <div className="flex space-x-1 md:space-x-2">
-            <h1
-              className={
-                i18n.language === "en"
-                  ? "text-[5px] md:text-base cursor-pointer text-yellow-500"
-                  : "text-white text-[5px] md:text-base cursor-pointer hover:text-yellow-500"
-              }
-              onClick={() => i18n.changeLanguage("en")}
-            >
-              EN
-            </h1>
-            <h1 className="text-white text-[5px] md:text-base">|</h1>
-            <h1
-              className={
-                i18n.language === "ar"
-                  ? "text-[5px] md:text-base cursor-pointer text-yellow-500"
-                  : "text-white text-[5px] md:text-base cursor-pointer hover:text-yellow-500"
-              }
-              onClick={() => i18n.changeLanguage("ar")}
-            >
-              AR
-            </h1>
-          </div>
-          <PhoneArrowUpRightIcon className="lg:h-5 md:h-4 lg:w-5 md:w-4 sm:w-2 w-1.5 sm:h-2 h-1.5 text-white cursor-pointer" />
-          <h1 className="text-white md:text-base sm:text-[10px] text-[5px]">
-            0504664093
-          </h1>
-          <div className="relative" ref={dropDownRef}>
-            <div className="w-4 h-4 md:w-10 md:h-10 lg:w-12 lg:h-12">
-              <Image
-                src={profile}
-                alt="Profile"
-                className="rounded-full cursor-pointer select-none"
-                width={50}
-                height={50}
-                onClick={() => setDropDown(!dropDown)}
-              />
-            </div>
-            <div
-              className={
-                dropDown
-                  ? "z-10 absolute right-0 md:w-44 w-28 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                  : "hidden"
-              }
-            >
-              {/* Email and name */}
-              <div className="md:py-3 md:px-4 py-2 px-2 md:text-sm text-[10px] text-gray-900 dark:text-white">
-                <div>Bonnie Green</div>
-                {/* <div className="font-medium truncate">name@flowbite.com</div> */}
-              </div>
-              {/* categories */}
-              <ul
-                className="md:py-1 py-0 md:text-sm text-[10px] text-gray-700 dark:text-gray-200"
-                aria-labelledby="dropdownUserAvatarButton"
-              >
-                <li>
-                  <Link
-                    href="/favourites"
-                    className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    WishList/Favourites
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/upcomingInterviews"
-                    className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    Upcoming Interviews
-                  </Link>
-                </li>
-              </ul>
-              {/* Sign out */}
-              <div className="py-1">
-                <a
-                  href="#"
-                  className="block md:py-2 md:px-4 py-2 px-2 md:text-sm text-[10px] text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >
-                  Sign out
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Header;
+          </div> */
+}

@@ -1,11 +1,15 @@
 import Image from "next/image";
 import React from "react";
-import maidPhoto from "../public/maidPhoto.png";
+import maidProfile from "../public/maidProfile.jpeg";
 import thumbnail from "../public/video.png";
 import play from "../public/playButton.png";
 import Footer from "./Footer";
+import { useUser } from "../auth/useUser";
+import withAuth from "../auth/withAuth";
 
 const MaidProfile = ({ ProfilePhotoSrc }) => {
+  const { user, logout } = useUser();
+
   return (
     <div className="2xl:max-w-7xl xl:max-w-6xl lg:max-w-4xl md:max-w-[700px] xs:max-w-sm xxs:max-w-[340px] max-w-[300px] mx-auto md:mt-20 mt-10">
       <div className="grid grid-cols-3 space-x-5">
@@ -14,14 +18,14 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
           {/* photo */}
           <div className="w-12 xxs:w-16 xs:w-20 md:w-32 lg:w-44 xl:w-52">
             <Image
-              src={maidPhoto}
+              src={maidProfile}
               alt="Profile Photo"
-              width={220}
-              height={220}
-              className="rounded-full"
+              width={280}
+              height={417}
+              className="rounded-xl"
             />
           </div>
-          <div className="lg:space-y-10 md:space-y-6 xs:space-y-3 space-y-1">
+          <div className="lg:space-y-12 md:space-y-6 xs:space-y-3 space-y-1">
             {/* Name */}
             <h1 className="lg:text-3xl md:text-xl xs:text-xs text-[10px] font-lato font-bold">
               Mousumi Zaman
@@ -81,6 +85,12 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
                 </h3>
               </div>
             </div>
+            <button
+              disabled={user ? false : true}
+              className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+            >
+              Book Now
+            </button>
           </div>
         </div>
         {/* Seconed Div */}
@@ -179,6 +189,12 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
               Not mentioned by the candidate
             </h3>
           </div>
+          <button
+            disabled={user ? false : true}
+            className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+          >
+            Call to action
+          </button>
         </div>
       </div>
       <hr className="my-8 h-px bg-[#234F7E] border-0 md:mt-14 mt-5" />
@@ -201,4 +217,4 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
   );
 };
 
-export default MaidProfile;
+export default withAuth(MaidProfile);

@@ -5,6 +5,7 @@ import about from "../public/about.jpeg";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
+import withAuth from "../auth/withAuth";
 
 const aboutUs = () => {
   return (
@@ -24,131 +25,83 @@ const aboutUs = () => {
         }
       />
       <div className="h-full md:mb-44 mb-16 lg:max-w-6xl md:max-w-4xl max-w-sm mx-auto md:space-y-20 space-y-10">
-        <div className="text-center xl:mt-32 md:mt-20 mt-5 md:space-y-5 space-y-2">
-          <h1 className="text-[#E48100] font-lato font-extrabold md:text-4xl md:w-[600px] mx-auto text-2xl">
-            TItle of the Content
+        <div className="space-y-5 xl:mt-28 md:mt-20 mt-5">
+          <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            Tadbeer centers are responsible for providing recruitment and
+            employment services for domestic workers. These centers which are
+            spread throughout the country serves nationals, residents of United
+            Arab Emirates and families under the supervision of Ministry of
+            Human Resources and Emiratization to achieve the convenience of
+            customers.
           </h1>
-          <p className="md:w-[400px] sm:w-[300px] w-[250px] font-semibold text-[#234F7E] md:text-sm sm:text-xs text-[8px] mx-auto">
-            Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
-            nostrud oratio aperiri legimus eu.
-          </p>
-        </div>
-        <div className="text-center space-y-5">
-          <p className="text-[10px] md:text-base">
-            Lorem ipsum dolor sit amet. Aut internos temporibusAut quas vel
-            eveniet repellendus 33 impedit sunt? Sit voluptatem reiciendisCum
-            galisum in vitae saepe ut distinctio dolore. Ad aspernatur impedit
-            in explicabo ducimusEa quis ut nihil magni aut repudiandae error rem
-            rerum magnam qui dolor nostrum. Eos dicta dolores et veritatis
-            praesentiumQui libero eos internos blanditiis et inventore quidem
-            aut architecto autem. Et iure quisquam ea rerum aliasut dolorem ut
-            excepturi facilis ad officiis galisum? Qui expedita teneturIn animi
-            sit possimus galisum qui minima deleniti! Et iste voluptasAd
-            blanditiis a voluptate omnis qui velit quibusdam et voluptas odio.
-            Ut ipsum labore et repudiandae praesentiumHic dolorem vel aliquid
-            amet ut neque debitis. Ea quod laborum ut vero omniset facilis nam
-            alias dolorem. Sed quasi numquam Sed natus aut distinctio ratione?
-            33 corporis sapienteSed optio ad repellat nihil 33 iusto dolorem.
-            Sit error laboreEt magnam ut deserunt eligendi et voluptatum ratione
-            cum totam itaque. Et ratione consectetur et enim consequaturEt
-            corporis non earum quasi et expedita similique ut nobis nihil ut
-            fugiat fuga! Est iure accusantiumAut iusto ut libero vero ex dolore
-            dolorem. Eos officiis perspiciatisnon officiis est similique
-            facilis? Aut voluptas quis ut voluptatibus quiaUt consequuntur rem
-            tempore beatae et velit optio hic nihil voluptatibus et ratione
-            aperiam. Aut dolores magniEt autem sit dolores quod et minima sequi
-            est libero numquam et enim quia. Sed deleniti quiaEst aliquid ea
-            omnis animi est dolorem inventore est sint omnis. Et voluptatem
-            suntCum deleniti ea maiores cumque aut illo optio sit quis impedit.
-            Est consequatur nulla vel nihil quibusdamIn galisum. A explicabo
-            magnam In sint eos possimus nulla et dolor voluptas quo fugit
-            laudantium sit internos minima? Ab deleniti consequaturEa ipsam est
-            consectetur tempore qui Quis nostrum qui amet deserunt sit odit fuga
-            et eveniet beatae. Qui illo impedit hic dolore distinctioAut
-            nostrum. Rem distinctio consequuntur ut accusamus facilisvel fuga
-            non accusantium temporibus 33 quibusdam ipsam? Aut sunt voluptates
-            Sit quidem qui eaque tempora aut praesentium expedita? Vel optio
-            eaqueEt corrupti rem nihil tempora ut quaerat dolore quo deserunt
-            exercitationem aut laudantium saepe! Sed atque porroId voluptatem
-            aut ipsum nihil qui facilis facilis ut ipsa expedita. Ea labore
-            delectusQui deleniti a internos consectetur ea assumenda dolore. Aut
-          </p>
-          <p className="text-[10px] md:text-base">
-            autem voluptates aut itaque nobiseum dolores cum maxime voluptatum.
-            Sit autem odio Ea reiciendis non facere eaque ut unde libero. Vel
-            dolorum numquamEa atque et galisum enim sed enim repudiandae. Cum
-            veritatis quidem qui quod quia Ut laboriosam aut perspiciatis enim
-            est quas omnis quo dolores culpa. Ea molestiae similique eos
-            expedita distinctioSed officiis ut officiis eius id facere dicta.
-            Aut odit inciduntQuo dolore ex omnis dolorem. Et galisum earumRem
-            harum aut adipisci quaerat non minima delectus qui adipisci
-            accusamus 33 dolorum consequatur. Est impedit veniam33 quia non quos
-            sunt sed voluptatum odio ex repellat ullam ut corporis distinctio.
-            Ea expedita perferendis non omnis facilis et pariatur omnis. In odio
-            voluptatum vel deleniti commodi aut architecto nostrum et quam odit.
-            Est enim quia eum sint quam et officiis iure aut fuga facere. Aut
-            saepe nobis qui facilis laboriosam ea odit odio a temporibus dolore.
-          </p>
-          <p className="text-[10px] md:text-base">
-            autem voluptates aut itaque nobiseum dolores cum maxime voluptatum.
-            Sit autem odio Ea reiciendis non facere eaque ut unde libero. Vel
-            dolorum numquamEa atque et galisum enim sed enim repudiandae. Cum
-            veritatis quidem qui quod quia Ut laboriosam aut perspiciatis enim
-            est quas omnis quo dolores culpa. Ea molestiae similique eos
-            expedita distinctioSed officiis ut officiis eius id facere dicta.
-            Aut odit inciduntQuo dolore ex omnis dolorem. Et galisum earumRem
-            harum aut adipisci quaerat non minima delectus qui adipisci
-            accusamus 33 dolorum consequatur. Est impedit veniam33 quia non quos
-            sunt sed voluptatum odio ex repellat ullam ut corporis distinctio.
-            Ea expedita perferendis non omnis facilis et pariatur omnis. In odio
-            voluptatum vel deleniti commodi aut architecto nostrum et quam odit.
-            Est enim quia eum sint quam et officiis iure aut fuga facere. Aut
-            saepe nobis qui facilis laboriosam ea odit odio a temporibus dolore.
-          </p>
-          <p className="text-[10px] md:text-base">
-            autem voluptates aut itaque nobiseum dolores cum maxime voluptatum.
-            Sit autem odio Ea reiciendis non facere eaque ut unde libero. Vel
-            dolorum numquamEa atque et galisum enim sed enim repudiandae. Cum
-            veritatis quidem qui quod quia Ut laboriosam aut perspiciatis enim
-            est quas omnis quo dolores culpa. Ea molestiae similique eos
-            expedita distinctioSed officiis ut officiis eius id facere dicta.
-            Aut odit inciduntQuo dolore ex omnis dolorem. Et galisum earumRem
-            harum aut adipisci quaerat non minima delectus qui adipisci
-            accusamus 33 dolorum consequatur. Est impedit veniam33 quia non quos
-            sunt sed voluptatum odio ex repellat ullam ut corporis distinctio.
-            Ea expedita perferendis non omnis facilis et pariatur omnis. In odio
-            voluptatum vel deleniti commodi aut architecto nostrum et quam odit.
-            Est enim quia eum sint quam et officiis iure aut fuga facere. Aut
-            saepe nobis qui facilis laboriosam ea odit odio a temporibus dolore.
-          </p>
-          <div className="space-y-1 text-left">
-            <h1 className="text-[10px] md:text-base">
-              {" "}
-              Est enim quia eum sint quam et officiis iure aut fuga facere. Aut
-              saepe nobis qui facilis laboriosam ea odit odio a temporibus
-              dolore.
+          <div className="space-y-1">
+            <h1 className="text-[10px] md:text-lg font-roboto font-semibold">
+              These services include:
             </h1>
-            <div className="ml-5 space-y-2">
-              <h1 className="text-[10px] md:text-base">
-                1- Est enim quia eum sint quam et officiis iure aut fuga facere.
-                Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
-                dolore.
+            <div className="text-[10px] md:text-base font-roboto font-semibold ml-2">
+              <p>
+                - Services related to the domestic workers sector provided at
+                the Centre.
+              </p>
+              <p>
+                - Providing domestic workers according to the requirements of
+                the employer and within the packages available at the center.
+              </p>
+            </div>
+          </div>
+          <div className="space-y-1">
+            <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              Al Nujoom Domestic workers is partnership organization among four
+              UAE nationals. It’s a joint mission between four of the old
+              Domestic Workers Offices which had between 20 and 30 plus years of
+              experience at the field.
+            </h1>
+            <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+              Old offices where under business names of:
+            </h1>
+            <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+              <p>- Smart Service office</p>
+              <p>- Lulu General Service</p>
+              <p>- Al Abad Manpower Supply</p>
+              <p>- East Service office</p>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              The offices decided to Join this mission to gather to overcome
+              today{"'"}s global challenges on Domestic workers and to ensure
+              provides excellent services to our community and customers in
+              alignment to UAE labor law and Ministry of Human Recourses and
+              Emiratization guidelines.
+            </h1>
+            <div>
+              <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+                Our Values are:
               </h1>
-              <h1 className="text-[10px] md:text-base">
-                2- Est enim quia eum sint quam et officiis iure aut fuga facere.
-                Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
-                dolore.
-              </h1>
-              <h1 className="text-[10px] md:text-base">
-                3- Est enim quia eum sint quam et officiis iure aut fuga facere.
-                Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
-                dolore.
-              </h1>
-              <h1 className="text-[10px] md:text-base">
-                4- Est enim quia eum sint quam et officiis iure aut fuga facere.
-                Aut saepe nobis qui facilis laboriosam ea odit odio a temporibus
-                dolore.
-              </h1>
+              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+                <p>- Quality</p>
+                <p>- Excellent Service Delivery</p>
+                <p>- Innovation</p>
+                <p>- Respect</p>
+                <p>- Efficiency</p>
+                <p>- Continuous Improvements</p>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              We are looking forward to participating in providing safe and
+              excellent service to our community, customers, and Domestic
+              workers within our two service lines
+            </h1>
+            <div>
+              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+                <p>
+                  1. Providing Domestic workers in three different packages
+                  “Traditional, Flexible and temporarily”
+                </p>
+                <p>2. Transactional and typing Services.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -158,4 +111,4 @@ const aboutUs = () => {
   );
 };
 
-export default aboutUs;
+export default withAuth(aboutUs);

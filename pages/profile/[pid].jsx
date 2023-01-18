@@ -5,7 +5,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Banner from "../../components/Banner";
 import MaidProfile from "../../components/MaidProfile";
@@ -17,14 +17,20 @@ import "rc-time-picker/assets/index.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/router";
 import axios from "axios";
+import withAuth from "../../auth/withAuth";
+import { useUser } from "../../auth/useUser";
+import { useOnClickOutside } from "usehooks-ts";
 
 const pid = () => {
+  const { user, logout } = useUser();
   const router = useRouter();
   const [dropDownInterview, setDropDownInterview] = useState(false);
   const { t } = useTranslation();
 
   const [startDate, setStartDate] = useState(new Date());
   const [startTime, setStartTime] = useState("12:00");
+  const [modal, setModal] = useState(false);
+  const [modal2, setModal2] = useState(false);
 
   const createRoom = async () => {
     const options = {
@@ -41,6 +47,35 @@ const pid = () => {
     router.push({
       pathname: `/interview/${id}`,
     });
+  };
+  const dropDownInterviewOutside = useRef(null);
+  const dropDownSaveForLater = useRef(null);
+
+  // onclick outside hide dropDownInterview
+  useOnClickOutside(dropDownInterviewOutside, () => {
+    setDropDownInterview(false);
+    setModal(false);
+  });
+
+  // onclick outside hide siginin dropDownSaveForLater
+  useOnClickOutside(dropDownSaveForLater, () => {
+    setModal2(false);
+  });
+
+  const requestInterviewHandler = () => {
+    if (user) {
+      setDropDownInterview(true);
+    } else {
+      setModal(true);
+    }
+  };
+
+  const saveForLaterHandler = () => {
+    if (user) {
+      console.log("User Here");
+    } else {
+      setModal2(true);
+    }
   };
 
   return (
@@ -60,9 +95,9 @@ const pid = () => {
         }
       />
       <div className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row lg:space-x-20 md:space-x-5 xs:space-x-8 xxs:space-x-5 space-x-3 justify-center md:mt-20 mt-10">
-        <div className="relative">
+        <div className="relative" ref={dropDownInterviewOutside}>
           <button
-            onClick={() => setDropDownInterview(!dropDownInterview)}
+            onClick={requestInterviewHandler}
             className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]"
           >
             {t("requestInterview")}
@@ -133,19 +168,66 @@ const pid = () => {
               </div>
             </div>
           </div>
+          {modal && (
+            <div
+              tabIndex={1}
+              aria-hidden="true"
+              className={
+                modal
+                  ? "absolute bottom-10 z-50 w-fit h-fit justify-center items-center"
+                  : "hidden"
+              }
+            >
+              <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+                <div className="relative bg-gray-500 rounded-lg shadow p-3">
+                  <h1 className="font-lato font-bold text-white">
+                    Please Sign in first
+                  </h1>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-        <div>
-          <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
+        <div className="relative" ref={dropDownSaveForLater}>
+          <button
+            onClick={saveForLaterHandler}
+            className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]"
+          >
             {t("saveLater")}
           </button>
+          {modal2 && (
+            <div
+              tabIndex={1}
+              aria-hidden="true"
+              className={
+                modal2
+                  ? "absolute bottom-10 z-50 w-fit h-fit justify-center items-center"
+                  : "hidden"
+              }
+            >
+              <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+                <div className="relative bg-gray-500 rounded-lg shadow p-3">
+                  <h1 className="font-lato font-bold text-white">
+                    Please Sign in first
+                  </h1>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <div>
-          <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
+          <button
+            disabled={user ? false : true}
+            className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+          >
             {t("call")}
           </button>
         </div>
         <div>
-          <button className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]">
+          <button
+            disabled={user ? false : true}
+            className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+          >
             Whatsapp
           </button>
         </div>
@@ -155,4 +237,4 @@ const pid = () => {
   );
 };
 
-export default pid;
+export default withAuth(pid);

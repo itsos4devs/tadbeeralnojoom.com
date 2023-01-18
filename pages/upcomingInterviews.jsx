@@ -7,7 +7,11 @@ import maidPhoto from "../public/maidPhoto.png";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
+import withAuth from "../auth/withAuth";
+import { useUser } from "../auth/useUser";
 const upcomingInterviews = () => {
+  const { user, logout } = useUser();
+
   const { t } = useTranslation();
 
   const data = {
@@ -45,17 +49,25 @@ const upcomingInterviews = () => {
             nostrud oratio aperiri legimus eu.
           </p>
         </div>
-        <Maids
-          data={data}
-          up={"Upcoming"}
-          live={"Live"}
-          history={"History"}
-          upColor={"bg-[#F9B730]"}
-          liveColor={"bg-[#68B34A]"}
-          historyColor={"bg-[#EE2424]"}
-        />
+        {user && (
+          <Maids
+            data={data}
+            up={"Upcoming"}
+            live={"Live"}
+            history={"History"}
+            upColor={"bg-[#F9B730]"}
+            liveColor={"bg-[#68B34A]"}
+            historyColor={"bg-[#EE2424]"}
+          />
+        )}
         <div className="w-fit mx-auto">
-          <button className="clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white">
+          <button
+            className={
+              user
+                ? "clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white"
+                : "hidden"
+            }
+          >
             Next Page
           </button>
         </div>
@@ -65,4 +77,4 @@ const upcomingInterviews = () => {
   );
 };
 
-export default upcomingInterviews;
+export default withAuth(upcomingInterviews);

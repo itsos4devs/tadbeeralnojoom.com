@@ -7,8 +7,12 @@ import maidPhoto from "../public/maidPhoto.png";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
+import withAuth from "../auth/withAuth";
+import { useUser } from "../auth/useUser";
 
 const favourites = () => {
+  const { user, logout } = useUser();
+
   const { t } = useTranslation();
 
   const data = {
@@ -45,13 +49,21 @@ const favourites = () => {
             nostrud oratio aperiri legimus eu.
           </p>
         </div>
-        <Maids
-          data={data}
-          viewProfile={t("maidViewProfile")}
-          viewProfileColor={"bg-[#E48100]"}
-        />
+        {user && (
+          <Maids
+            data={data}
+            viewProfile={t("maidViewProfile")}
+            viewProfileColor={"bg-[#E48100]"}
+          />
+        )}
         <div className="w-fit mx-auto">
-          <button className="clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white">
+          <button
+            className={
+              user
+                ? "clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white"
+                : "hidden"
+            }
+          >
             Next Page
           </button>
         </div>
@@ -61,4 +73,4 @@ const favourites = () => {
   );
 };
 
-export default favourites;
+export default withAuth(favourites);

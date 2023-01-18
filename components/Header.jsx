@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { useOnClickOutside } from "usehooks-ts";
 import Link from "next/link";
-import withAuth from "../auth/withAuth";
-import { useUser } from "../auth/useUser";
-import Signin from "./signin";
+import withAuth from "../auth/withAuth.js";
+import { useUser } from "../auth/useUser.js";
+import Signin from "../components/Signin";
 
 const Header = () => {
   const [dropDown, setDropDown] = useState(false);

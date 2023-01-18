@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, { useRef, useState } from "react";
 import logo from "../public/logo.png";
-import profile from "../public/profile.png";
 import { PhoneArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";

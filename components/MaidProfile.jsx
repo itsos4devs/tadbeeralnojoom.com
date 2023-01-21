@@ -6,10 +6,40 @@ import play from "../public/playButton.png";
 import Footer from "./Footer";
 import { useUser } from "../auth/useUser";
 import withAuth from "../auth/withAuth";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+const stripePromise = loadStripe(process.env.stripe_public_key);
 
 const MaidProfile = ({ ProfilePhotoSrc }) => {
+  const fakeMaidData = [
+    {
+      id: "543416464DSAdas54",
+      maidPhoto: maidProfile,
+      name: "Mousumi Zaman",
+      description:
+        "Registered On: 08/06/2022 | Application No: 0000 | Nationality: Indonesia | Age: 25 | Date Of Birth: 19/09/1997 | Number Of Kids: 1 | Martial Status: Married | Religion: Muslim",
+    },
+  ];
   const { user, logout } = useUser();
 
+  const createCheckoutSession = async () => {
+    const stripe = await stripePromise;
+
+    // call backend to create a checkout session...
+    const checkoutSession = await axios.post("/api/create-checkout-session", {
+      maid: fakeMaidData,
+      email: user.email,
+    });
+
+    // redirect user to checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+
+    if (result.error) {
+      console.log(result.error.message);
+    }
+  };
   return (
     <div className="2xl:max-w-7xl xl:max-w-6xl lg:max-w-4xl md:max-w-[700px] xs:max-w-sm xxs:max-w-[340px] max-w-[300px] mx-auto md:mt-20 mt-10">
       <div className="grid grid-cols-3 space-x-5">
@@ -86,6 +116,8 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
               </div>
             </div>
             <button
+              role="link"
+              onClick={createCheckoutSession}
               disabled={user ? false : true}
               className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
             >
@@ -189,12 +221,6 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
               Not mentioned by the candidate
             </h3>
           </div>
-          <button
-            disabled={user ? false : true}
-            className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
-          >
-            Call to action
-          </button>
         </div>
       </div>
       <hr className="my-8 h-px bg-[#234F7E] border-0 md:mt-14 mt-5" />

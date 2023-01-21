@@ -1,9 +1,12 @@
+import { ArchiveBoxIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import Header from "../components/Header";
 import paymentSuccess from "../public/paymentSuccess.png";
 const success = () => {
+  const router = useRouter();
   return (
     <div>
       <Head>
@@ -14,17 +17,48 @@ const success = () => {
       </Head>
       <Header />
       <div className="grid grid-cols-2 pt-36">
-        <div className="flex flex-col justify-center items-center">
-          <h1 className="text-5xl font-lato font-bold text-gray-600">
-            Payment successful
-          </h1>
-          <p className="text-lg font-roboto font-semibold">
-            Thank you for choosing{" "}
-            <span className="underline decoration-yellow-500 text-blue-500">
-              Tadbeer Alnujoom
-            </span>{" "}
-            we will reach you soon
-          </p>
+        <div className="space-y-8 max-w-2xl mx-auto mt-28">
+          <div className="space-y-3">
+            <h1 className="text-5xl font-lato font-bold text-gray-800">
+              Payment successful
+            </h1>
+            <p className="text-lg font-roboto font-semibold text-gray-600">
+              Thank you for choosing{" "}
+              <span className="underline decoration-yellow-500 text-black">
+                Tadbeer Alnujoom
+              </span>
+              {", "}
+              we will reach you soon
+            </p>
+          </div>
+          <div className="flex w-full">
+            <div className="flex items-center">
+              <CheckCircleIcon className="h-6 w-6 text-green-700" />
+              <div className="h-[5px] w-52 bg-green-700" />
+            </div>
+            <div className="flex items-center">
+              <CheckCircleIcon className="h-6 w-6 text-green-700" />
+              <div className="h-[5px] w-52 bg-gray-500" />
+              <ArchiveBoxIcon className="h-6 w-6 text-gray-500" />
+            </div>
+          </div>
+          <div className="flex space-x-28 w-full">
+            <h4 className="font-lato font-bold">Maid Selected</h4>
+            <h4 className="font-lato font-bold">Payment received</h4>
+            <h4 className="font-lato font-bold">Processing report</h4>
+          </div>
+          <div className="flex items-center justify-end pt-20">
+            <button
+              onClick={() =>
+                router.push({
+                  pathname: "/",
+                })
+              }
+              className="px-4 py-1 lg:px-6 lg:py-2 font-lato border border-[#242424] rounded-full uppercase text-base tracking-widest text-gray-800 transition-all hover:border-green-700 hover:text-green-700 font-bold"
+            >
+              Back to Home
+            </button>
+          </div>
         </div>
         <div>
           <Image src={paymentSuccess} alt="payment success" />

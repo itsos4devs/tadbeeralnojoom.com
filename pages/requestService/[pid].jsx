@@ -30,7 +30,7 @@ const pid = () => {
         }
       />
       {pid === "Domestic workers Service Line" ? (
-        <div className="flex flex-col m-20 md:space-y-5 space-y-2">
+        <div className="flex flex-col md:m-20 m-10 md:space-y-5 space-y-1">
           <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
             Domestic Workers Service Line
           </h1>
@@ -40,18 +40,18 @@ const pid = () => {
             all different domestic workers’ needs as well as to facilitate the
             contracting process between domestic workers and employers.
           </p>
-          <div className="space-y-10">
+          <div className="md:space-y-10 space-y-5">
             <h3 className="md:text-lg xs:text-[10px] text-[7px]">
               The packages are:
             </h3>
             <div className="ml-5 space-y-3">
               <div className="flex items-start space-x-1 max-w-6xl">
-                <span>🔵</span>
+                <span className="md:text-base text-xs">🔵</span>
                 <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[8px] text-[5px]">
-                  <span className="font-roboto font-bold text-lg">
+                  <span className="font-roboto font-bold md:text-lg text-xs">
                     Traditional Package:
                   </span>
-                  <span>
+                  <span className="md:text-base text-xs">
                     {" "}
                     Recruitment services for a domestic worker from in or
                     outside the country where the domestic worker is sponsored
@@ -61,12 +61,12 @@ const pid = () => {
                 </h1>
               </div>
               <div className="flex items-start space-x-1 max-w-6xl">
-                <span>🔵</span>
+                <span className="md:text-base text-xs">🔵</span>
                 <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[8px] text-[5px]">
-                  <span className="font-roboto font-bold text-lg">
+                  <span className="font-roboto font-bold md:text-lg text-xs">
                     Temporary Package:
                   </span>
-                  <span>
+                  <span className="md:text-base text-xs">
                     {" "}
                     This service is providing a domestic worker sponsored by
                     Tadbeer service center to work for a contractual period.
@@ -77,12 +77,12 @@ const pid = () => {
                 </h1>
               </div>
               <div className="flex items-start space-x-1 max-w-6xl">
-                <span>🔵</span>
+                <span className="md:text-base text-xs">🔵</span>
                 <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[8px] text-[5px]">
-                  <span className="font-roboto font-bold text-lg">
+                  <span className="font-roboto font-bold md:text-lg text-xs">
                     Flexible Package:
                   </span>
-                  <span>
+                  <span className="md:text-base text-xs">
                     {" "}
                     Domestic worker sponsored by Tadbeer service center to work
                     on a flexible system (hours, days, week)
@@ -93,7 +93,7 @@ const pid = () => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col m-20 md:space-y-10 space-y-2">
+        <div className="flex flex-col md:m-20 m-10 md:space-y-10 space-y-1">
           <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
             Clearance and Typing services
           </h1>
@@ -102,29 +102,29 @@ const pid = () => {
             entry visas of domestic and household workers, including but limited
             to the following:
           </p>
-          <div className="ml-5 space-y-5">
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px]">
+          <div className="ml-5 md:space-y-5 space-y-0">
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px] xs:h-5 h-4">
               🔵 Entry Permit
             </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px]">
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px] xs:h-5 h-4">
               🔵 Change of Status
             </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px]">
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px] xs:h-5 h-4">
               🔵 Emirates Identity / National ID
             </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px]">
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px] xs:h-5 h-4">
               🔵 Government and Medical Insurance
             </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px]">
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px] xs:h-5 h-4">
               🔵 Medical Test
             </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px]">
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px] xs:h-5 h-4">
               🔵 Residency Visa Stamping Application
             </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px]">
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px] xs:h-5 h-4">
               🔵 Domestic Worker Visa Renewal
             </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px]">
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[8px] text-[5px] xs:h-5 h-4">
               🔵 Domestic Worker Visa Cancellation
             </h1>
           </div>

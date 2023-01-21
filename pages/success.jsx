@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import paymentSuccess from "../public/paymentSuccess.png";
 const success = () => {
   const router = useRouter();
@@ -17,13 +18,13 @@ const success = () => {
         <link rel="icon" href="/icon.ico" />
       </Head>
       <Header />
-      <div className="grid grid-cols-2 pt-36">
-        <div className="space-y-8 max-w-2xl mx-auto mt-28">
+      <div className="grid lg:grid-cols-2 grid-cols-1 xl:py-36 lg:py-20 py-10">
+        <div className="space-y-8 xl:max-w-2xl lg:max-w-sm max-w-full mx-auto md:mt-28 mt-5">
           <div className="space-y-3">
-            <h1 className="text-5xl font-lato font-bold text-gray-800">
+            <h1 className="md:text-5xl text-2xl font-lato font-bold text-gray-800">
               Payment successful
             </h1>
-            <p className="text-lg font-roboto font-semibold text-gray-600">
+            <p className="md:text-lg text-sm font-roboto font-semibold text-gray-600">
               Thank you for choosing{" "}
               <span className="underline decoration-yellow-500 text-black">
                 Tadbeer Alnujoom
@@ -35,36 +36,43 @@ const success = () => {
           <div className="flex w-full">
             <div className="flex items-center">
               <CheckCircleIcon className="h-6 w-6 text-green-700" />
-              <div className="h-[5px] w-52 bg-green-700" />
+              <div className="h-[5px] xl:w-52 lg:w-32 md:w-48 xs:w-36 xxs:w-32 w-28 bg-green-700" />
             </div>
             <div className="flex items-center">
               <CheckCircleIcon className="h-6 w-6 text-green-700" />
-              <div className="h-[5px] w-52 bg-gray-500" />
+              <div className="h-[5px] xl:w-52 lg:w-32 md:w-48 xs:w-36 xxs:w-32 w-28 bg-gray-500" />
               <ArchiveBoxIcon className="h-6 w-6 text-gray-500" />
             </div>
           </div>
-          <div className="flex space-x-28 w-full">
-            <h4 className="font-lato font-bold">Maid Selected</h4>
-            <h4 className="font-lato font-bold">Payment received</h4>
-            <h4 className="font-lato font-bold">Processing report</h4>
+          <div className="flex justify-between w-full">
+            <h4 className="font-lato font-bold xl:text-base xxs:text-sm text-[10px]">
+              Maid Selected
+            </h4>
+            <h4 className="font-lato font-bold xl:text-base xxs:text-sm text-[10px]">
+              Payment received
+            </h4>
+            <h4 className="font-lato font-bold xl:text-base xxs:text-sm text-[10px]">
+              Processing report
+            </h4>
           </div>
-          <div className="flex items-center justify-end pt-20">
+          <div className="flex items-center justify-end xl:pt-20 lg:pt-10">
             <button
               onClick={() =>
                 router.push({
                   pathname: "/",
                 })
               }
-              className="px-4 py-1 lg:px-6 lg:py-2 font-lato border border-[#242424] rounded-full uppercase text-base tracking-widest text-gray-800 transition-all hover:border-green-700 hover:text-green-700 font-bold"
+              className="xl:px-6 xl:py-2 lg:px-4 md:px-3 px-2 py-1 font-lato border border-[#242424] rounded-full uppercase xl:text-base lg:text-sm text-[10px] tracking-widest text-gray-800 transition-all hover:border-green-700 hover:text-green-700 font-bold"
             >
               Back to Home
             </button>
           </div>
         </div>
-        <div>
+        <div className="lg:block hidden">
           <Image src={paymentSuccess} alt="payment success" />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

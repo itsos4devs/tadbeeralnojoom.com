@@ -123,6 +123,7 @@ const Header = () => {
           {/* User handler */}
           <div className="relative" ref={dropDownRef}>
             {user?.email ? (
+              // TODO: responsive
               <div
                 className="w-4 h-4 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-500 relative rounded-full select-none cursor-pointer"
                 onClick={() => setDropDown(!dropDown)}
@@ -132,6 +133,7 @@ const Header = () => {
                 </h1>
               </div>
             ) : (
+              // TODO: responsive
               <div className="md:w-24 sm:w-16 w-8 flex items-center justify-center">
                 <button
                   className="clickButton bg-gray-500 md:w-24 sm:w-16 w-8 mx-auto sm:py-1 py-1 md:text-base text-xs rounded-full text-white"
@@ -190,6 +192,7 @@ const Header = () => {
                 </div>
               </div>
             ) : (
+              // TODO: responsive
               <div
                 className={
                   dropDown

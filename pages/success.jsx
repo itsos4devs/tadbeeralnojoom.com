@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { ArchiveBoxIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 import Head from "next/head";
 import Image from "next/image";

@@ -119,7 +119,7 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
               role="link"
               onClick={createCheckoutSession}
               disabled={user ? false : true}
-              className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+              className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100 md:w-44 md:py-1.5 w-16 py-0 md:text-base text-[6px]"
             >
               Book Now
             </button>

@@ -18,13 +18,13 @@ const success = () => {
         <link rel="icon" href="/icon.ico" />
       </Head>
       <Header />
-      <div className="grid lg:grid-cols-2 grid-cols-1 xl:py-36 lg:py-20 py-10">
-        <div className="space-y-8 xl:max-w-2xl lg:max-w-sm max-w-full mx-auto md:mt-28 mt-5">
+      <div className="grid lg:grid-cols-2 grid-cols-1 xl:py-36 lg:py-20 py-6">
+        <div className="space-y-6 xl:max-w-2xl lg:max-w-sm md:max-w-full xxs:max-w-xs max-w-[300px] mx-auto md:mt-28 mt-5">
           <div className="space-y-3">
-            <h1 className="md:text-5xl text-2xl font-lato font-bold text-gray-800">
+            <h1 className="md:text-5xl xxs:text-xl text-lg font-lato font-bold text-gray-800">
               Payment successful
             </h1>
-            <p className="md:text-lg text-sm font-roboto font-semibold text-gray-600">
+            <p className="md:text-lg text-xs font-roboto font-semibold text-gray-600">
               Thank you for choosing{" "}
               <span className="underline decoration-yellow-500 text-black">
                 Tadbeer Alnujoom
@@ -36,22 +36,22 @@ const success = () => {
           <div className="flex w-full">
             <div className="flex items-center">
               <CheckCircleIcon className="h-6 w-6 text-green-700" />
-              <div className="h-[5px] xl:w-52 lg:w-32 md:w-48 xs:w-36 xxs:w-32 w-28 bg-green-700" />
+              <div className="h-[5px] xl:w-52 lg:w-32 md:w-48 w-28 bg-green-700" />
             </div>
             <div className="flex items-center">
               <CheckCircleIcon className="h-6 w-6 text-green-700" />
-              <div className="h-[5px] xl:w-52 lg:w-32 md:w-48 xs:w-36 xxs:w-32 w-28 bg-gray-500" />
+              <div className="h-[5px] xl:w-52 lg:w-32 md:w-48 w-28 bg-gray-500" />
               <ArchiveBoxIcon className="h-6 w-6 text-gray-500" />
             </div>
           </div>
           <div className="flex justify-between w-full">
-            <h4 className="font-lato font-bold xl:text-base xxs:text-sm text-[10px]">
+            <h4 className="font-lato font-bold xl:text-base xxs:text-xs text-[10px]">
               Maid Selected
             </h4>
-            <h4 className="font-lato font-bold xl:text-base xxs:text-sm text-[10px]">
+            <h4 className="font-lato font-bold xl:text-base xxs:text-xs text-[10px]">
               Payment received
             </h4>
-            <h4 className="font-lato font-bold xl:text-base xxs:text-sm text-[10px]">
+            <h4 className="font-lato font-bold xl:text-base xxs:text-xs text-[10px]">
               Processing report
             </h4>
           </div>

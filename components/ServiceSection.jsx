@@ -15,7 +15,7 @@ const ServiceSection = () => {
         </h1>
       </div>
       <div className="grid grid-cols-2">
-        <div className="relative">
+        <div className="relative w-fit">
           <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
           <div className="w-full h-full">
             <Image
@@ -91,7 +91,7 @@ const ServiceSection = () => {
             Know more
           </h1>
         </div>
-        <div className="relative">
+        <div className="relative w-fit">
           <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
           <div className="w-full h-full">
             <Image

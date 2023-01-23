@@ -6,6 +6,7 @@ import ServiceSection from "../components/ServiceSection";
 import Testimonial from "../components/Testimonial";
 import banner from "../public/banner.jpeg";
 import { useTranslation } from "react-i18next";
+import PopupVideo from "../components/PopupVideo";
 export default function Home() {
   const { t } = useTranslation();
 
@@ -17,6 +18,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.ico" />
       </Head>
+      <PopupVideo />
+
       {/* Banner and Header */}
       <section>
         <Banner

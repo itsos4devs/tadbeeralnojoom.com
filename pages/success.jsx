@@ -7,6 +7,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import paymentSuccess from "../public/paymentSuccess.png";
+import withAuth from "../auth/withAuth";
 const success = () => {
   const router = useRouter();
   return (
@@ -77,4 +78,4 @@ const success = () => {
   );
 };
 
-export default success;
+export default withAuth(success);

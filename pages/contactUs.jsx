@@ -47,7 +47,7 @@ const contactUs = () => {
             ></Marker>
           </Map>
         </div>
-        <div className="md:m-10 xs:m-2 lg:space-y-10 md:space-y-7 xl:max-w-xl lg:w-full mx-auto">
+        <div className="md:my-10 xs:my-2 lg:space-y-10 md:space-y-7 xl:max-w-xl w-full mx-auto">
           <h1 className="text-[#E48100] font-lato font-extrabold md:text-2xl text-lg">
             Connect with us
           </h1>

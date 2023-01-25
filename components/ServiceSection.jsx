@@ -10,7 +10,7 @@ const ServiceSection = () => {
   return (
     <div className="md:mb-32 mb-10">
       <div className="text-center xl:mt-44 md:mt-20 mt-10 xl:mb-28 md:mb-16 mb-10">
-        <h1 className="text-[#E48100] mx-auto font-lato font-bold md:w-full xs:w-96 md:text-3xl xs:text-base">
+        <h1 className="text-[#E48100] mx-auto font-lato font-bold md:w-[700px] xs:w-96 md:text-3xl xs:text-base">
           {t("serviceTitle")}
         </h1>
       </div>
@@ -18,15 +18,10 @@ const ServiceSection = () => {
         <div className="relative w-fit">
           <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
           <div className="w-full h-full">
-            <Image
-              src={servicePhoto}
-              alt="Service Photo"
-              width={790}
-              height={460}
-            />
+            <Image src={servicePhoto} alt="Service Photo" height={460} />
           </div>
         </div>
-        <div className="xl:w-[650px] xl:mt-8 md:mt-2 mt-0 lg:w-[500px] md:w-[300px] sm:w-[200px] w-fit xl:mx-auto mx-2 lg:space-y-5">
+        <div className="xl:w-[650px] xl:mt-8 md:mt-2 mt-1 lg:w-[500px] md:w-[300px] sm:w-[200px] w-fit mx-2 md:mx-auto lg:space-y-5">
           <h1
             className="xl:text-5xl lg:text-3xl md:text-xl cursor-pointer  sm:text-sm text-[10px]  font-lato font-bold text-[#F48830]"
             onClick={() =>
@@ -94,12 +89,7 @@ const ServiceSection = () => {
         <div className="relative w-fit">
           <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
           <div className="w-full h-full">
-            <Image
-              src={servicePhoto}
-              alt="Service Photo"
-              width={790}
-              height={460}
-            />
+            <Image src={servicePhoto} alt="Service Photo" height={460} />
           </div>
         </div>
       </div>

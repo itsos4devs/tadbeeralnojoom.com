@@ -2,9 +2,11 @@ import Image from "next/image";
 import React from "react";
 import icon from "../public/icon.png";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
+  const router = useRouter();
   return (
     <div className="xl:max-w-6xl lg:max-w-4xl md:max-w-2xl sm:max-w-sm max-w-[300px] mx-auto md:mt-32 mb-10 relative">
       {/* Newsletters */}
@@ -31,30 +33,65 @@ const Footer = () => {
 
       <div className="flex items-center justify-between mt-20">
         <div className="flex lg:space-x-16 md:space-x-8 space-x-4">
-          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+          <h3
+            onClick={() =>
+              router.push({
+                pathname: "/aboutUs",
+              })
+            }
+            className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer"
+          >
             {t("about")}
           </h3>
-          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+          <h3
+            onClick={() =>
+              router.push({
+                pathname: "/ourServices",
+              })
+            }
+            className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer"
+          >
             {t("services")}
           </h3>
-          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+          <h3
+            onClick={() =>
+              router.push({
+                pathname: "/ourTeam",
+              })
+            }
+            className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer"
+          >
             {t("team")}
           </h3>
-          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+          <h3
+            onClick={() =>
+              router.push({
+                pathname: "/contactUs",
+              })
+            }
+            className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer"
+          >
             {t("contact")}
           </h3>
-          <h3 className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer">
+          <h3
+            onClick={() =>
+              router.push({
+                pathname: "/faq",
+              })
+            }
+            className="text-gray-700 md:text-base sm:text-xs text-[8px] cursor-pointer"
+          >
             {t("faqs")}
           </h3>
         </div>
         {/* Icons */}
         <div className="flex md:space-x-5 space-x-2 items-center">
-          {/* Linked in */}
+          {/* insta in */}
           <div className="bg-[#234F7E]/25 md:p-2 p-1 rounded-full text-[#234F7E] cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
-              className="w-5 h-5"
+              className="md:w-5 sm:w-2 w-1 md:h-5 sm:h-2 h-1"
             >
               <path
                 fill="currentColor"

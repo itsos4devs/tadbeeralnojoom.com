@@ -136,10 +136,24 @@ const Footer = () => {
           <Image src={icon} alt="Icon" width={36} height={50} />
         </div>
         <div className="flex space-x-5">
-          <h3 className="text-gray-700 sm:text-[10px] cursor-pointer md:text-sm text-[8px]">
+          <h3
+            onClick={() =>
+              router.push({
+                pathname: "/terms",
+              })
+            }
+            className="text-gray-700 sm:text-[10px] cursor-pointer md:text-sm text-[8px]"
+          >
             {t("terms")}
           </h3>
-          <h3 className="text-gray-700 sm:text-[10px] cursor-pointer md:text-sm text-[8px]">
+          <h3
+            onClick={() =>
+              router.push({
+                pathname: "/privacy",
+              })
+            }
+            className="text-gray-700 sm:text-[10px] cursor-pointer md:text-sm text-[8px]"
+          >
             {t("privacy")}
           </h3>
         </div>

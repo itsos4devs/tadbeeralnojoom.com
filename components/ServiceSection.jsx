@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import withAuth from "../auth/withAuth";
 import servicePhoto from "../public/servicePhoto.png";
 const ServiceSection = () => {
   const { t, i18n } = useTranslation();
@@ -18,7 +19,12 @@ const ServiceSection = () => {
         <div className="relative w-fit">
           <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
           <div className="w-full h-full">
-            <Image src={servicePhoto} alt="Service Photo" height={460} />
+            <Image
+              src={servicePhoto}
+              alt="Service Photo"
+              width={790}
+              height={460}
+            />
           </div>
         </div>
         <div className="xl:w-[650px] xl:mt-8 md:mt-2 mt-1 lg:w-[500px] md:w-[300px] sm:w-[200px] w-fit mx-2 md:mx-auto lg:space-y-5">
@@ -30,15 +36,11 @@ const ServiceSection = () => {
               })
             }
           >
-            Domestic workers Service Line
+            {t("domestic")}
           </h1>
           <div className="xl:space-y-12 lg:space-y-6 md:space-y-1">
             <p className="xl:text-xl lg:text-base md:text-sm sm:text-[10px] text-[7px] text-gray-500 ">
-              Ministry of Human Resources and Emiratization has developed
-              domestic workers services into several packages to serve the
-              community with all different domestic workers’ needs as well as to
-              facilitate the contracting process between domestic workers and
-              employers.
+              {t("domesticDesc")}
             </p>
             <p className="xl:text-xl lg:text-base md:text-sm text-[10px] text-gray-500 lg:block hidden"></p>
             <p className="xl:text-xl lg:text-base md:text-sm text-[10px] text-gray-500 lg:block hidden"></p>
@@ -51,7 +53,7 @@ const ServiceSection = () => {
             }
             className="text-[#234F7E] w-fit font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer"
           >
-            Know more
+            {i18n.language === "ar" ? "للمزيد" : "Know more"}
           </h1>
         </div>
       </div>
@@ -65,12 +67,11 @@ const ServiceSection = () => {
             }
             className="xl:text-5xl lg:text-3xl md:text-xl sm:text-sm cursor-pointer text-[10px] font-lato font-bold text-[#F48830] "
           >
-            Clearance and Typing services
+            {t("clearance")}
           </h1>
           <div className="xl:space-y-12 lg:space-y-6 md:space-y-1">
             <p className="xl:text-xl lg:text-base md:text-sm sm:text-[10px] text-[8px] text-gray-500 ">
-              All government typing services pertaining to the employment and
-              entry visas of domestic and household workers
+              {t("clearanceDesc")}
             </p>
             <p className="xl:text-xl lg:text-base md:text-sm text-[10px] text-gray-500 lg:block hidden"></p>
             <p className="xl:text-xl lg:text-base md:text-sm text-[10px] text-gray-500 lg:block hidden"></p>
@@ -83,13 +84,18 @@ const ServiceSection = () => {
             }
             className="text-[#234F7E] w-fit font-bold lg:text-lg md:text-base sm:text-[10px] text-[8px] underline cursor-pointer"
           >
-            Know more
+            {i18n.language === "ar" ? "للمزيد" : "Know more"}
           </h1>
         </div>
         <div className="relative w-fit">
           <div className="bg-[#005AAA4D]/40 absolute w-full h-full filter contrast-150 brightness-110" />
           <div className="w-full h-full">
-            <Image src={servicePhoto} alt="Service Photo" height={460} />
+            <Image
+              src={servicePhoto}
+              alt="Service Photo"
+              width={790}
+              height={460}
+            />
           </div>
         </div>
       </div>
@@ -97,4 +103,4 @@ const ServiceSection = () => {
   );
 };
 
-export default ServiceSection;
+export default withAuth(ServiceSection);

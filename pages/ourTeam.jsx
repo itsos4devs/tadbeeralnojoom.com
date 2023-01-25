@@ -9,6 +9,8 @@ import Team from "../components/Team";
 import withAuth from "../auth/withAuth";
 
 const ourTeam = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <div>
       <Head>
@@ -20,7 +22,7 @@ const ourTeam = () => {
       <Banner
         imageSrc={ourTeams}
         imageUlt="out team banner"
-        text1={"Our Team"}
+        text1={t("team")}
         textPosition={
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }

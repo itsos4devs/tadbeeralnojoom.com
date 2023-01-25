@@ -9,6 +9,7 @@ import Map, { Marker } from "react-map-gl";
 import withAuth from "../auth/withAuth";
 
 const contactUs = () => {
+  const { t, i18n } = useTranslation();
   return (
     <div>
       <Head>
@@ -20,7 +21,7 @@ const contactUs = () => {
       <Banner
         imageSrc={contact}
         imageUlt="Contact us banner"
-        text1={"Contact Us"}
+        text1={t("contact")}
         textPosition={
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
@@ -47,14 +48,24 @@ const contactUs = () => {
             ></Marker>
           </Map>
         </div>
-        <div className="md:my-10 xs:my-2 lg:space-y-10 md:space-y-7 xl:max-w-xl w-full mx-auto">
+        <div
+          className={`md:my-10 xs:my-2 lg:space-y-10 md:space-y-7 xl:max-w-xl w-full mx-auto ${
+            i18n.language === "ar" ? "text-right" : "text-left"
+          }`}
+        >
           <h1 className="text-[#E48100] font-lato font-extrabold md:text-2xl text-lg">
-            Connect with us
+            {t("connect")}
           </h1>
-          <div className="flex xs:flex-row flex-col lg:space-x-16 md:space-x-10 xs:sapce-x-4 space-y-2 xs:space-y-0 xs:space-x-4 space-x-0">
-            <div className="">
+          <div
+            className={`flex ${
+              i18n.language === "ar"
+                ? "xs:flex-row-reverse flex-col"
+                : "xs:flex-row flex-col"
+            } lg:space-x-16 md:space-x-10 xs:sapce-x-4 space-y-2 xs:space-y-0 xs:space-x-4 space-x-0`}
+          >
+            <div className={i18n.language === "ar" ? "md:ml-20 ml-5" : ""}>
               <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
-                Location
+                {t("location")}
               </h2>
               <p className="lg:text-base text-xs text-[6px] ">
                 Agriculture Building,
@@ -68,76 +79,102 @@ const contactUs = () => {
             <div className="space-y-4">
               <div>
                 <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
-                  Call Center
+                  {t("callCenter")}
                 </h2>
                 <p className="lg:text-base text-xs text-[7px] ">
-                  06-767-4222 / 054-995-3973
+                  06-767-4222 / 054-992-9926
                 </p>
               </div>
               <div>
                 <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
-                  Email
+                  {t("email")}
                 </h2>
                 <a
-                  href="mailto:tadbeer.alnujoom@gmail.com"
+                  href="mailto:Alnujoomshj@gmail.com"
                   className="lg:text-base text-xs text-[7px] underline"
                 >
-                  tadbeer.alnujoom@gmail.com
+                  Alnujoomshj@gmail.com
                 </a>
               </div>
             </div>
           </div>
           <div className="bg-[#E7EDF3] py-5 md:px-4 xs:px-2">
             <form action="" method="post" className="md:space-y-5 space-y-2">
-              <div className="relative z-0 w-full md:mb-6 mb-4 group">
+              <div className="relative z-0 w-full mb-6 group">
                 <input
                   type="text"
-                  className="block py-2.5 px-0 w-full md:text-sm xs:text-xs text-[10px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className={`block py-2.5 ${
+                    i18n.language === "ar" ? "text-right" : "text-left"
+                  } px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                   placeholder=" "
                   required
                 />
-                <label className="peer-focus:font-medium absolute md:text-sm xs:text-xs text-[10px] text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Name
+                <label
+                  className={`peer-focus:font-medium ${
+                    i18n.language === "ar" ? "right-2" : "left-0"
+                  } absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
+                >
+                  {i18n.language === "ar" ? "الاسم" : "Name"}
                 </label>
               </div>
-              <div className="relative z-0 w-full md:mb-6 mb-4 group">
+              <div className="relative z-0 w-full mb-6 group">
                 <input
                   type="email"
-                  className="block py-2.5 px-0 w-full md:text-sm xs:text-xs text-[10px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className={`block py-2.5 ${
+                    i18n.language === "ar" ? "text-right" : "text-left"
+                  } px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                   placeholder=" "
                   required
                 />
-                <label className="peer-focus:font-medium absolute md:text-sm xs:text-xs text-[10px] text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Email address
+                <label
+                  className={`peer-focus:font-medium ${
+                    i18n.language === "ar" ? "right-2" : "left-0"
+                  } absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
+                >
+                  {i18n.language === "ar"
+                    ? "البريد الالكتروني"
+                    : "Email address"}
                 </label>
               </div>
-              <div className="relative z-0 w-full md:mb-6 mb-4 group">
+              <div className="relative z-0 w-full mb-6 group">
                 <input
                   type="tel"
-                  className="block py-2.5 px-0 w-full md:text-sm xs:text-xs text-[10px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className={`block py-2.5 ${
+                    i18n.language === "ar" ? "text-right" : "text-left"
+                  } px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                   placeholder=" "
                   required
                 />
-                <label className="peer-focus:font-medium absolute md:text-sm xs:text-xs text-[10px] text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Phone number
+                <label
+                  className={`peer-focus:font-medium ${
+                    i18n.language === "ar" ? "right-2" : "left-0"
+                  } absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
+                >
+                  {i18n.language === "ar" ? "رقم الهاتف" : " Phone number"}
                 </label>
               </div>
-              <div className="relative z-0 w-full md:mb-6 mb-4 group">
+              <div className="relative z-0 w-full mb-6 group">
                 <textarea
-                  className="block py-6 px-0 w-full md:text-sm xs:text-xs text-[10px] text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className={`block py-6 px-0 w-full  ${
+                    i18n.language === "ar" ? "text-right" : "text-left"
+                  } xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                   placeholder=""
-                  rows={3}
+                  rows={5}
                   required
                 />
-                <label className="peer-focus:font-medium absolute md:text-sm xs:text-xs text-[10px] text-[#234F7E] duration-300 transform -translate-y-1 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                  Message
+                <label
+                  className={`peer-focus:font-medium  ${
+                    i18n.language === "ar" ? "right-2" : "left-0"
+                  } absolute text-sm text-[#234F7E] duration-300 transform -translate-y-1 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
+                >
+                  {i18n.language === "ar" ? "الرسالة" : " Message"}
                 </label>
               </div>
               <button
                 type="submit"
-                className="text-white bg-[#234F7E] clickButton focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg xs:text-sm text-[10px] w-full sm:w-auto md:px-5 xs:px-3 px-2 md:py-2.5 xs:py-1.5 py-1 text-center"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto sm:px-5 sm:py-2.5 px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Send Message
+                {i18n.language === "ar" ? "ارسل رسالتك" : " Send a message"}
               </button>
             </form>
           </div>

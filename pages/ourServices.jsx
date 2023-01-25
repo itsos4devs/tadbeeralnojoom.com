@@ -6,8 +6,11 @@ import ServiceSection from "../components/ServiceSection";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import withAuth from "../auth/withAuth";
+import { useTranslation } from "react-i18next";
 
 const ourServices = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <div>
       <Head>
@@ -19,7 +22,7 @@ const ourServices = () => {
       <Banner
         imageSrc={ourService}
         imageUlt="Our Services banner"
-        text1={"Our Services"}
+        text1={i18n.language === "ar" ? t("services") : `Our ${t("services")}`}
         textPosition={
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }

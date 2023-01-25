@@ -2,7 +2,8 @@ import Image from "next/image";
 import React from "react";
 import clientPhoto from "../public/clientPhoto.png";
 import { useTranslation } from "react-i18next";
-
+import withAuth from "../auth/withAuth";
+// TODO: update the testimonials with the real one
 const Testimonial = () => {
   const { t, i18n } = useTranslation();
   const data = {
@@ -100,4 +101,4 @@ const Testimonial = () => {
   );
 };
 
-export default Testimonial;
+export default withAuth(Testimonial);

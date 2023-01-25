@@ -5,6 +5,7 @@ import "firebase/compat/auth";
 import initFirebase from "../config";
 import { setUserCookie } from "../auth/userCookie";
 import { mapUserData } from "../auth/useUser";
+import withAuth from "../auth/withAuth";
 
 initFirebase();
 const firebaseAuthConfig = ({ signInSuccessUrl }) => ({
@@ -39,4 +40,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default withAuth(Signin);

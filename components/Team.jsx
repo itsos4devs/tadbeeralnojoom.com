@@ -1,12 +1,17 @@
 import Image from "next/image";
 import React from "react";
+import { useTranslation } from "react-i18next";
+import withAuth from "../auth/withAuth";
 import developer from "../public/clientPhoto.png";
+// TODO: update photos with team
 const Team = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="h-full md:mb-44 lg:max-w-6xl md:max-w-4xl max-w-sm mx-auto md:space-y-20 space-y-10 mb-10">
       <div className="text-center xl:mt-32 md:mt-20 mt-10 md:space-y-5 space-y-2">
         <h1 className="text-[#E48100] font-lato font-bold md:text-4xl md:w-[600px] mx-auto text-xl">
-          Our team has wide range of Skillful & Professional personalities
+          {t("teamTitle")}
         </h1>
         <p className="md:w-[400px] sm:w-[300px] w-[250px] md:text-sm sm:text-xs text-[8px] mx-auto">
           Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
@@ -199,4 +204,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default withAuth(Team);

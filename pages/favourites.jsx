@@ -34,7 +34,7 @@ const favourites = () => {
       <Banner
         imageSrc={favourit}
         imageUlt="favourit banner"
-        text1={"Wishlist/Favourites"}
+        text1={t("favourite")}
         textPosition={
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
@@ -42,7 +42,7 @@ const favourites = () => {
       <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-44 mb-16">
         <div className="text-center xl:mt-36 md:mt-20 mt-10 space-y-2">
           <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
-            Your Saved Wishlist
+            {t("favouriteTitle")}
           </h1>
           <p className="md:w-[500px] sm:w-[300px] w-[250px] md:text-sm sm:text-xs text-[10px] mx-auto">
             Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum

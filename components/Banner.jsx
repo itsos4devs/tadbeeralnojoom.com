@@ -2,6 +2,7 @@
 import React from "react";
 import Header from "./Header";
 import Image from "next/image";
+import withAuth from "../auth/withAuth";
 
 const Banner = ({ imageSrc, imageUlt, text1, text2, text3, textPosition }) => {
   return (
@@ -40,4 +41,4 @@ const Banner = ({ imageSrc, imageUlt, text1, text2, text3, textPosition }) => {
   );
 };
 
-export default Banner;
+export default withAuth(Banner);

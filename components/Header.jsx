@@ -115,11 +115,6 @@ const Header = () => {
               AR
             </h1>
           </div>
-          {/* Phone */}
-          <PhoneArrowUpRightIcon className="lg:h-5 md:h-4 lg:w-5 md:w-4 sm:w-2 w-1.5 sm:h-2 h-1.5 text-white cursor-pointer" />
-          <h1 className="text-white md:text-base sm:text-[10px] text-[5px] cursor-pointer">
-            054-992-9926
-          </h1>
           {/* User handler */}
           <div className="relative" ref={dropDownRef}>
             {user?.email ? (

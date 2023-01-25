@@ -4,6 +4,7 @@ import {
 } from "@heroicons/react/24/solid";
 import React, { useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
+import withAuth from "../auth/withAuth";
 
 const SearchMaids = () => {
   const [dropDownCountry, setDropDownCountry] = useState(false);
@@ -163,4 +164,4 @@ const SearchMaids = () => {
   );
 };
 
-export default SearchMaids;
+export default withAuth(SearchMaids);

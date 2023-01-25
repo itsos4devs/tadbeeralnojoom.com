@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+// TODO: implement packages arabic and english
+// TODO: implement packages like the site needs
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Banner from "../../components/Banner";
@@ -9,10 +11,41 @@ import play from "../../public/playButton.png";
 import Footer from "../../components/Footer";
 import { useRouter } from "next/router";
 import withAuth from "../../auth/withAuth";
+import {
+  ArrowPathIcon,
+  CheckCircleIcon,
+  ClockIcon,
+} from "@heroicons/react/24/solid";
+import { useTranslation } from "react-i18next";
 const pid = () => {
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const { pid } = router.query;
-  console.log(pid);
+  const [basic, setBasic] = useState(true);
+  const [standard, setStandard] = useState(false);
+  const [premium, setPremium] = useState(false);
+  const [packageName, setPackageName] = useState();
+  useEffect(() => {
+    return setPackageName(t("traditional"));
+  }, [i18n, t]);
+  const basicHandler = () => {
+    setBasic(true);
+    setStandard(false);
+    setPremium(false);
+    setPackageName(t("traditional"));
+  };
+  const standardHandler = () => {
+    setBasic(false);
+    setStandard(true);
+    setPremium(false);
+    setPackageName(t("temporary"));
+  };
+  const premiumHandler = () => {
+    setBasic(false);
+    setStandard(false);
+    setPremium(true);
+    setPackageName(t("flexible"));
+  };
   return (
     <div>
       <Head>
@@ -24,74 +57,95 @@ const pid = () => {
       <Banner
         imageSrc={ourService}
         imageUlt="Our Services banner"
-        text1={pid}
+        text1={
+          pid === "Domestic workers Service Line"
+            ? t("domestic")
+            : t("clearance")
+        }
         textPosition={
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
       />
       {pid === "Domestic workers Service Line" ? (
-        <div className="flex flex-col md:m-20 m-10 md:space-y-5 space-y-1">
+        <div
+          className={`flex flex-col md:m-20 m-10 md:space-y-5 space-y-1 ${
+            i18n.language === "ar" ? "text-right" : "text-left"
+          }`}
+        >
           <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
-            Domestic Workers Service Line
+            {t("domestic")}
           </h1>
           <p className="md:text-lg xs:text-[10px] text-[7px]">
-            Ministry of Human Resources and Emiratization has developed domestic
-            workers services into several packages to serve the community with
-            all different domestic workers’ needs as well as to facilitate the
-            contracting process between domestic workers and employers.
+            {t("domesticDesc")}
           </p>
           <div className="md:space-y-10 space-y-5">
             <h3 className="md:text-lg xs:text-[10px] text-[7px]">
-              The packages are:
+              {i18n.language === "ar" ? "وهي" : "The packages are:"}
             </h3>
             <div className="ml-5 space-y-3">
-              <div className="flex items-start space-x-1 max-w-6xl">
+              <div
+                className={
+                  i18n.language === "ar"
+                    ? "flex flex-row-reverse items-start"
+                    : "flex items-start space-x-1 max-w-6xl"
+                }
+              >
                 <span className="md:text-base xs:text-[10px] text-[7px]">
                   🔵
                 </span>
-                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px]">
+                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
                   <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
-                    Traditional Package:
+                    {t("traditional")}
+                    {": "}
                   </span>
                   <span className="md:text-base xs:text-[10px] text-[7px]">
-                    {" "}
-                    Recruitment services for a domestic worker from in or
-                    outside the country where the domestic worker is sponsored
-                    by the employer and stays with them during the contract
-                    period.
+                    {i18n.language === "ar"
+                      ? "خدمات استقدام عامل مساعد من خارج الدولة يسجل على ملف صاحب العمل ويقيم لديه خلال فترة التعاقد"
+                      : "Recruitment services for a domestic worker from in or outside the country where the domestic worker is sponsored by the employer and stays with them during the contract period."}
                   </span>
                 </h1>
               </div>
-              <div className="flex items-start space-x-1 max-w-6xl">
+              <div
+                className={
+                  i18n.language === "ar"
+                    ? "flex flex-row-reverse items-start"
+                    : "flex items-start space-x-1 max-w-6xl"
+                }
+              >
                 <span className="md:text-base xs:text-[10px] text-[7px]">
                   🔵
                 </span>
-                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px]">
+                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
                   <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
-                    Temporary Package:
+                    {t("temporary")}
+                    {": "}
                   </span>
                   <span className="md:text-base xs:text-[10px] text-[7px]">
-                    {" "}
-                    This service is providing a domestic worker sponsored by
-                    Tadbeer service center to work for a contractual period.
-                    After which the worker is or is not allowed to transfer as a
-                    resident domestic worker sponsored by the employer if the
-                    concerned parties agree.
+                    {i18n.language === "ar"
+                      ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل لفترة تعاقدية يسمح من بعدها بانتقال العامل كعامل مساعد مقيم ومسجل بملف صاحب العمل في حال موافقة الأطراف المعنية"
+                      : "This service is providing a domestic worker sponsored by Tadbeer service center to work for a contractual period. After which the worker is or is not allowed to transfer as a resident domestic worker sponsored by the employer if the concerned parties agree."}
                   </span>
                 </h1>
               </div>
-              <div className="flex items-start space-x-1 max-w-6xl">
+              <div
+                className={
+                  i18n.language === "ar"
+                    ? "flex flex-row-reverse items-start"
+                    : "flex items-start space-x-1 max-w-6xl"
+                }
+              >
                 <span className="md:text-base xs:text-[10px] text-[7px]">
                   🔵
                 </span>
-                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px]">
+                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
                   <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
-                    Flexible Package:
+                    {t("flexible")}
+                    {": "}
                   </span>
                   <span className="md:text-base xs:text-[10px] text-[7px]">
-                    {" "}
-                    Domestic worker sponsored by Tadbeer service center to work
-                    on a flexible system (hours, days, week)
+                    {i18n.language === "ar"
+                      ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل بنظام مرن (ساعات، أيام، أسبوع)"
+                      : " Domestic worker sponsored by Tadbeer service center to work on a flexible system (hours, days, week)"}
                   </span>
                 </h1>
               </div>
@@ -99,14 +153,16 @@ const pid = () => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col md:m-20 m-10 mt-5 md:space-y-10 space-y-1">
+        <div
+          className={`flex flex-col md:m-20 m-10 mt-5 md:space-y-10 space-y-1 ${
+            i18n.language === "ar" ? "text-right" : "text-left"
+          }`}
+        >
           <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
-            Clearance and Typing services
+            {t("clearance")}
           </h1>
           <p className="md:text-lg xs:text-[10px] text-[7px]">
-            All government typing services pertaining to the employment and
-            entry visas of domestic and household workers, including but limited
-            to the following:
+            {t("clearanceDesc")}
           </p>
           <div className="ml-5 md:space-y-5 space-y-0">
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
@@ -137,68 +193,262 @@ const pid = () => {
         </div>
       )}
 
+      <div
+        className={`border-white border max-w-3xl mx-auto ${
+          i18n.language === "ar" ? "text-right" : "text-left"
+        }`}
+      >
+        <div
+          className={`flex ${
+            i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+          } justify-between`}
+        >
+          <button
+            onClick={basicHandler}
+            className={
+              basic
+                ? "h-20 w-full mx-auto text-xl border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-yellow-600"
+                : "h-20 w-full mx-auto text-xl border-r-2 border-b cursor-pointer bg-white text-black font-bold"
+            }
+          >
+            {t("traditional")}
+          </button>
+          <button
+            onClick={standardHandler}
+            className={
+              standard
+                ? "h-20 w-full mx-auto text-xl border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-yellow-600"
+                : "h-20 w-full mx-auto text-xl border-r-2 border-b cursor-pointer bg-white text-black font-bold"
+            }
+          >
+            {t("temporary")}
+          </button>
+          <button
+            onClick={premiumHandler}
+            className={
+              premium
+                ? "h-20 w-full mx-auto text-xl border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-yellow-600"
+                : "h-20 w-full mx-auto text-xl border-r-2 border-b cursor-pointer bg-white text-black font-bold"
+            }
+          >
+            {t("flexible")}
+          </button>
+        </div>
+        {/* Basic */}
+        {basic && (
+          <div className="space-y-2">
+            <p className="text-center text-base font-semibold">
+              I will make a Frontend website - 3 pages
+            </p>
+            <div className="py-5 flex items-center justify-around">
+              <div className="flex items-center space-x-2">
+                <ClockIcon className="h-5 w-5 text-white" />
+                <h4 className="text-lg font-bold">2 Days Delivery</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <ArrowPathIcon className="h-5 w-5 text-white" />
+                <h4 className="text-lg font-bold">Unlimited Revision</h4>
+              </div>
+            </div>
+            <div className="px-5">
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">3 Pages</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Design customization</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Content upload</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Responsive design</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Source code</h4>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Standard */}
+        {standard && (
+          <div>
+            <p className="text-center text-base font-semibold">
+              I will make a Full stack web application - 6 pages
+            </p>
+            <div className="py-5 flex items-center justify-around">
+              <div className="flex items-center space-x-2">
+                <ClockIcon className="h-5 w-5 text-white" />
+                <h4 className="text-lg font-bold">10 Days Delivery</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <ArrowPathIcon className="h-5 w-5 text-white" />
+                <h4 className="text-lg font-bold">Unlimited Revisions</h4>
+              </div>
+            </div>
+            <div className="px-5">
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">6 Pages</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Design customization</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Content upload</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Responsive design</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Source code</h4>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Premium */}
+        {premium && (
+          <div>
+            <p className="text-center text-base font-semibold">
+              I will make a Full stack web application - 10 pages
+            </p>
+            <div className="py-5 flex items-center justify-around">
+              <div className="flex items-center space-x-2">
+                <ClockIcon className="h-5 w-5 text-white" />
+                <h4 className="text-lg font-bold">21 Days Delivery</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <ArrowPathIcon className="h-5 w-5 text-white" />
+                <h4 className="text-lg font-bold">Unlimited Revision</h4>
+              </div>
+            </div>
+            <div className="px-5">
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">10 Pages</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Design customization</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Content upload</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Responsive design</h4>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                <h4 className="text-lg font-semibold">Source code</h4>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
       <div className="md:my-22 my-10 bg-[#E7EDF3] md:p-20 p-10">
-        <form action="" method="post" className="max-w-xl mx-auto space-y-5">
+        <form
+          action=""
+          method="post"
+          className={`max-w-xl mx-auto space-y-5 ${
+            i18n.language === "ar" ? "text-right" : "text-left"
+          }`}
+        >
           <h1 className="block md:text-4xl xs:text-xl text-sm text-center font-medium text-[#234F7E]">
-            Service Request Form
+            {t("serviceRequet")}
           </h1>
-          <div className="flex flex-col items-start space-y-3">
+          <div className="space-y-3">
             <h1 className="text-[#234F7E] font-lato font-semibold text-lg">
-              Service Name
+              {i18n.language === "ar" ? "اسم الخدمة" : "Service Name"}
             </h1>
             <h1 className="text-[#234F7E] md:text-2xl font-lato font-bold xs:text-lg text-sm">
-              {pid}
+              {pid === "Domestic workers Service Line"
+                ? `${t("domestic")} - ${packageName}`
+                : t("clearance")}
             </h1>
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="text"
-              className="block py-2.5 px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className={`block py-2.5 ${
+                i18n.language === "ar" ? "text-right" : "text-left"
+              } px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
               placeholder=" "
               required
             />
-            <label className="peer-focus:font-medium absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-              Name
+            <label
+              className={`peer-focus:font-medium ${
+                i18n.language === "ar" ? "right-2" : "left-0"
+              } absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
+            >
+              {i18n.language === "ar" ? "الاسم" : "Name"}
             </label>
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="email"
-              className="block py-2.5 px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className={`block py-2.5 ${
+                i18n.language === "ar" ? "text-right" : "text-left"
+              } px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
               placeholder=" "
               required
             />
-            <label className="peer-focus:font-medium absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-              Email address
+            <label
+              className={`peer-focus:font-medium ${
+                i18n.language === "ar" ? "right-2" : "left-0"
+              } absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
+            >
+              {i18n.language === "ar" ? "البريد الالكتروني" : "Email address"}
             </label>
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="tel"
-              className="block py-2.5 px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className={`block py-2.5 ${
+                i18n.language === "ar" ? "text-right" : "text-left"
+              } px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
               placeholder=" "
               required
             />
-            <label className="peer-focus:font-medium absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-              Phone number
+            <label
+              className={`peer-focus:font-medium ${
+                i18n.language === "ar" ? "right-2" : "left-0"
+              } absolute text-sm text-[#234F7E] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
+            >
+              {i18n.language === "ar" ? "رقم الهاتف" : " Phone number"}
             </label>
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <textarea
-              className="block py-6 px-0 w-full xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className={`block py-6 px-0 w-full  ${
+                i18n.language === "ar" ? "text-right" : "text-left"
+              } xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
               placeholder=""
               rows={5}
               required
             />
-            <label className="peer-focus:font-medium absolute text-sm text-[#234F7E] duration-300 transform -translate-y-1 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-              Message
+            <label
+              className={`peer-focus:font-medium  ${
+                i18n.language === "ar" ? "right-2" : "left-0"
+              } absolute text-sm text-[#234F7E] duration-300 transform -translate-y-1 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6`}
+            >
+              {i18n.language === "ar" ? "الرسالة" : " Message"}
             </label>
           </div>
           <button
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto sm:px-5 sm:py-2.5 px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Send a message
+            {i18n.language === "ar" ? "ارسل رسالتك" : " Send a message"}
           </button>
         </form>
       </div>

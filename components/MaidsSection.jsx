@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import withAuth from "../auth/withAuth";
 import Maids from "../components/Maids";
 import maidPhoto from "../public/maidPhoto.png";
 
@@ -46,4 +47,4 @@ const MaidsSection = () => {
   );
 };
 
-export default MaidsSection;
+export default withAuth(MaidsSection);

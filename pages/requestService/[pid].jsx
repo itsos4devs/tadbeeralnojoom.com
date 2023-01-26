@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-// TODO: implement packages arabic and english
-// TODO: implement packages like the site needs
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -67,89 +65,758 @@ const pid = () => {
         }
       />
       {pid === "Domestic workers Service Line" ? (
-        <div
-          className={`flex flex-col md:m-20 m-10 md:space-y-5 space-y-1 ${
-            i18n.language === "ar" ? "text-right" : "text-left"
-          }`}
-        >
-          <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
-            {t("domestic")}
-          </h1>
-          <p className="md:text-lg xs:text-[10px] text-[7px]">
-            {t("domesticDesc")}
-          </p>
-          <div className="md:space-y-10 space-y-5">
-            <h3 className="md:text-lg xs:text-[10px] text-[7px]">
-              {i18n.language === "ar" ? "وهي" : "The packages are:"}
-            </h3>
-            <div className="ml-5 space-y-3">
-              <div
-                className={
-                  i18n.language === "ar"
-                    ? "flex flex-row-reverse items-start"
-                    : "flex items-start space-x-1 max-w-6xl"
-                }
-              >
-                <span className="md:text-base xs:text-[10px] text-[7px]">
-                  🔵
-                </span>
-                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                  <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
-                    {t("traditional")}
-                    {": "}
-                  </span>
+        <div>
+          <div
+            className={`flex flex-col md:m-20 m-10 md:space-y-5 space-y-1 ${
+              i18n.language === "ar" ? "text-right" : "text-left"
+            }`}
+          >
+            <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
+              {t("domestic")}
+            </h1>
+            <p className="md:text-lg xs:text-[10px] text-[7px]">
+              {t("domesticDesc")}
+            </p>
+            <div className="md:space-y-10 space-y-5">
+              <h3 className="md:text-lg xs:text-[10px] text-[7px]">
+                {i18n.language === "ar" ? "وهي" : "The packages are:"}
+              </h3>
+              <div className="ml-5 space-y-3">
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-start"
+                      : "flex items-start space-x-1 max-w-6xl"
+                  }
+                >
                   <span className="md:text-base xs:text-[10px] text-[7px]">
-                    {i18n.language === "ar"
-                      ? "خدمات استقدام عامل مساعد من خارج الدولة يسجل على ملف صاحب العمل ويقيم لديه خلال فترة التعاقد"
-                      : "Recruitment services for a domestic worker from in or outside the country where the domestic worker is sponsored by the employer and stays with them during the contract period."}
+                    🔵
                   </span>
-                </h1>
-              </div>
-              <div
-                className={
-                  i18n.language === "ar"
-                    ? "flex flex-row-reverse items-start"
-                    : "flex items-start space-x-1 max-w-6xl"
-                }
-              >
-                <span className="md:text-base xs:text-[10px] text-[7px]">
-                  🔵
-                </span>
-                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                  <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
-                    {t("temporary")}
-                    {": "}
-                  </span>
+                  <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
+                    <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                      {t("traditional")}
+                      {": "}
+                    </span>
+                    <span className="md:text-base xs:text-[10px] text-[7px]">
+                      {i18n.language === "ar"
+                        ? "خدمات استقدام عامل مساعد من خارج الدولة يسجل على ملف صاحب العمل ويقيم لديه خلال فترة التعاقد"
+                        : "Recruitment services for a domestic worker from in or outside the country where the domestic worker is sponsored by the employer and stays with them during the contract period."}
+                    </span>
+                  </h1>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-start"
+                      : "flex items-start space-x-1 max-w-6xl"
+                  }
+                >
                   <span className="md:text-base xs:text-[10px] text-[7px]">
-                    {i18n.language === "ar"
-                      ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل لفترة تعاقدية يسمح من بعدها بانتقال العامل كعامل مساعد مقيم ومسجل بملف صاحب العمل في حال موافقة الأطراف المعنية"
-                      : "This service is providing a domestic worker sponsored by Tadbeer service center to work for a contractual period. After which the worker is or is not allowed to transfer as a resident domestic worker sponsored by the employer if the concerned parties agree."}
+                    🔵
                   </span>
-                </h1>
-              </div>
-              <div
-                className={
-                  i18n.language === "ar"
-                    ? "flex flex-row-reverse items-start"
-                    : "flex items-start space-x-1 max-w-6xl"
-                }
-              >
-                <span className="md:text-base xs:text-[10px] text-[7px]">
-                  🔵
-                </span>
-                <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                  <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
-                    {t("flexible")}
-                    {": "}
-                  </span>
+                  <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
+                    <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                      {t("temporary")}
+                      {": "}
+                    </span>
+                    <span className="md:text-base xs:text-[10px] text-[7px]">
+                      {i18n.language === "ar"
+                        ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل لفترة تعاقدية يسمح من بعدها بانتقال العامل كعامل مساعد مقيم ومسجل بملف صاحب العمل في حال موافقة الأطراف المعنية"
+                        : "This service is providing a domestic worker sponsored by Tadbeer service center to work for a contractual period. After which the worker is or is not allowed to transfer as a resident domestic worker sponsored by the employer if the concerned parties agree."}
+                    </span>
+                  </h1>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-start"
+                      : "flex items-start space-x-1 max-w-6xl"
+                  }
+                >
                   <span className="md:text-base xs:text-[10px] text-[7px]">
-                    {i18n.language === "ar"
-                      ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل بنظام مرن (ساعات، أيام، أسبوع)"
-                      : " Domestic worker sponsored by Tadbeer service center to work on a flexible system (hours, days, week)"}
+                    🔵
                   </span>
-                </h1>
+                  <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
+                    <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                      {t("flexible")}
+                      {": "}
+                    </span>
+                    <span className="md:text-base xs:text-[10px] text-[7px]">
+                      {i18n.language === "ar"
+                        ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل بنظام مرن (ساعات، أيام، أسبوع)"
+                        : " Domestic worker sponsored by Tadbeer service center to work on a flexible system (hours, days, week)"}
+                    </span>
+                  </h1>
+                </div>
               </div>
             </div>
+          </div>
+          <div
+            className={`border-white border max-w-3xl mx-auto ${
+              i18n.language === "ar" ? "text-right" : "text-left"
+            }`}
+          >
+            <div
+              className={`flex ${
+                i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+              } justify-between`}
+            >
+              <button
+                onClick={basicHandler}
+                className={
+                  basic
+                    ? "h-20 w-full mx-auto md:text-xl text-sm border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-green-600"
+                    : "h-20 w-full mx-auto md:text-xl text-sm border-r-2 border-b cursor-pointer bg-white text-black font-bold"
+                }
+              >
+                {t("traditional")}
+              </button>
+              <button
+                onClick={standardHandler}
+                className={
+                  standard
+                    ? "h-20 w-full mx-auto md:text-xl text-sm border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-green-600"
+                    : "h-20 w-full mx-auto md:text-xl text-sm border-r-2 border-b cursor-pointer bg-white text-black font-bold"
+                }
+              >
+                {t("temporary")}
+              </button>
+              <button
+                onClick={premiumHandler}
+                className={
+                  premium
+                    ? "h-20 w-full mx-auto md:text-xl text-sm border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-green-600"
+                    : "h-20 w-full mx-auto md:text-xl text-sm border-r-2 border-b cursor-pointer bg-white text-black font-bold"
+                }
+              >
+                {t("flexible")}
+              </button>
+            </div>
+            {/* Basic */}
+            {basic && (
+              <div className="space-y-10">
+                <p className="text-center md:text-base text-xs mt-10 font-semibold">
+                  {i18n.language === "ar"
+                    ? "خدمات استقدام عامل مساعد من خارج الدولة يسجل على ملف صاحب العمل ويقيم لديه خلال فترة التعاقد"
+                    : "Recruitment services for a domestic worker from in or outside the country where the domestic worker is sponsored by the employer and stays with them during the contract period."}
+                </p>
+                <div className="space-y-3">
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "توفير عمالة مساعدة مؤهله خلال ٣٠ يوما كحد اقصى"
+                        : "Providing qualified auxiliary workers within a maximum of 30 days"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "توفير مسكن مؤقت ووجبات للعامل لحين تسليم العامل الى منزلك"
+                        : "Provide temporary housing and meals for the worker until the worker is delivered to your home"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "ضمان على العامل المساعد خلال الفترة التجريبيه ( انقطاع العامل عن العمل ع- دم كفاءة العامل مهنيا وسلوكيا - عدم لباقة العامل الصحة - انهاء العقد لاسباب من العامل )"
+                        : "A guarantee for the helper during the trial period (the worker’s interruption from work - lack of professional and behavioral competence of the worker - the worker’s lack of tact, health - termination of the contract for reasons on the part of the worker)"}
+                    </h4>
+                  </div>
+                </div>
+                <table className="w-fit mx-auto border border-blue-500">
+                  <thead className="text-center">
+                    {i18n.language === "ar" ? (
+                      <tr>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          تكلفة الاستقدام بالدراهم
+                        </th>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          الجنسيات
+                        </th>
+                      </tr>
+                    ) : (
+                      <tr>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          Nationalities
+                        </th>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          The cost of recruitment in dirhams
+                        </th>
+                      </tr>
+                    )}
+                  </thead>
+                  {i18n.language === "ar" ? (
+                    <tbody className="text-center">
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">14,000</td>
+                        <td className="border border-blue-500 p-2.5">
+                          الفلبين{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">15,000</td>
+                        <td className="border border-blue-500 p-2.5">
+                          اندونيسيا{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">15,000</td>
+                        <td className="border border-blue-500 p-2.5">
+                          سيرلانكا{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">7,500</td>
+                        <td className="border border-blue-500 p-2.5">
+                          بنجلاديش{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">6,500</td>
+                        <td className="border border-blue-500 p-2.5">كينيا </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">9,000</td>
+                        <td className="border border-blue-500 p-2.5">
+                          اثيوبيا{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">6,500</td>
+                        <td className="border border-blue-500 p-2.5">
+                          اوغندا{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">14,500</td>
+                        <td className="border border-blue-500 p-2.5">نيبال </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">12,000</td>
+                        <td className="border border-blue-500 p-2.5">الهند </td>
+                      </tr>
+                    </tbody>
+                  ) : (
+                    <tbody className="text-center">
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Philippines{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">14,000</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Indonesia{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">15,000</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Sri Lanka{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">15,000</td>
+                      </tr>
+                      <tr>
+                        {" "}
+                        <td className="border border-blue-500 p-2.5">
+                          Bangladesh{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">7,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">Kenya </td>
+                        <td className="border border-blue-500 p-2.5">6,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Ethiopia{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">9,000</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Uganda{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">6,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">Nepal </td>
+                        <td className="border border-blue-500 p-2.5">14,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">India </td>
+                        <td className="border border-blue-500 p-2.5">12,000</td>
+                      </tr>
+                    </tbody>
+                  )}
+                </table>
+              </div>
+            )}
+            {/* Standard */}
+            {standard && (
+              <div className="space-y-10">
+                <p className="text-center md:text-base text-xs mt-10 font-semibold">
+                  {i18n.language === "ar"
+                    ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل لفترة تعاقدية يسمح من بعدها بانتقال العامل كعامل مساعد مقيم ومسجل بملف صاحب العمل في حال موافقة الأطراف المعنية"
+                    : "This service is providing a domestic worker sponsored by Tadbeer service center to work for a contractual period. After which the worker is or is not allowed to transfer as a resident domestic worker sponsored by the employer if the concerned parties agree."}
+                </p>
+                <div className="space-y-3">
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "توفير عمالة مساعدة مؤهلة ومدربة عند الطلب خلال (24) ساعة"
+                        : "Providing qualified and trained auxiliary workers upon request within (24) hours"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "عدد غير محدد للاستبدال خلال مدة التعاقد"
+                        : "Unlimited number of replacements during the contract period"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "ضمان على العامل المساعد خلال مدة التعاقد"
+                        : "Guarantee for the helper during the contract period"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "تكلفة الباقة شاملة سكن العامل الذي يوفرة المركز ويمكن ان يقيم لدى صاحب العمل اذا اراد صاحب العمل ذلك"
+                        : "The cost of the package includes the worker's housing, which is provided by the center, and he can reside with the client if the client so desires"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "تكلفة غير ثابتة حسب الجنسيات"
+                        : "Unfixed cost according to nationalities"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "لا توجد رسوم على الخدمات الحكومية خلال مدة التعاقد"
+                        : "There are no fees for government services during the contract period"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "التكلفة تشمل ( الراتب الاساسي - تذكرة العودة - نهاية الخدمة والمستحقات - رسوم الخدمات الحكومية )"
+                        : "The cost includes (basic salary - return ticket - end of service and dues - government service fees)"}
+                    </h4>
+                  </div>
+                </div>
+                <table className="w-fit mx-auto border border-blue-500">
+                  <thead className="text-center">
+                    {i18n.language === "ar" ? (
+                      <tr>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          التكلفة الشهرية
+                        </th>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          الجنسيات
+                        </th>
+                      </tr>
+                    ) : (
+                      <tr>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          Nationalities
+                        </th>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          Monthly cost
+                        </th>
+                      </tr>
+                    )}
+                  </thead>
+                  {i18n.language === "ar" ? (
+                    <tbody className="text-center">
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,500</td>
+                        <td className="border border-blue-500 p-2.5">
+                          الفلبين{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,500</td>
+                        <td className="border border-blue-500 p-2.5">
+                          اندونيسيا{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,500</td>
+                        <td className="border border-blue-500 p-2.5">
+                          سيرلانكا{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,250</td>
+                        <td className="border border-blue-500 p-2.5">
+                          بنجلاديش{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,250</td>
+                        <td className="border border-blue-500 p-2.5">كينيا </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,300</td>
+                        <td className="border border-blue-500 p-2.5">
+                          اثيوبيا{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,300</td>
+                        <td className="border border-blue-500 p-2.5">
+                          اوغندا{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,250</td>
+                        <td className="border border-blue-500 p-2.5">نيبال </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">2,250</td>
+                        <td className="border border-blue-500 p-2.5">الهند </td>
+                      </tr>
+                    </tbody>
+                  ) : (
+                    <tbody className="text-center">
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Philippines{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">2,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Indonesia{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">2,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Sri Lanka{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">2,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Bangladesh{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">2,250</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">Kenya </td>
+                        <td className="border border-blue-500 p-2.5">2,300</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Ethiopia{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">2,300</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Uganda{" "}
+                        </td>
+                        <td className="border border-blue-500 p-2.5">2,300</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">Nepal </td>
+                        <td className="border border-blue-500 p-2.5">2,250</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">India </td>
+                        <td className="border border-blue-500 p-2.5">2,250</td>
+                      </tr>
+                    </tbody>
+                  )}
+                </table>
+              </div>
+            )}
+            {/* Premium */}
+            {premium && (
+              <div className="space-y-10">
+                <p className="text-center md:text-base text-xs mt-10 font-semibold">
+                  {i18n.language === "ar"
+                    ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل لفترة تعاقدية يسمح من بعدها بانتقال العامل كعامل مساعد مقيم ومسجل بملف صاحب العمل في حال موافقة الأطراف المعنية"
+                    : "This service is providing a domestic worker sponsored by Tadbeer service center to work for a contractual period. After which the worker is or is not allowed to transfer as a resident domestic worker sponsored by the employer if the concerned parties agree."}
+                </p>
+                <div className="space-y-3">
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "توفير عمالة مساعدة مؤهلة ومدربة عند الطلب خلال (24) ساعة"
+                        : "Providing qualified and trained auxiliary workers upon request within (24) hours"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "عدد غير محدد للاستبدال خلال مدة التعاقد"
+                        : "Unlimited number of replacements during the contract period"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "ضمان على العامل المساعد خلال مدة التعاقد"
+                        : "Guarantee for the helper during the contract period"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "تكلفة الباقة شاملة سكن العامل الذي يوفرة المركز ويمكن ان يقيم لدى صاحب العمل اذا اراد صاحب العمل ذلك"
+                        : "The cost of the package includes the worker's housing, which is provided by the center, and he can reside with the client if the client so desires"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "تكلفة ثابتة لجميع الجنسيات حسب مدة التعاقد"
+                        : "Fixed cost for all nationalities according to the contract period"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "لا توجد رسوم على الخدمات الحكومية خلال مدة التعاقد"
+                        : "There are no fees for government services during the contract period"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "التكلفة تشمل ( الراتب الاساسي - تذكرة العودة - نهاية الخدمة والمستحقات - رسوم الخدمات الحكومية )"
+                        : "The cost includes (basic salary - return ticket - end of service and dues - government service fees)"}
+                    </h4>
+                  </div>
+                </div>
+                <table className="w-fit mx-auto border border-blue-500">
+                  <thead className="text-center">
+                    {i18n.language === "ar" ? (
+                      <tr>
+                        <th className="md:text-lg font-bold text-xs  border border-blue-500 p-2.5">
+                          التكلفة بالدرهم
+                        </th>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          مدة التعاقد
+                        </th>
+                      </tr>
+                    ) : (
+                      <tr>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          Contract period
+                        </th>
+                        <th className="md:text-lg font-bold text-xs border border-blue-500 p-2.5">
+                          Cost in dirhams
+                        </th>
+                      </tr>
+                    )}
+                  </thead>
+                  {i18n.language === "ar" ? (
+                    <tbody className="text-center">
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">120</td>
+                        <td className="border border-blue-500 p-2.5">
+                          نصف يومي ( 4 ساعات ){" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">200</td>
+                        <td className="border border-blue-500 p-2.5">
+                          يومي ( 8 ساعات )
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">1,120</td>
+                        <td className="border border-blue-500 p-2.5">
+                          اسبوعي ( 7 ايام )
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">3,500</td>
+                        <td className="border border-blue-500 p-2.5">
+                          شهري ( 30 يوم )
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">3,250</td>
+                        <td className="border border-blue-500 p-2.5">٦ اشهر</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">3,000</td>
+                        <td className="border border-blue-500 p-2.5">١٢ شهر</td>
+                      </tr>
+                    </tbody>
+                  ) : (
+                    <tbody className="text-center">
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Half day ( 4 Hours )
+                        </td>
+                        <td className="border border-blue-500 p-2.5">120</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Daily ( 8 Hours )
+                        </td>
+                        <td className="border border-blue-500 p-2.5">200</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Weekly ( 7 Days )
+                        </td>
+                        <td className="border border-blue-500 p-2.5">1,120</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          Monyhly ( 30 Days )
+                        </td>
+                        <td className="border border-blue-500 p-2.5">3,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          6 Months
+                        </td>
+                        <td className="border border-blue-500 p-2.5">3,250</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">
+                          12 Months
+                        </td>
+                        <td className="border border-blue-500 p-2.5">3,000</td>
+                      </tr>
+                    </tbody>
+                  )}
+                </table>
+              </div>
+            )}
           </div>
         </div>
       ) : (
@@ -166,195 +833,47 @@ const pid = () => {
           </p>
           <div className="ml-5 md:space-y-5 space-y-0">
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              🔵 Entry Permit
+              {i18n.language === "ar" ? "تصريح الدخول" : "🔵 Entry Permit"}
             </h1>
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              🔵 Change of Status
+              {i18n.language === "ar" ? "تغيير الحالة" : "🔵 Change of Status"}
             </h1>
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              🔵 Emirates Identity / National ID
+              {i18n.language === "ar"
+                ? "الهوية الإماراتية / الهوية الوطنية"
+                : "🔵 Emirates Identity / National ID"}
             </h1>
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              🔵 Government and Medical Insurance
+              {i18n.language === "ar"
+                ? "الفحص الطبي"
+                : "🔵 Government and Medical Insurance"}
             </h1>
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              🔵 Medical Test
+              {i18n.language === "ar"
+                ? "التأمين الحكومي والطبي"
+                : "🔵 Medical Test"}
             </h1>
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              🔵 Residency Visa Stamping Application
+              {i18n.language === "ar"
+                ? "طلب ختم تأشيرة الإقامة"
+                : "🔵 Residency Visa Stamping Application"}
             </h1>
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              🔵 Domestic Worker Visa Renewal
+              {i18n.language === "ar"
+                ? "تجديد تأشيرة العمالة المساعدة"
+                : "🔵 Domestic Worker Visa Renewal"}
             </h1>
             <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              🔵 Domestic Worker Visa Cancellation
+              {i18n.language === "ar"
+                ? "إلغاء تأشيرة العمالة المساعدة"
+                : "🔵 Domestic Worker Visa Cancellation"}
+            </h1>
+            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              {i18n.language === "ar" ? "بلاغ الهروب" : ""}
             </h1>
           </div>
         </div>
       )}
-
-      <div
-        className={`border-white border max-w-3xl mx-auto ${
-          i18n.language === "ar" ? "text-right" : "text-left"
-        }`}
-      >
-        <div
-          className={`flex ${
-            i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
-          } justify-between`}
-        >
-          <button
-            onClick={basicHandler}
-            className={
-              basic
-                ? "h-20 w-full mx-auto text-xl border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-yellow-600"
-                : "h-20 w-full mx-auto text-xl border-r-2 border-b cursor-pointer bg-white text-black font-bold"
-            }
-          >
-            {t("traditional")}
-          </button>
-          <button
-            onClick={standardHandler}
-            className={
-              standard
-                ? "h-20 w-full mx-auto text-xl border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-yellow-600"
-                : "h-20 w-full mx-auto text-xl border-r-2 border-b cursor-pointer bg-white text-black font-bold"
-            }
-          >
-            {t("temporary")}
-          </button>
-          <button
-            onClick={premiumHandler}
-            className={
-              premium
-                ? "h-20 w-full mx-auto text-xl border-r-2 border-b-8 cursor-pointer bg-white text-black font-bold border-b-yellow-600"
-                : "h-20 w-full mx-auto text-xl border-r-2 border-b cursor-pointer bg-white text-black font-bold"
-            }
-          >
-            {t("flexible")}
-          </button>
-        </div>
-        {/* Basic */}
-        {basic && (
-          <div className="space-y-2">
-            <p className="text-center text-base font-semibold">
-              I will make a Frontend website - 3 pages
-            </p>
-            <div className="py-5 flex items-center justify-around">
-              <div className="flex items-center space-x-2">
-                <ClockIcon className="h-5 w-5 text-white" />
-                <h4 className="text-lg font-bold">2 Days Delivery</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <ArrowPathIcon className="h-5 w-5 text-white" />
-                <h4 className="text-lg font-bold">Unlimited Revision</h4>
-              </div>
-            </div>
-            <div className="px-5">
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">3 Pages</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Design customization</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Content upload</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Responsive design</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Source code</h4>
-              </div>
-            </div>
-          </div>
-        )}
-        {/* Standard */}
-        {standard && (
-          <div>
-            <p className="text-center text-base font-semibold">
-              I will make a Full stack web application - 6 pages
-            </p>
-            <div className="py-5 flex items-center justify-around">
-              <div className="flex items-center space-x-2">
-                <ClockIcon className="h-5 w-5 text-white" />
-                <h4 className="text-lg font-bold">10 Days Delivery</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <ArrowPathIcon className="h-5 w-5 text-white" />
-                <h4 className="text-lg font-bold">Unlimited Revisions</h4>
-              </div>
-            </div>
-            <div className="px-5">
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">6 Pages</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Design customization</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Content upload</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Responsive design</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Source code</h4>
-              </div>
-            </div>
-          </div>
-        )}
-        {/* Premium */}
-        {premium && (
-          <div>
-            <p className="text-center text-base font-semibold">
-              I will make a Full stack web application - 10 pages
-            </p>
-            <div className="py-5 flex items-center justify-around">
-              <div className="flex items-center space-x-2">
-                <ClockIcon className="h-5 w-5 text-white" />
-                <h4 className="text-lg font-bold">21 Days Delivery</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <ArrowPathIcon className="h-5 w-5 text-white" />
-                <h4 className="text-lg font-bold">Unlimited Revision</h4>
-              </div>
-            </div>
-            <div className="px-5">
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">10 Pages</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Design customization</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Content upload</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Responsive design</h4>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircleIcon className="h-4 w-4 text-green-600" />
-                <h4 className="text-lg font-semibold">Source code</h4>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
       <div className="md:my-22 my-10 bg-[#E7EDF3] md:p-20 p-10">
         <form
           action=""

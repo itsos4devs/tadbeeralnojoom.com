@@ -64,7 +64,7 @@ const favourites = () => {
                 : "hidden"
             }
           >
-            Next Page
+            {t("NextPage")}
           </button>
         </div>
       </div>

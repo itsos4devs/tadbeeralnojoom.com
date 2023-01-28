@@ -32,7 +32,7 @@ const findMaids = () => {
       <Banner
         imageSrc={findMaid}
         imageUlt="find Maids banner"
-        text1={"Find Maids"}
+        text1={t("findMaid")}
         textPosition={
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
@@ -40,7 +40,7 @@ const findMaids = () => {
       <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-44 mb-16">
         <div className="text-center xl:mt-36 md:mt-20 mt-10 space-y-2">
           <h1 className="text-[#E48100] font-lato font-bold lg:text-5xl md:text-3xl text-xl">
-            We have wide range of Skillful & Professional Maids
+            {t("findMaidTitle")}
           </h1>
           <p className="md:w-[500px] sm:w-[300px] w-[250px] md:text-sm sm:text-xs text-[10px] mx-auto">
             Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
@@ -55,7 +55,7 @@ const findMaids = () => {
         />
         <div className="w-fit mx-auto">
           <button className="clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white">
-            Next Page
+            {t("NextPage")}
           </button>
         </div>
       </div>

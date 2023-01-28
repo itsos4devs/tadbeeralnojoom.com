@@ -132,7 +132,7 @@ const Header = () => {
                   className="clickButton bg-gray-500 md:w-20 sm:w-16 w-8 mx-auto md:py-1 py-0.5 md:text-base text-[5px] rounded-full text-white"
                   onClick={() => setDropDown(!dropDown)}
                 >
-                  Sign in
+                  {t("signIn")}
                 </button>
               </div>
             )}
@@ -162,7 +162,7 @@ const Header = () => {
                       href="/favourites"
                       className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      WishList/Favourites
+                      {t("favourite")}
                     </Link>
                   </li>
                   <li>
@@ -170,7 +170,7 @@ const Header = () => {
                       href="/upcomingInterviews"
                       className="block md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      Upcoming Interviews
+                      {t("upcoming")}
                     </Link>
                   </li>
                 </ul>
@@ -180,7 +180,7 @@ const Header = () => {
                     onClick={() => logout()}
                     className="block md:py-2 md:px-4 py-1 w-full px-2 md:text-sm text-[8px] text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    Sign out
+                    {t("signOut")}
                   </button>
                 </div>
               </div>

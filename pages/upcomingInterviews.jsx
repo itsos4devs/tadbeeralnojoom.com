@@ -68,7 +68,7 @@ const upcomingInterviews = () => {
                 : "hidden"
             }
           >
-            Next Page
+            {t("NextPage")}
           </button>
         </div>
       </div>

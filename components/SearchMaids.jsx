@@ -3,10 +3,13 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useOnClickOutside } from "usehooks-ts";
 import withAuth from "../auth/withAuth";
 
 const SearchMaids = () => {
+  const { t, i18n } = useTranslation();
+
   const [dropDownCountry, setDropDownCountry] = useState(false);
   const [dropDownProfession, setDropDownProfession] = useState(false);
   const [dropDownNationality, setDropDownNationality] = useState(false);
@@ -17,15 +20,26 @@ const SearchMaids = () => {
     setDropDownNationality(false);
   });
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 select-none">
       <div className="relative xl:w-[1000px] lg:w-[800px] md:w-[500px] xs:w-[300px] w-[250px] mx-auto">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <div
+          className={`absolute inset-y-0 ${
+            i18n.language === "ar" ? "right-0 pr-3" : "left-0 pl-3"
+          } flex items-center  pointer-events-none`}
+        >
           <MagnifyingGlassIcon className="h-5 w-5 text-gray-600" />
         </div>
         <input
-          type="search"
-          className="block p-3 xl:w-[1000px] lg:w-[800px] md:w-[500px] xs:w-[300px] w-[250px] pl-10 text-sm  text-gray-900 border border-gray-300 rounded-lg bg-[#D2DFED] focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
-          placeholder="Search here your desired CV"
+          type="text"
+          lang={i18n.language === "ar" ? "ar" : "en"}
+          className={` ${
+            i18n.language === "ar" ? "text-right pr-10" : "pl-10"
+          } block p-3 xl:w-[1000px] lg:w-[800px] md:w-[500px] xs:w-[300px] w-[250px]  text-sm text-gray-900 border border-gray-300 rounded-lg bg-[#D2DFED] focus:ring-blue-500 focus:border-blue-500 focus:outline-none`}
+          placeholder={
+            i18n.language === "ar"
+              ? "ابحث هنا عن السيرة الذاتية المرغوبة"
+              : "Search here your desired CV"
+          }
         />
       </div>
       <div
@@ -35,12 +49,20 @@ const SearchMaids = () => {
         <div className="relative">
           <button
             onClick={() => setDropDownCountry(!dropDownCountry)}
-            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[6px] px-4 py-2.5 text-center inline-flex justify-between items-center"
+            className={`text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[6px] px-4 py-2.5 text-center flex ${
+              i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+            } justify-between items-center`}
             type="button"
           >
-            Country Status{" "}
-            <div className="flex items-center font-light space-x-1">
-              <h1 className="text-[#234F7E]">All</h1>
+            {i18n.language === "ar" ? "حالة البلد" : "Country Status"}
+            <div
+              className={`flex ${
+                i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+              } items-center font-light space-x-1`}
+            >
+              <h1 className="text-[#234F7E] ml-1">
+                {i18n.language === "ar" ? "الجميع" : "All"}
+              </h1>
               <ChevronDownIcon className="h-4 w-4 text-[#234F7E]" />
             </div>
           </button>
@@ -66,12 +88,20 @@ const SearchMaids = () => {
         <div className="relative">
           <button
             onClick={() => setDropDownProfession(!dropDownProfession)}
-            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[7px] px-4 py-2.5 text-center inline-flex justify-between items-center"
+            className={`text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[6px] px-4 py-2.5 text-center flex ${
+              i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+            } justify-between items-center`}
             type="button"
           >
-            Profession{" "}
-            <div className="flex items-center font-light space-x-1">
-              <h1 className="text-[#234F7E]">All</h1>
+            {i18n.language === "ar" ? "المهنة" : "Profession "}
+            <div
+              className={`flex ${
+                i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+              } items-center font-light space-x-1`}
+            >
+              <h1 className="text-[#234F7E] ml-1">
+                {i18n.language === "ar" ? "الجميع" : "All"}
+              </h1>
               <ChevronDownIcon className="h-4 w-4 text-[#234F7E]" />
             </div>
           </button>
@@ -97,12 +127,20 @@ const SearchMaids = () => {
         <div className="relative">
           <button
             onClick={() => setDropDownNationality(!dropDownNationality)}
-            className="text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[7px] px-4 py-2.5 text-center inline-flex justify-between items-center"
+            className={`text-[#234F7E] bg-[#D2DFED] focus:outline-none rounded-lg lg:w-[280px] md:w-[200px] xxs:w-[130px] w-[100px] md:text-base xxs:text-[10px] text-[6px] px-4 py-2.5 text-center flex ${
+              i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+            } justify-between items-center`}
             type="button"
           >
-            Nationality{" "}
-            <div className="flex items-center font-light space-x-1">
-              <h1 className="text-[#234F7E]">All</h1>
+            {i18n.language === "ar" ? "الجنسية" : "Nationality"}
+            <div
+              className={`flex ${
+                i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+              } items-center font-light space-x-1`}
+            >
+              <h1 className="text-[#234F7E] ml-1">
+                {i18n.language === "ar" ? "الجميع" : "All"}
+              </h1>
               <ChevronDownIcon className="h-4 w-4 text-[#234F7E]" />
             </div>
           </button>
@@ -127,7 +165,9 @@ const SearchMaids = () => {
         </div>
       </div>
       <div className="w-fit mx-auto flex items-center space-x-10">
-        <h1 className="font-roboto text-xl text-[#234F7E]">Experience</h1>
+        <h1 className="font-roboto text-xl text-[#234F7E]">
+          {i18n.language === "ar" ? "الخبرة" : "Experience"}
+        </h1>
         <div className="space-x-2 flex items-center">
           <input
             type="radio"
@@ -139,7 +179,7 @@ const SearchMaids = () => {
             className="text-[#234F7E] text-lg font-roboto"
             for="default-radio-1"
           >
-            Yes
+            {i18n.language === "ar" ? "نعم" : "Yes"}
           </label>
         </div>
         <div className="space-x-2 flex items-center">
@@ -149,7 +189,9 @@ const SearchMaids = () => {
             value=""
             name="default-radio"
           />
-          <label className="text-[#234F7E] text-lg font-roboto">No</label>
+          <label className="text-[#234F7E] text-lg font-roboto">
+            {i18n.language === "ar" ? "لا" : "No"}
+          </label>
         </div>
       </div>
       <div className="w-44 mx-auto">
@@ -157,7 +199,7 @@ const SearchMaids = () => {
           type="submit"
           className="text-white w-44 bg-[#234F7E] clickButton font-medium rounded-lg text-sm md:py-2 py-1"
         >
-          Search
+          {i18n.language === "ar" ? "ابحث" : "Search"}
         </button>
       </div>
     </div>

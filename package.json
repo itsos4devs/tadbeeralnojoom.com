@@ -11,7 +11,6 @@
   "dependencies": {
     "@heroicons/react": "^2.0.13",
     "@next/font": "13.1.1",
-    "@sentry/nextjs": "^7.34.0",
     "@stripe/stripe-js": "^1.46.0",
     "axios": "^1.2.2",
     "eslint": "8.30.0",

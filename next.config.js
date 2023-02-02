@@ -8,7 +8,7 @@ const { withSentryConfig } = require("@sentry/nextjs");
 const nextConfig = {
   reactStrictMode: false,
   env: {
-    stripe_public_key: process.env.STRIPE_PUPLIC_KEY,
+    stripe_public_key: process.env.STRIPE_PUBLIC_KEY,
   },
 };
 

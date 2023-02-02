@@ -17,6 +17,7 @@ const Header = () => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const { user, logout } = useUser();
+
   return (
     <div className="bg-[#000]/50 md:h-[71px] h-[20px] absolute left-0 right-0">
       <div className="flex justify-between items-center xl:max-w-[1200px] lg:max-w-[1000px] md:max-w-[750px] sm:max-w-[400px] max-w-[300px] m-auto h-full">

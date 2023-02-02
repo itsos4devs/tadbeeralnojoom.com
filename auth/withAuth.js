@@ -1,6 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { useEffect } from "react";
-import router from "next/router";
+import React from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import initFirebase from "../config.js";

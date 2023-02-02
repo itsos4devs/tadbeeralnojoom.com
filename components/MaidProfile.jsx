@@ -8,9 +8,12 @@ import { useUser } from "../auth/useUser";
 import withAuth from "../auth/withAuth";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 const stripePromise = loadStripe(process.env.stripe_public_key);
 
 const MaidProfile = ({ ProfilePhotoSrc }) => {
+  const { t, i18n } = useTranslation();
+
   const fakeMaidData = [
     {
       id: "543416464DSAdas54",
@@ -121,7 +124,7 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
               disabled={user ? false : true}
               className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100 md:w-44 md:py-1.5 w-16 py-0 md:text-base text-[6px]"
             >
-              Book Now
+              {i18n.language === "ar" ? "احجز الان" : "Book Now"}
             </button>
           </div>
         </div>

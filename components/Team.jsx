@@ -9,6 +9,7 @@ import teamPhoto4 from "../public/teamPhoto4.jpeg";
 import teamPhoto5 from "../public/teamPhoto5.jpeg";
 import teamPhoto6 from "../public/teamPhoto6.jpeg";
 import teamPhoto7 from "../public/teamPhoto7.jpeg";
+import profileBlank from "../public/profileBlank.png";
 // TODO: update photos with team
 const Team = () => {
   const { t, i18n } = useTranslation();
@@ -186,6 +187,30 @@ const Team = () => {
             </h3>
             <h2 className="text-[#E48100] md:text-base text-xs">
               +971 544664001
+            </h2>
+          </div>
+        </div>
+        <div className="lg:w-[300px] md:w-[250px] w-[150px] bg-[#DBE9F8] lg:h-[350px] md:h-[300px] h-[200px] md:space-y-2 space-y-1 rounded-lg">
+          <div className="w-max mx-auto mt-3">
+            <div className="md:w-44 md:h-44 w-16 h-16">
+              <Image
+                src={profileBlank}
+                alt="Developer photo"
+                className="rounded-full mx-auto border-2 border-[#234F7E]"
+              />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+              {i18n.language === "ar" ? "امة الرحمان" : "Ametu Al Rahman"}
+            </h2>
+            <h3 className="md:text-lg text-xs font-lato font-bold">
+              {i18n.language === "ar"
+                ? "سكرتير اثيوبيا"
+                : " Ethiopia Secertary"}
+            </h3>
+            <h2 className="text-[#E48100] md:text-base text-xs">
+              +971 504664093
             </h2>
           </div>
         </div>

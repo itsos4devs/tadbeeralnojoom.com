@@ -3,19 +3,10 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import withAuth from "../auth/withAuth";
 import Maids from "../components/Maids";
-import maidPhoto from "../public/maidPhoto.png";
 
-const MaidsSection = () => {
+const MaidsSection = ({ data }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
-  const data = {
-    id: 1,
-    img: maidPhoto,
-    name: "Mousumi Zaman",
-    job: t("maidJob"),
-    location: "Sri Lanka",
-    experienceYear: "5",
-  };
   return (
     <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-32 mb-10">
       <div className="text-center xl:mt-36 md:mt-20  mt-10 space-y-5">
@@ -26,11 +17,7 @@ const MaidsSection = () => {
           {t("maidDesc")}
         </p>
       </div>
-      <Maids
-        data={data}
-        viewProfile={t("maidViewProfile")}
-        viewProfileColor={"bg-[#E48100]"}
-      />
+      <Maids data={data} />
       <div className="w-fit mx-auto">
         <button
           onClick={() =>

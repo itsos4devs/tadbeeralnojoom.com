@@ -6,21 +6,13 @@ import findMaid from "../public/findMaids.jpeg";
 import maidPhoto from "../public/maidPhoto.png";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import SearchMaids from "../components/SearchMaids";
 import withAuth from "../auth/withAuth";
+import axios from "axios";
 
-const findMaids = () => {
+const findMaids = ({ data }) => {
   const { t } = useTranslation();
 
-  const data = {
-    id: 1,
-    img: maidPhoto,
-    name: "Mousumi Zaman",
-    job: t("maidJob"),
-    location: "Sri Lanka",
-    experienceYear: "5",
-  };
   return (
     <div>
       <Head>
@@ -48,11 +40,7 @@ const findMaids = () => {
           </p>
         </div>
         <SearchMaids />
-        <Maids
-          data={data}
-          viewProfile={t("maidViewProfile")}
-          viewProfileColor={"bg-[#E48100]"}
-        />
+        <Maids data={data} />
         <div className="w-fit mx-auto">
           <button className="clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white">
             {t("NextPage")}
@@ -65,3 +53,18 @@ const findMaids = () => {
 };
 
 export default withAuth(findMaids);
+
+export async function getStaticProps(context) {
+  const options = {
+    method: "GET",
+    url: "https://alnujoomerp.net/api/v1/Maids",
+    params: { "api-key": "8o0884ws88kkoc484k4s8kg0o04okockk0k0gwso" },
+  };
+
+  const res = await axios.request(options);
+  return {
+    props: {
+      data: res.data.response,
+    },
+  };
+}

@@ -11,7 +11,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 const stripePromise = loadStripe(process.env.stripe_public_key);
 
-const MaidProfile = ({ ProfilePhotoSrc }) => {
+const MaidProfile = () => {
   const { t, i18n } = useTranslation();
 
   const fakeMaidData = [
@@ -43,6 +43,7 @@ const MaidProfile = ({ ProfilePhotoSrc }) => {
       console.log(result.error.message);
     }
   };
+
   return (
     <div className="2xl:max-w-7xl xl:max-w-6xl lg:max-w-4xl md:max-w-[700px] xs:max-w-sm xxs:max-w-[340px] max-w-[300px] mx-auto md:mt-20 mt-10">
       <div className="grid grid-cols-3 space-x-5">

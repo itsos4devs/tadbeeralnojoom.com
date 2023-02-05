@@ -10,7 +10,6 @@ import teamPhoto5 from "../public/teamPhoto5.jpeg";
 import teamPhoto6 from "../public/teamPhoto6.jpeg";
 import teamPhoto7 from "../public/teamPhoto7.jpeg";
 import profileBlank from "../public/profileBlank.png";
-// TODO: update photos with team
 const Team = () => {
   const { t, i18n } = useTranslation();
 

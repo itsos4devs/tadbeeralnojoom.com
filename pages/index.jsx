@@ -7,9 +7,13 @@ import Testimonial from "../components/Testimonial";
 import banner from "../public/banner.jpeg";
 import { useTranslation } from "react-i18next";
 import PopupVideo from "../components/PopupVideo";
-export default function Home() {
+import axios from "axios";
+// TODO: implement next page
+// FIXME: wait maid/id api
+// FIXME: wait photo | job | id from maid api
+// TODO: remove stripe and implement a popup window onclick book now showing terms and when clicked email
+export default function Home({ data }) {
   const { t } = useTranslation();
-
   return (
     <div>
       <Head>
@@ -33,7 +37,7 @@ export default function Home() {
       </section>
       {/* Maids section */}
       <section>
-        <MaidsSection />
+        <MaidsSection data={data} />
       </section>
       {/* Services section */}
       <section>
@@ -49,4 +53,19 @@ export default function Home() {
       </section>
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+  const options = {
+    method: "GET",
+    url: "https://alnujoomerp.net/api/v1/Maids",
+    params: { "api-key": "8o0884ws88kkoc484k4s8kg0o04okockk0k0gwso" },
+  };
+
+  const res = await axios.request(options);
+  return {
+    props: {
+      data: res.data.response,
+    },
+  };
 }

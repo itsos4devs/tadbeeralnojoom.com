@@ -12,6 +12,8 @@ import axios from "axios";
 // FIXME: wait maid/id api
 // FIXME: wait photo | job | id from maid api
 // TODO: remove stripe and implement a popup window onclick book now showing terms and when clicked email
+// TODO: find maids search implement
+// TODO: find maids experience arabic change align
 export default function Home({ data }) {
   const { t } = useTranslation();
   return (

@@ -21,27 +21,6 @@ const SearchMaids = () => {
   });
   return (
     <div className="space-y-10 select-none">
-      <div className="relative xl:w-[1000px] lg:w-[800px] md:w-[500px] xs:w-[300px] w-[250px] mx-auto">
-        <div
-          className={`absolute inset-y-0 ${
-            i18n.language === "ar" ? "right-0 pr-3" : "left-0 pl-3"
-          } flex items-center  pointer-events-none`}
-        >
-          <MagnifyingGlassIcon className="h-5 w-5 text-gray-600" />
-        </div>
-        <input
-          type="text"
-          lang={i18n.language === "ar" ? "ar" : "en"}
-          className={` ${
-            i18n.language === "ar" ? "text-right pr-10" : "pl-10"
-          } block p-3 xl:w-[1000px] lg:w-[800px] md:w-[500px] xs:w-[300px] w-[250px]  text-sm text-gray-900 border border-gray-300 rounded-lg bg-[#D2DFED] focus:ring-blue-500 focus:border-blue-500 focus:outline-none`}
-          placeholder={
-            i18n.language === "ar"
-              ? "ابحث هنا عن السيرة الذاتية المرغوبة"
-              : "Search here your desired CV"
-          }
-        />
-      </div>
       <div
         ref={dropDownRef}
         className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row items-center justify-center lg:space-x-16 md:space-x-10 xxs:space-x-2 space-x-1"
@@ -164,8 +143,12 @@ const SearchMaids = () => {
           </div>
         </div>
       </div>
-      <div className="w-fit mx-auto flex items-center space-x-10">
-        <h1 className="font-roboto text-xl text-[#234F7E]">
+      <div
+        className={`w-fit mx-auto flex items-center space-x-10 ${
+          i18n.language === "ar" ? "flex-row-reverse" : ""
+        }`}
+      >
+        <h1 className="font-roboto text-xl text-[#234F7E] ml-8">
           {i18n.language === "ar" ? "الخبرة" : "Experience"}
         </h1>
         <div className="space-x-2 flex items-center">

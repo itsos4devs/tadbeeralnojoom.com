@@ -41,11 +41,6 @@ const findMaids = ({ data }) => {
         </div>
         <SearchMaids />
         <Maids data={data} />
-        <div className="w-fit mx-auto">
-          <button className="clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white">
-            {t("NextPage")}
-          </button>
-        </div>
       </div>
       <Footer />
     </div>

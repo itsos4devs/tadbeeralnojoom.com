@@ -8,12 +8,13 @@ import banner from "../public/banner.jpeg";
 import { useTranslation } from "react-i18next";
 import PopupVideo from "../components/PopupVideo";
 import axios from "axios";
-// TODO: implement next page
+// TODO: implement findMaids next page *(DONE)*
+// TODO: implement findMaids filters
+// TODO: implement findMaids search button
 // FIXME: wait maid/id api
-// FIXME: wait photo | job | id from maid api
-// TODO: remove stripe and implement a popup window onclick book now showing terms and when clicked email
-// TODO: find maids search implement
-// TODO: find maids experience arabic change align
+// FIXME: wait photo | job | id | country status from maid api
+// FIXME: remove stripe and implement a popup window onclick book now showing terms and when clicked email
+// TODO: find maids experience arabic change align *(DONE)*
 export default function Home({ data }) {
   const { t } = useTranslation();
   return (

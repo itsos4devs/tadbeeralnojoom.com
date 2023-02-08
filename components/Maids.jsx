@@ -1,15 +1,17 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useEffectOnce } from "usehooks-ts";
 import withAuth from "../auth/withAuth";
 import maidPhoto from "../public/maidPhoto.png";
 
-const Maids = ({ data }) => {
+const Maids = ({ data, nationalityFilter = "" }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const [pageNumber, setPageNumber] = useState(15);
   const [starter, setStarter] = useState(0);
+  const [filterData, setFilterData] = useState();
   const divRef = useRef(null);
 
   const nextPage = () => {
@@ -27,13 +29,40 @@ const Maids = ({ data }) => {
     });
     return setPageNumber(pageNumber - 15);
   };
+
+  useEffect(() => {
+    setFilterData([]);
+    data.filter((val) => {
+      if (
+        (nationalityFilter === "Ethiopian" &&
+          val.nationality.toLowerCase().includes("ethiopian")) ||
+        (nationalityFilter === "Ethiopian" &&
+          val.nationality.toLowerCase().includes("ethiopia"))
+      ) {
+        return setFilterData((old) => [...old, val]);
+      } else if (
+        (nationalityFilter === "Indonesia" &&
+          val.nationality.toLowerCase().includes("indonesia")) ||
+        (nationalityFilter === "Indonesia" &&
+          val.nationality.toLowerCase().includes("indoneasia"))
+      ) {
+        return setFilterData((old) => [...old, val]);
+      } else if (
+        nationalityFilter === "All" ||
+        val.nationality.toLowerCase().includes(nationalityFilter.toLowerCase())
+      ) {
+        return setFilterData((old) => [...old, val]);
+      }
+    });
+  }, [data, nationalityFilter]);
+
   return (
     <div>
       <div
         className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5"
         ref={divRef}
       >
-        {data.slice(starter, pageNumber).map((item, index) => {
+        {filterData?.slice(starter, pageNumber).map((item, index) => {
           if (router.pathname === "/") {
             if (index <= 14) {
               return (
@@ -137,14 +166,14 @@ const Maids = ({ data }) => {
             i18n.language === "ar" ? "" : "flex-row-reverse"
           }`}
         >
-          {pageNumber < data.length && (
+          {pageNumber < data.length && pageNumber < filterData?.length ? (
             <button
               onClick={nextPage}
               className="clickButton ml-5 bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white"
             >
               {t("nextPage")}
             </button>
-          )}
+          ) : null}
           {pageNumber > 15 && (
             <button
               onClick={previousPage}

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useOnClickOutside } from "usehooks-ts";
 import withAuth from "../auth/withAuth";
 
-const SearchMaids = () => {
+const SearchMaids = ({ nationalities, filterData }) => {
   const { t, i18n } = useTranslation();
 
   const [dropDownCountry, setDropDownCountry] = useState(false);
@@ -19,12 +19,14 @@ const SearchMaids = () => {
     setDropDownProfession(false);
     setDropDownNationality(false);
   });
+
   return (
     <div className="space-y-10 select-none">
       <div
         ref={dropDownRef}
         className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row items-center justify-center lg:space-x-16 md:space-x-10 xxs:space-x-2 space-x-1"
       >
+        {/* Country Status */}
         <div className="relative">
           <button
             onClick={() => setDropDownCountry(!dropDownCountry)}
@@ -64,6 +66,7 @@ const SearchMaids = () => {
             </ul>
           </div>
         </div>
+        {/* Profession */}
         <div className="relative">
           <button
             onClick={() => setDropDownProfession(!dropDownProfession)}
@@ -103,6 +106,7 @@ const SearchMaids = () => {
             </ul>
           </div>
         </div>
+        {/* Nationality */}
         <div className="relative">
           <button
             onClick={() => setDropDownNationality(!dropDownNationality)}
@@ -134,11 +138,16 @@ const SearchMaids = () => {
               className="md:py-1 py-0 md:text-sm text-[10px] text-gray-700 dark:text-gray-200"
               aria-labelledby="dropdownUserAvatarButton"
             >
-              <li>
-                <h1 className="block cursor-pointer md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  lorem
-                </h1>
-              </li>
+              {nationalities.map((item, index) => (
+                <li key={index}>
+                  <h1
+                    onClick={() => setDropDownNationality(false)}
+                    className="block cursor-pointer md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    {item}
+                  </h1>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -179,6 +188,7 @@ const SearchMaids = () => {
       </div>
       <div className="w-44 mx-auto">
         <button
+          onClick={filterData}
           type="submit"
           className="text-white w-44 bg-[#234F7E] clickButton font-medium rounded-lg text-sm md:py-2 py-1"
         >

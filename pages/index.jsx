@@ -9,8 +9,8 @@ import { useTranslation } from "react-i18next";
 import PopupVideo from "../components/PopupVideo";
 import axios from "axios";
 // TODO: implement findMaids next page *(DONE)*
-// TODO: implement findMaids filters
-// TODO: implement findMaids search button
+// TODO: implement findMaids filters *(DONE)* #waiting contry status and proffesion#
+// TODO: implement findMaids experience
 // FIXME: wait maid/id api
 // FIXME: wait photo | job | id | country status from maid api
 // FIXME: remove stripe and implement a popup window onclick book now showing terms and when clicked email

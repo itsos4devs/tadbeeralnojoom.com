@@ -10,13 +10,14 @@ import PopupVideo from "../components/PopupVideo";
 import axios from "axios";
 // TODO: implement findMaids next page *(DONE)*
 // TODO: implement findMaids filters *(DONE)* #waiting contry status and proffesion#
-// TODO: implement findMaids experience
+// TODO: implement findMaids experience *(DONE)*
 // FIXME: wait maid/id api
 // FIXME: wait photo | job | id | country status from maid api
 // FIXME: remove stripe and implement a popup window onclick book now showing terms and when clicked email
 // TODO: find maids experience arabic change align *(DONE)*
 export default function Home({ data }) {
   const { t } = useTranslation();
+
   return (
     <div>
       <Head>

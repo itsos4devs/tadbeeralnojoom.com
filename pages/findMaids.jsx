@@ -31,7 +31,10 @@ const findMaids = ({ data }) => {
   });
 
   const [nationalities, setNationalities] = useState([]);
-  const [nationality, setNationality] = useState("All");
+  const [nationality, setNationality] = useState("all");
+  const [experience, setExperience] = useState("all");
+
+  // gather all nationalities and fix typo errors
   function getUniqueListBy(arr) {
     const ids = arr.map((o) => {
       if (o.nationality.toLowerCase() === "ethiopia") {
@@ -229,37 +232,77 @@ const findMaids = ({ data }) => {
               i18n.language === "ar" ? "flex-row-reverse" : ""
             }`}
           >
-            <h1 className="font-roboto text-xl text-[#234F7E] ml-8">
-              {i18n.language === "ar" ? "الخبرة" : "Experience"}
+            <h1 className="font-roboto font-bold text-xl text-[#234F7E] ml-8">
+              {i18n.language === "ar" ? ":الخبرة" : "Experience:"}
             </h1>
-            <div className="space-x-2 flex items-center">
+            <div
+              className={`space-x-2 flex items-center ${
+                i18n.language === "ar" ? "flex-row-reverse" : ""
+              }`}
+            >
               <input
+                className="ml-2"
                 type="radio"
                 id="default-radio-1"
-                value=""
+                value="experienced"
                 name="default-radio"
+                onChange={(e) => setExperience(e.target.value)}
               />
               <label
                 className="text-[#234F7E] text-lg font-roboto"
-                for="default-radio-1"
+                htmlFor="default-radio-1"
               >
-                {i18n.language === "ar" ? "نعم" : "Yes"}
+                {i18n.language === "ar" ? "خبير" : "Experienced"}
               </label>
             </div>
-            <div className="space-x-2 flex items-center">
+            <div
+              className={`space-x-2 flex items-center ${
+                i18n.language === "ar" ? "flex-row-reverse" : ""
+              }`}
+            >
               <input
+                className="ml-2"
                 type="radio"
                 id="default-radio-2"
-                value=""
+                value="beginner"
                 name="default-radio"
+                onChange={(e) => setExperience(e.target.value)}
               />
-              <label className="text-[#234F7E] text-lg font-roboto">
-                {i18n.language === "ar" ? "لا" : "No"}
+              <label
+                htmlFor="default-radio-2"
+                className="text-[#234F7E] text-lg font-roboto"
+              >
+                {i18n.language === "ar" ? "مبتدئ" : "Beginner"}
+              </label>
+            </div>
+            <div
+              className={`space-x-2 flex items-center ${
+                i18n.language === "ar" ? "flex-row-reverse" : ""
+              }`}
+            >
+              <input
+                className="ml-2"
+                type="radio"
+                id="default-radio-3"
+                value="all"
+                name="default-radio"
+                defaultChecked
+                onChange={(e) => setExperience(e.target.value)}
+              />
+              <label
+                htmlFor="default-radio-3"
+                className="text-[#234F7E] text-lg font-roboto"
+              >
+                {i18n.language === "ar" ? "الكل" : "All"}
               </label>
             </div>
           </div>
         </div>
-        <Maids data={data} nationalityFilter={nationality} />
+        <Maids
+          data={data}
+          nationalityFilter={nationality}
+          experience={experience}
+        />
       </div>
       <Footer />
     </div>

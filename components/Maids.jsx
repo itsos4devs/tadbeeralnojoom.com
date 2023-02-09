@@ -6,7 +6,7 @@ import { useEffectOnce } from "usehooks-ts";
 import withAuth from "../auth/withAuth";
 import maidPhoto from "../public/maidPhoto.png";
 
-const Maids = ({ data, nationalityFilter = "" }) => {
+const Maids = ({ data, nationalityFilter = "", experience = "" }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const [pageNumber, setPageNumber] = useState(15);
@@ -39,22 +39,58 @@ const Maids = ({ data, nationalityFilter = "" }) => {
         (nationalityFilter === "Ethiopian" &&
           val.nationality.toLowerCase().includes("ethiopia"))
       ) {
-        return setFilterData((old) => [...old, val]);
+        if (
+          experience === "beginner" &&
+          val.experience.toLowerCase().includes("beginner")
+        ) {
+          return setFilterData((old) => [...old, val]);
+        } else if (
+          experience === "experienced" &&
+          val.experience.toLowerCase().includes("experienced")
+        ) {
+          return setFilterData((old) => [...old, val]);
+        } else if (experience === "all") {
+          return setFilterData((old) => [...old, val]);
+        }
       } else if (
         (nationalityFilter === "Indonesia" &&
           val.nationality.toLowerCase().includes("indonesia")) ||
         (nationalityFilter === "Indonesia" &&
           val.nationality.toLowerCase().includes("indoneasia"))
       ) {
-        return setFilterData((old) => [...old, val]);
+        if (
+          experience === "beginner" &&
+          val.experience.toLowerCase().includes("beginner")
+        ) {
+          return setFilterData((old) => [...old, val]);
+        } else if (
+          experience === "experienced" &&
+          val.experience.toLowerCase().includes("experienced")
+        ) {
+          return setFilterData((old) => [...old, val]);
+        } else if (experience === "all") {
+          return setFilterData((old) => [...old, val]);
+        }
       } else if (
-        nationalityFilter === "All" ||
+        nationalityFilter === "all" ||
         val.nationality.toLowerCase().includes(nationalityFilter.toLowerCase())
       ) {
-        return setFilterData((old) => [...old, val]);
+        if (
+          experience === "beginner" &&
+          val.experience.toLowerCase().includes(experience.toLowerCase())
+        ) {
+          return setFilterData((old) => [...old, val]);
+        } else if (
+          experience === "experienced" &&
+          val.experience.toLowerCase().includes(experience.toLowerCase())
+        ) {
+          return setFilterData((old) => [...old, val]);
+        } else if (experience === "all") {
+          return setFilterData((old) => [...old, val]);
+        }
       }
     });
-  }, [data, nationalityFilter]);
+  }, [data, experience, nationalityFilter]);
 
   return (
     <div>

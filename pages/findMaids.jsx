@@ -202,7 +202,7 @@ const findMaids = ({ data }) => {
                   <li>
                     <h1
                       onClick={(e) => {
-                        setNationality(e.target.outerText);
+                        setNationality(e.target.outerText.toLowerCase());
                         setDropDownNationality(false);
                       }}
                       className="block cursor-pointer md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -214,7 +214,7 @@ const findMaids = ({ data }) => {
                     <li key={index}>
                       <h1
                         onClick={(e) => {
-                          setNationality(e.target.outerText);
+                          setNationality(e.target.outerText.toLowerCase());
                           setDropDownNationality(false);
                         }}
                         className="block first-letter:uppercase cursor-pointer md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"

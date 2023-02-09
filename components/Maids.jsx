@@ -6,7 +6,7 @@ import { useEffectOnce } from "usehooks-ts";
 import withAuth from "../auth/withAuth";
 import maidPhoto from "../public/maidPhoto.png";
 
-const Maids = ({ data, nationalityFilter = "", experience = "" }) => {
+const Maids = ({ data, nationalityFilter = "all", experience = "all" }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const [pageNumber, setPageNumber] = useState(15);
@@ -34,9 +34,9 @@ const Maids = ({ data, nationalityFilter = "", experience = "" }) => {
     setFilterData([]);
     data.filter((val) => {
       if (
-        (nationalityFilter === "Ethiopian" &&
+        (nationalityFilter === "ethiopian" &&
           val.nationality.toLowerCase().includes("ethiopian")) ||
-        (nationalityFilter === "Ethiopian" &&
+        (nationalityFilter === "ethiopian" &&
           val.nationality.toLowerCase().includes("ethiopia"))
       ) {
         if (
@@ -53,9 +53,9 @@ const Maids = ({ data, nationalityFilter = "", experience = "" }) => {
           return setFilterData((old) => [...old, val]);
         }
       } else if (
-        (nationalityFilter === "Indonesia" &&
+        (nationalityFilter === "indonesia" &&
           val.nationality.toLowerCase().includes("indonesia")) ||
-        (nationalityFilter === "Indonesia" &&
+        (nationalityFilter === "indonesia" &&
           val.nationality.toLowerCase().includes("indoneasia"))
       ) {
         if (

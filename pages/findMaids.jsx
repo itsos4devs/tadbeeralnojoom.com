@@ -33,7 +33,8 @@ const findMaids = ({ data }) => {
   const [nationalities, setNationalities] = useState([]);
   const [nationality, setNationality] = useState("all");
   const [experience, setExperience] = useState("all");
-
+  const [countryStatuses, setCountryStatuses] = useState([]);
+  const [countryStatus, setCountryStatus] = useState("all");
   // gather all nationalities and fix typo errors
   function getUniqueListBy(arr) {
     const ids = arr.map((o) => {
@@ -49,10 +50,18 @@ const findMaids = ({ data }) => {
     return ids.filter((item, index) => ids.indexOf(item) === index);
   }
 
+  function filterCountryStatus(arr) {
+    const ids = arr.map((o) => {
+      return o.country_status.toLowerCase();
+    });
+    return ids.filter((item, index) => ids.indexOf(item) === index);
+  }
   useEffectOnce(() => {
     setNationalities(getUniqueListBy(data));
+    setCountryStatuses(filterCountryStatus(data));
   });
 
+  console.log(countryStatus);
   return (
     <div>
       <Head>
@@ -102,8 +111,8 @@ const findMaids = ({ data }) => {
                     i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
                   } items-center font-light space-x-1`}
                 >
-                  <h1 className="text-[#234F7E] ml-1">
-                    {i18n.language === "ar" ? "الجميع" : "All"}
+                  <h1 className="text-[#234F7E] ml-1 first-letter:uppercase">
+                    {countryStatus}
                   </h1>
                   <ChevronDownIcon className="h-4 w-4 text-[#234F7E]" />
                 </div>
@@ -120,10 +129,29 @@ const findMaids = ({ data }) => {
                   aria-labelledby="dropdownUserAvatarButton"
                 >
                   <li>
-                    <h1 className="block cursor-pointer md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                      lorem
+                    <h1
+                      onClick={(e) => {
+                        setCountryStatus(e.target.outerText.toLowerCase());
+                        setDropDownCountry(false);
+                      }}
+                      className="block cursor-pointer md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      All
                     </h1>
                   </li>
+                  {countryStatuses.map((item, index) => (
+                    <li key={index}>
+                      <h1
+                        onClick={(e) => {
+                          setCountryStatus(e.target.outerText.toLowerCase());
+                          setDropDownCountry(false);
+                        }}
+                        className="block first-letter:uppercase cursor-pointer md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        {item}
+                      </h1>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -182,8 +210,8 @@ const findMaids = ({ data }) => {
                     i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
                   } items-center font-light space-x-1`}
                 >
-                  <h1 className="text-[#234F7E] ml-1">
-                    {i18n.language === "ar" ? "الجميع" : "All"}
+                  <h1 className="text-[#234F7E] ml-1 first-letter:uppercase">
+                    {nationality}{" "}
                   </h1>
                   <ChevronDownIcon className="h-4 w-4 text-[#234F7E]" />
                 </div>
@@ -302,6 +330,7 @@ const findMaids = ({ data }) => {
           data={data}
           nationalityFilter={nationality}
           experience={experience}
+          countryStatus={countryStatus}
         />
       </div>
       <Footer />

@@ -5,8 +5,14 @@ import { useTranslation } from "react-i18next";
 import { useEffectOnce } from "usehooks-ts";
 import withAuth from "../auth/withAuth";
 import maidPhoto from "../public/maidPhoto.png";
+import axios from "axios";
 
-const Maids = ({ data, nationalityFilter = "all", experience = "all" }) => {
+const Maids = ({
+  data,
+  nationalityFilter = "all",
+  experience = "all",
+  countryStatus = "all",
+}) => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const [pageNumber, setPageNumber] = useState(15);
@@ -33,64 +39,272 @@ const Maids = ({ data, nationalityFilter = "all", experience = "all" }) => {
   useEffect(() => {
     setFilterData([]);
     data.filter((val) => {
+      // nationalityFilter == ethiopian
       if (
         (nationalityFilter === "ethiopian" &&
           val.nationality.toLowerCase().includes("ethiopian")) ||
         (nationalityFilter === "ethiopian" &&
           val.nationality.toLowerCase().includes("ethiopia"))
       ) {
+        // experience === beginner
         if (
           experience === "beginner" &&
           val.experience.toLowerCase().includes("beginner")
         ) {
-          return setFilterData((old) => [...old, val]);
-        } else if (
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
+        }
+        // experience === experienced
+        else if (
           experience === "experienced" &&
           val.experience.toLowerCase().includes("experienced")
         ) {
-          return setFilterData((old) => [...old, val]);
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
+          // experience === all
         } else if (experience === "all") {
-          return setFilterData((old) => [...old, val]);
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
         }
-      } else if (
+      }
+      // nationalityFilter == indonesia
+      else if (
         (nationalityFilter === "indonesia" &&
           val.nationality.toLowerCase().includes("indonesia")) ||
         (nationalityFilter === "indonesia" &&
           val.nationality.toLowerCase().includes("indoneasia"))
       ) {
+        // experience === beginner
         if (
           experience === "beginner" &&
           val.experience.toLowerCase().includes("beginner")
         ) {
-          return setFilterData((old) => [...old, val]);
-        } else if (
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
+        }
+        // experience === experienced
+        else if (
           experience === "experienced" &&
           val.experience.toLowerCase().includes("experienced")
         ) {
-          return setFilterData((old) => [...old, val]);
-        } else if (experience === "all") {
-          return setFilterData((old) => [...old, val]);
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
         }
-      } else if (
+        // experience === experienced
+        else if (experience === "all") {
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
+        }
+      }
+      // nationalityFilter == all | any
+      else if (
         nationalityFilter === "all" ||
         val.nationality.toLowerCase().includes(nationalityFilter.toLowerCase())
       ) {
+        // experience === beginner
         if (
           experience === "beginner" &&
           val.experience.toLowerCase().includes(experience.toLowerCase())
         ) {
-          return setFilterData((old) => [...old, val]);
-        } else if (
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
+        }
+        // experience === experienced
+        else if (
           experience === "experienced" &&
           val.experience.toLowerCase().includes(experience.toLowerCase())
         ) {
-          return setFilterData((old) => [...old, val]);
-        } else if (experience === "all") {
-          return setFilterData((old) => [...old, val]);
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
+        }
+        // experience === all
+        else if (experience === "all") {
+          // Country status === inside country
+          if (
+            countryStatus === "inside country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === out side country
+          else if (
+            countryStatus === "out side country" &&
+            val.country_status
+              .toLowerCase()
+              .includes(countryStatus.toLowerCase())
+          ) {
+            return setFilterData((old) => [...old, val]);
+          }
+          // Country status === all
+          else if (countryStatus === "all") {
+            return setFilterData((old) => [...old, val]);
+          }
         }
       }
     });
-  }, [data, experience, nationalityFilter]);
+  }, [countryStatus, data, experience, nationalityFilter]);
 
   return (
     <div>

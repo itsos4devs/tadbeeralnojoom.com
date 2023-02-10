@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import PopupVideo from "../components/PopupVideo";
 import axios from "axios";
 // TODO: implement findMaids next page *(DONE)*
-// TODO: implement findMaids filters *(DONE)* #waiting contry status and proffesion#
+// TODO: implement findMaids filters *(DONE)* #waiting proffesion#
 // TODO: implement findMaids experience *(DONE)*
 // FIXME: wait maid/id api
 // FIXME: wait photo | job | id | country status from maid api

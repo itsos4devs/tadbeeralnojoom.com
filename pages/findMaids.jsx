@@ -61,7 +61,6 @@ const findMaids = ({ data }) => {
     setCountryStatuses(filterCountryStatus(data));
   });
 
-  console.log(countryStatus);
   return (
     <div>
       <Head>

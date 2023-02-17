@@ -397,7 +397,7 @@ const Maids = ({
                     onClick={() => {
                       router.push({
                         pathname: `/profile/[pid]`,
-                        query: { pid: item.passport_number },
+                        query: { pid: item.passport_number.toLowerCase() },
                       });
                     }}
                     className={`clickButton bg-[#E48100] md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-md`}

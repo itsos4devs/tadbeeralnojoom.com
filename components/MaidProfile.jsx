@@ -24,6 +24,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import PageNotFound from "./PageNotFound";
+import { db } from "../config";
+import { addDoc, collection } from "firebase/firestore";
 const stripePromise = loadStripe(process.env.stripe_public_key);
 
 const MaidProfile = () => {
@@ -65,11 +67,31 @@ const MaidProfile = () => {
 
   const [dropDownInterview, setDropDownInterview] = useState(false);
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [startTime, setStartTime] = useState("12:00");
+  const [startDate, setStartDate] = useState(
+    new Date().setDate(new Date().getDate() + 1)
+  );
+  const [startTime, setStartTime] = useState("00:00");
+  const [timeChanged, setTimeChanged] = useState(false);
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
-
+  function getTimeZone() {
+    var offset = new Date().getTimezoneOffset(),
+      o = Math.abs(offset);
+    return (offset > 0 ? "+" : "-") + Math.floor(o / 60);
+  }
+  useEffect(() => {
+    if (parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()) < 0) {
+      console.log(parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()));
+      let lol = parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()) + 12;
+      setStartTime(`${lol}:00`);
+      console.log(lol);
+    } else {
+      console.log(parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()));
+      let lol = parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone());
+      lol <= 9 ? setStartTime(`0${lol}:00`) : setStartTime(`${lol}:00`);
+      console.log(lol);
+    }
+  }, [timeChanged]);
   const createRoom = async () => {
     const options = {
       method: "POST",
@@ -82,18 +104,27 @@ const MaidProfile = () => {
       res.data.meeting.indexOf("join/") + 5,
       res.data.meeting.length
     );
-    router.push({
-      pathname: `/interview/${id}`,
-    });
+    await addDoc(
+      collection(
+        db,
+        "users",
+        "karimkhaledelmawe@gmail.com",
+        "upcomingInterviews"
+      ),
+      {
+        userId: user.email,
+        time: startTime,
+        date: startDate.toLocaleDateString("en-GB"),
+        interviewId: id,
+        maidId: data[0].number,
+      }
+    );
+    // router.push({
+    //   pathname: `/interview/${id}`,
+    // });
   };
-  const dropDownInterviewOutside = useRef(null);
-  const dropDownSaveForLater = useRef(null);
 
-  // onclick outside hide dropDownInterview
-  useOnClickOutside(dropDownInterviewOutside, () => {
-    setDropDownInterview(false);
-    setModal(false);
-  });
+  const dropDownSaveForLater = useRef(null);
 
   // onclick outside hide siginin dropDownSaveForLater
   useOnClickOutside(dropDownSaveForLater, () => {
@@ -120,7 +151,7 @@ const MaidProfile = () => {
       {data ? (
         <div>
           <div className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row lg:space-x-20 md:space-x-5 xs:space-x-8 xxs:space-x-5 space-x-3 justify-center md:mt-20 mt-10">
-            <div className="relative" ref={dropDownInterviewOutside}>
+            <div className="relative">
               <button
                 onClick={requestInterviewHandler}
                 className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]"
@@ -154,6 +185,10 @@ const MaidProfile = () => {
                           <DatePicker
                             className="md:h-12 h-5 w-full md:text-lg text-[7px] text-[#234F7E] font-semibold rounded-lg cursor-pointer md:pl-2 pl-1"
                             selected={startDate}
+                            dateFormat="dd/MM/yyyy"
+                            minDate={new Date().setDate(
+                              new Date().getDate() + 1
+                            )}
                             onChange={(date) => setStartDate(date)}
                           />
                         </div>
@@ -164,11 +199,11 @@ const MaidProfile = () => {
                           <TimePicker
                             showSecond={false}
                             defaultValue={moment().hour(0).minute(0)}
-                            onChange={(value) =>
-                              setStartTime(value && value.format("HH:mm"))
-                            }
+                            onChange={(value) => {
+                              setStartTime(value && value.format("HH:mm"));
+                              setTimeChanged(!timeChanged);
+                            }}
                             format={"h:mm a"}
-                            use12Hours
                             inputReadOnly
                             clearIcon={""}
                           />

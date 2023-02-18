@@ -144,7 +144,7 @@ const Maids = ({
                   {/* Image */}
                   <div className="md:h-28 md:w-28 sm:h-16 sm:w-16 h-10 w-10">
                     <Image
-                      src={item.img || maidPhoto}
+                      src={item.photo || maidPhoto}
                       alt="Maid Photo"
                       className={`rounded-full group-hover:border-2 group-hover:border-yellow-500`}
                       width={117}
@@ -190,7 +190,53 @@ const Maids = ({
                   {/* Image */}
                   <div className="md:h-28 md:w-28 sm:h-16 sm:w-16 h-10 w-10">
                     <Image
-                      src={item.img || maidPhoto}
+                      src={item.photo || maidPhoto}
+                      alt="Maid Photo"
+                      className={`rounded-full group-hover:border-2 group-hover:border-yellow-500`}
+                      width={117}
+                      height={117}
+                    />
+                  </div>
+                  {/* Name */}
+                  <h1 className="md:text-base sm:text-sm text-xs font-semibold text-center first-letter:uppercase lowercase">
+                    {item.name}
+                  </h1>
+                  {/* Job */}
+                  {/* <h1 className="md:text-base sm:text-sm text-xs font-semibold">
+                {item.job}
+              </h1> */}
+                  {/* Location */}
+                  <h1 className="md:text-sm text-xs first-letter:uppercase lowercase">
+                    {item.nationality}
+                  </h1>
+                  {/* Experience Years */}
+                  <h1 className="md:text-sm text-xs first-letter:uppercase lowercase">
+                    {item.experience}
+                  </h1>
+                  <button
+                    onClick={() => {
+                      router.push({
+                        pathname: `profile/${item.number.toLowerCase()}`,
+                      });
+                    }}
+                    className={`clickButton bg-[#E48100] md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-md`}
+                  >
+                    {t("maidViewProfile")}
+                  </button>
+                </div>
+              );
+            }
+          } else {
+            if (index < pageNumber) {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col items-center space-y-1 group"
+                >
+                  {/* Image */}
+                  <div className="md:h-28 md:w-28 sm:h-16 sm:w-16 h-10 w-10">
+                    <Image
+                      src={item.photo || maidPhoto}
                       alt="Maid Photo"
                       className={`rounded-full group-hover:border-2 group-hover:border-yellow-500`}
                       width={117}
@@ -229,7 +275,7 @@ const Maids = ({
           }
         })}
       </div>
-      {router.pathname === "/findMaids" && (
+      {router.pathname !== "/" && (
         <div
           className={`flex flex-row w-fit mx-auto mt-16 space-x-5 ${
             i18n.language === "ar" ? "" : "flex-row-reverse"

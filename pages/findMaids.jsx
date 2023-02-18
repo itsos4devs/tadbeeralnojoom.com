@@ -18,7 +18,7 @@ const findMaids = () => {
   const { data } = useQuery(["getMaids"], getMaids, {
     staleTime: Infinity,
   });
-
+  console.log(data);
   // DropDown
   const [dropDownCountry, setDropDownCountry] = useState(false);
   const [dropDownProfession, setDropDownProfession] = useState(false);

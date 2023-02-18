@@ -1,28 +1,31 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
-import Maids from "../components/Maids";
 import upcomingInterview from "../public/upcomingInterviews.jpeg";
-import maidPhoto from "../public/maidPhoto.png";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import withAuth from "../auth/withAuth";
 import { useUser } from "../auth/useUser";
+import { collection, query } from "firebase/firestore";
+import { db } from "../config";
+import { useCollection } from "react-firebase-hooks/firestore";
+import MaidFire from "../components/MaidFire";
+
 const upcomingInterviews = () => {
   const { user, logout } = useUser();
-
   const { t } = useTranslation();
-
-  const data = {
-    id: 1,
-    img: maidPhoto,
-    name: "Mousumi Zaman",
-    job: t("maidJob"),
-    location: "Sri Lanka",
-    experienceYear: "5",
-  };
-
+  const [snapshot] = useCollection(
+    query(
+      collection(
+        db,
+        "users",
+        "karimkhaledelmawe@gmail.com",
+        "upcomingInterviews"
+      )
+    )
+  );
+  console.log(snapshot);
   return (
     <div>
       <Head>
@@ -49,27 +52,11 @@ const upcomingInterviews = () => {
             nostrud oratio aperiri legimus eu.
           </p>
         </div>
-        {user && (
-          <Maids
-            data={data}
-            up={"Upcoming"}
-            live={"Live"}
-            history={"History"}
-            upColor={"bg-[#F9B730]"}
-            liveColor={"bg-[#68B34A]"}
-            historyColor={"bg-[#EE2424]"}
-          />
-        )}
-        <div className="w-fit mx-auto">
-          <button
-            className={
-              user
-                ? "clickButton bg-[#234F7E] md:w-60 sm:w-44 w-28 mx-auto sm:py-3 py-1 md:text-base text-xs rounded-full text-white"
-                : "hidden"
-            }
-          >
-            {t("NextPage")}
-          </button>
+        <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5">
+          {user?.email &&
+            snapshot?.docs.map((maid) => (
+              <MaidFire key={maid.id} id={maid.id} />
+            ))}
         </div>
       </div>
       <Footer />
@@ -78,3 +65,10 @@ const upcomingInterviews = () => {
 };
 
 export default withAuth(upcomingInterviews);
+
+// up={"Upcoming"}
+// live={"Live"}
+// history={"History"}
+// upColor={"bg-[#F9B730]"}
+// liveColor={"bg-[#68B34A]"}
+// historyColor={"bg-[#EE2424]"}

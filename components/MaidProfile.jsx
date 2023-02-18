@@ -187,9 +187,7 @@ const MaidProfile = () => {
                           </div>
                           <DatePicker
                             className="md:h-12 h-5 w-full md:text-lg text-[7px] text-[#234F7E] font-semibold rounded-lg cursor-pointer md:pl-2 pl-1"
-                            selected={new Date().setDate(
-                              new Date().getDate() + 1
-                            )}
+                            selected={startDate}
                             dateFormat="dd/MM/yyyy"
                             minDate={new Date().setDate(
                               new Date().getDate() + 1

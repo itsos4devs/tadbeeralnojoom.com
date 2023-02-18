@@ -16,7 +16,7 @@ const upcomingInterviews = () => {
   const { user, logout } = useUser();
   const { t } = useTranslation();
   const [snapshot] = useCollection(
-    query(collection(db, "users", user?.email, "upcomingInterviews"))
+    query(collection(db, "users", user.email, "upcomingInterviews"))
   );
 
   return (

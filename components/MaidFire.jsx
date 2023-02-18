@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery } from "@tanstack/react-query";
 import { doc } from "firebase/firestore";
 import Image from "next/image";
@@ -17,9 +18,11 @@ const MaidFire = ({ id }) => {
   const { user, logout } = useUser();
   const { t, i18n } = useTranslation();
   const router = useRouter();
-  const [value] = useDocumentDataOnce(
-    doc(db, "users", user?.email, "upcomingInterviews", id)
-  );
+  const [value] =
+    user &&
+    useDocumentDataOnce(
+      doc(db, "users", user?.email, "upcomingInterviews", id)
+    );
 
   const { data } = useQuery(["getMaid", value?.maidId], getMaid, {
     staleTime: Infinity,

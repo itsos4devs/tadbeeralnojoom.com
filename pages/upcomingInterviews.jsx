@@ -25,7 +25,7 @@ const upcomingInterviews = () => {
       )
     )
   );
-  console.log(snapshot);
+
   return (
     <div>
       <Head>

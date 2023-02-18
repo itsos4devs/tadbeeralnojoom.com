@@ -67,9 +67,12 @@ const MaidProfile = () => {
 
   const [dropDownInterview, setDropDownInterview] = useState(false);
 
-  const [startDate, setStartDate] = useState(
-    new Date().setDate(new Date().getDate() + 1)
-  );
+  const [startDate, setStartDate] = useState(() => {
+    let date = new Date();
+    let newDate = date.setDate(date.getDate() + 1);
+    return new Date(newDate);
+  });
+  console.log(startDate);
   const [startTime, setStartTime] = useState("00:00");
   const [timeChanged, setTimeChanged] = useState(false);
   const [modal, setModal] = useState(false);
@@ -119,9 +122,9 @@ const MaidProfile = () => {
         maidId: data[0].number,
       }
     );
-    // router.push({
-    //   pathname: `/interview/${id}`,
-    // });
+    router.push({
+      pathname: `/upcomingInterviews`,
+    });
   };
 
   const dropDownSaveForLater = useRef(null);
@@ -184,7 +187,9 @@ const MaidProfile = () => {
                           </div>
                           <DatePicker
                             className="md:h-12 h-5 w-full md:text-lg text-[7px] text-[#234F7E] font-semibold rounded-lg cursor-pointer md:pl-2 pl-1"
-                            selected={startDate}
+                            selected={new Date().setDate(
+                              new Date().getDate() + 1
+                            )}
                             dateFormat="dd/MM/yyyy"
                             minDate={new Date().setDate(
                               new Date().getDate() + 1

@@ -107,21 +107,13 @@ const MaidProfile = () => {
       res.data.meeting.indexOf("join/") + 5,
       res.data.meeting.length
     );
-    await addDoc(
-      collection(
-        db,
-        "users",
-        "karimkhaledelmawe@gmail.com",
-        "upcomingInterviews"
-      ),
-      {
-        userId: user.email,
-        time: startTime,
-        date: startDate.toLocaleDateString("en-GB"),
-        interviewId: id,
-        maidId: data[0].number,
-      }
-    );
+    await addDoc(collection(db, "users", user?.email, "upcomingInterviews"), {
+      userId: user.email,
+      time: startTime,
+      date: startDate.toLocaleDateString("en-GB"),
+      interviewId: id,
+      maidId: data[0].number,
+    });
     router.push({
       pathname: `/upcomingInterviews`,
     });

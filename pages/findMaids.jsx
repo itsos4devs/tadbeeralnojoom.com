@@ -3,21 +3,21 @@ import Head from "next/head";
 import Banner from "../components/Banner";
 import Maids from "../components/Maids";
 import findMaid from "../public/findMaids.jpeg";
-import maidPhoto from "../public/maidPhoto.png";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
-import SearchMaids from "../components/SearchMaids";
 import withAuth from "../auth/withAuth";
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useEffectOnce } from "usehooks-ts";
-import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useOnClickOutside } from "usehooks-ts";
-const findMaids = ({ data }) => {
+import { getMaids } from "../fetching/getMaids";
+import { useQuery } from "@tanstack/react-query";
+const findMaids = () => {
   const { t, i18n } = useTranslation();
+  const { data } = useQuery(["getMaids"], getMaids, {
+    staleTime: Infinity,
+  });
 
   // DropDown
   const [dropDownCountry, setDropDownCountry] = useState(false);
@@ -38,28 +38,25 @@ const findMaids = ({ data }) => {
   // gather all nationalities and fix typo errors
   function getUniqueListBy(arr) {
     const ids = arr.map((o) => {
-      if (o.nationality.toLowerCase() === "ethiopia") {
-        return "ethiopian";
-      }
-      if (o.nationality.toLowerCase() === "indoneasia") {
-        return "indonesia";
-      } else {
-        return o.nationality.toLowerCase();
-      }
+      return o.nationality.toLowerCase();
     });
     return ids.filter((item, index) => ids.indexOf(item) === index);
   }
 
   function filterCountryStatus(arr) {
     const ids = arr.map((o) => {
-      return o.country_status.toLowerCase();
+      if (o.country_status) {
+        return o.country_status.toLowerCase();
+      }
     });
     return ids.filter((item, index) => ids.indexOf(item) === index);
   }
-  useEffectOnce(() => {
-    setNationalities(getUniqueListBy(data));
-    setCountryStatuses(filterCountryStatus(data));
-  });
+  useEffect(() => {
+    if (data) {
+      setNationalities(getUniqueListBy(data));
+      setCountryStatuses(filterCountryStatus(data));
+    }
+  }, [data]);
 
   return (
     <div>
@@ -169,9 +166,7 @@ const findMaids = ({ data }) => {
                     i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
                   } items-center font-light space-x-1`}
                 >
-                  <h1 className="text-[#234F7E] ml-1">
-                    {i18n.language === "ar" ? "الجميع" : "All"}
-                  </h1>
+                  <h1 className="text-[#234F7E] ml-1">All</h1>
                   <ChevronDownIcon className="h-4 w-4 text-[#234F7E]" />
                 </div>
               </button>
@@ -188,7 +183,7 @@ const findMaids = ({ data }) => {
                 >
                   <li>
                     <h1 className="block cursor-pointer md:py-2 md:px-4 py-1 px-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                      lorem
+                      All
                     </h1>
                   </li>
                 </ul>
@@ -254,7 +249,8 @@ const findMaids = ({ data }) => {
               </div>
             </div>
           </div>
-          <div
+          {/* Experience */}
+          {/* <div
             className={`w-fit mx-auto flex items-center space-x-10 ${
               i18n.language === "ar" ? "flex-row-reverse" : ""
             }`}
@@ -323,7 +319,7 @@ const findMaids = ({ data }) => {
                 {i18n.language === "ar" ? "الكل" : "All"}
               </label>
             </div>
-          </div>
+          </div> */}
         </div>
         <Maids
           data={data}
@@ -338,18 +334,3 @@ const findMaids = ({ data }) => {
 };
 
 export default withAuth(findMaids);
-
-export async function getStaticProps(context) {
-  const options = {
-    method: "GET",
-    url: "https://alnujoomerp.net/api/v1/Maids",
-    params: { "api-key": "8o0884ws88kkoc484k4s8kg0o04okockk0k0gwso" },
-  };
-
-  const res = await axios.request(options);
-  return {
-    props: {
-      data: res.data.response,
-    },
-  };
-}

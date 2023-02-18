@@ -4,12 +4,12 @@ export const getMaid = async ({ queryKey }) => {
   const [_, maidId] = queryKey;
 
   const options = {
-    method: "POST",
+    method: "GET",
     url: "/api/getMaidById",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    data: { id: maidId },
+    params: { id: maidId },
   };
 
   const response = await axios.request(options);

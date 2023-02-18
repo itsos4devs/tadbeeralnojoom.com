@@ -8,6 +8,8 @@ import banner from "../public/banner.jpeg";
 import { useTranslation } from "react-i18next";
 import PopupVideo from "../components/PopupVideo";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { getMaids } from "../fetching/getMaids";
 // TODO: implement findMaids next page *(DONE)*
 // TODO: implement findMaids filters *(DONE)* #waiting proffesion#
 // TODO: implement findMaids experience *(DONE)*
@@ -15,9 +17,11 @@ import axios from "axios";
 // FIXME: wait photo | job | id | country status from maid api
 // FIXME: remove stripe and implement a popup window onclick book now showing terms and when clicked email
 // TODO: find maids experience arabic change align *(DONE)*
-export default function Home({ data }) {
+export default function Home() {
   const { t } = useTranslation();
-
+  const { data } = useQuery(["getMaids"], getMaids, {
+    staleTime: Infinity,
+  });
   return (
     <div>
       <Head>
@@ -57,19 +61,4 @@ export default function Home({ data }) {
       </section>
     </div>
   );
-}
-
-export async function getStaticProps(context) {
-  const options = {
-    method: "GET",
-    url: "https://alnujoomerp.net/api/v1/Maids",
-    params: { "api-key": "8o0884ws88kkoc484k4s8kg0o04okockk0k0gwso" },
-  };
-
-  const res = await axios.request(options);
-  return {
-    props: {
-      data: res.data.response,
-    },
-  };
 }

@@ -135,9 +135,9 @@ const MaidProfile = () => {
       ).getTime(),
     });
 
-    // router.push({
-    //   pathname: `/upcomingInterviews`,
-    // });
+    router.push({
+      pathname: `/upcomingInterviews`,
+    });
   };
 
   // Save for Later
@@ -351,7 +351,6 @@ const MaidProfile = () => {
                     </div>
                   </div>
                   <button
-                    role="link"
                     onClick={createCheckoutSession}
                     disabled={user ? false : true}
                     className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100 md:w-44 md:py-1.5 w-16 py-0 md:text-base text-[6px]"

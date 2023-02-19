@@ -133,7 +133,7 @@ const MaidProfile = () => {
       interviewId: id,
       maidId: data[0].number,
       order: new Date(
-        startDate.toLocaleDateString().replaceAll("/", " ")
+        startDate.toLocaleDateString("en-GB").replaceAll("/", " ")
       ).getTime(),
     });
 

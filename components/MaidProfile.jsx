@@ -28,7 +28,9 @@ import { db } from "../config";
 import { addDoc, collection, query, serverTimestamp } from "firebase/firestore";
 import { toast, Toaster } from "react-hot-toast";
 import { useCollection } from "react-firebase-hooks/firestore";
-const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
+const stripePromise = loadStripe(
+  "pk_live_51MZd1bGuhdYVsXxBupuvnlseWLwkXZWCumg839Dfb1XvxKYuTPLXo42V6vcGn3ocwAlhhiQHFoaDvCcFrtigSGH000dFLHPUGY"
+);
 
 const MaidProfile = () => {
   const { user, logout } = useUser();

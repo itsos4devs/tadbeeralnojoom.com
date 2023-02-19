@@ -7,10 +7,10 @@ import Footer from "../components/Footer";
 import Head from "next/head";
 import withAuth from "../auth/withAuth";
 import { useUser } from "../auth/useUser";
-import { collection, query } from "firebase/firestore";
+import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "../config";
 import { useCollection } from "react-firebase-hooks/firestore";
-import MaidFire from "../components/MaidFire";
+import MaidUpcoming from "../components/MaidUpcoming";
 
 const upcomingInterviews = () => {
   const { user, logout } = useUser();
@@ -23,7 +23,8 @@ const upcomingInterviews = () => {
         "users",
         user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
         "upcomingInterviews"
-      )
+      ),
+      orderBy("order", "asc")
     )
   );
 
@@ -56,7 +57,7 @@ const upcomingInterviews = () => {
         <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5">
           {user?.email &&
             snapshot?.docs.map((maid) => (
-              <MaidFire key={maid.id} id={maid.id} />
+              <MaidUpcoming key={maid.id} id={maid.id} />
             ))}
         </div>
       </div>

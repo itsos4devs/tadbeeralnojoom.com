@@ -25,33 +25,54 @@ import {
 } from "@heroicons/react/24/outline";
 import PageNotFound from "./PageNotFound";
 import { db } from "../config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, query, serverTimestamp } from "firebase/firestore";
+import { toast, Toaster } from "react-hot-toast";
+import { useCollection } from "react-firebase-hooks/firestore";
 const stripePromise = loadStripe(process.env.stripe_public_key);
 
 const MaidProfile = () => {
   const { user, logout } = useUser();
+
   const { t, i18n } = useTranslation();
+
   const router = useRouter();
   const maidId = router.query.pid;
+
   const { data } = useQuery(["getMaid", maidId], getMaid, {
     staleTime: Infinity,
   });
-  const fakeMaidData = [
-    {
-      id: "543416464DSAdas54",
-      maidPhoto: maidProfile,
-      name: "Mousumi Zaman",
-      description:
-        "Registered On: 08/06/2022 | Application No: 0000 | Nationality: Indonesia | Age: 25 | Date Of Birth: 19/09/1997 | Number Of Kids: 1 | Martial Status: Married | Religion: Muslim",
-    },
-  ];
+  const [snapshot] = useCollection(
+    query(
+      collection(
+        db,
+        "users",
+        user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+        "favourite"
+      )
+    )
+  );
+  // onclick outside hide siginin dropDownSaveForLater
+
+  const dropDownSaveForLater = useRef(null);
+
+  useOnClickOutside(dropDownSaveForLater, () => {
+    setModal2(false);
+  });
+
+  const requestInterviewHandler = () => {
+    if (user) {
+      setDropDownInterview(true);
+    } else {
+      setModal(true);
+    }
+  };
 
   const createCheckoutSession = async () => {
     const stripe = await stripePromise;
 
     // call backend to create a checkout session...
     const checkoutSession = await axios.post("/api/create-checkout-session", {
-      maid: fakeMaidData,
+      maid: data,
       email: user.email,
     });
 
@@ -67,34 +88,39 @@ const MaidProfile = () => {
 
   const [dropDownInterview, setDropDownInterview] = useState(false);
 
+  // States
   const [startDate, setStartDate] = useState(() => {
     let date = new Date();
     let newDate = date.setDate(date.getDate() + 1);
     return new Date(newDate);
   });
-  console.log(startDate);
   const [startTime, setStartTime] = useState("00:00");
   const [timeChanged, setTimeChanged] = useState(false);
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
+  const [uniqueFav, setUniqueFav] = useState(false);
+  // functions for interview
   function getTimeZone() {
     var offset = new Date().getTimezoneOffset(),
       o = Math.abs(offset);
     return (offset > 0 ? "+" : "-") + Math.floor(o / 60);
   }
+
   useEffect(() => {
     if (parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()) < 0) {
-      console.log(parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()));
       let lol = parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()) + 12;
-      setStartTime(`${lol}:00`);
-      console.log(lol);
+      setStartTime(`${lol}:${startTime.slice(3, startTime.length)}`);
     } else {
-      console.log(parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()));
       let lol = parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone());
-      lol <= 9 ? setStartTime(`0${lol}:00`) : setStartTime(`${lol}:00`);
-      console.log(lol);
+      lol <= 9
+        ? setStartTime(`0${lol}:${startTime.slice(3, startTime.length)}`)
+        : setStartTime(`${lol}:${startTime.slice(3, startTime.length)}`);
     }
-  }, [timeChanged]);
+    snapshot?.docs?.map((item) => {
+      if (item.data().maidId === maidId) setUniqueFav(true);
+    });
+  }, [timeChanged, snapshot]);
+
   const createRoom = async () => {
     const options = {
       method: "POST",
@@ -107,42 +133,45 @@ const MaidProfile = () => {
       res.data.meeting.indexOf("join/") + 5,
       res.data.meeting.length
     );
+
     await addDoc(collection(db, "users", user?.email, "upcomingInterviews"), {
       userId: user.email,
       time: startTime,
       date: startDate.toLocaleDateString("en-GB"),
       interviewId: id,
       maidId: data[0].number,
+      order: new Date(
+        startDate.toLocaleDateString().replaceAll("/", " ")
+      ).getTime(),
     });
+
     router.push({
       pathname: `/upcomingInterviews`,
     });
   };
 
-  const dropDownSaveForLater = useRef(null);
-
-  // onclick outside hide siginin dropDownSaveForLater
-  useOnClickOutside(dropDownSaveForLater, () => {
-    setModal2(false);
-  });
-
-  const requestInterviewHandler = () => {
+  // Save for Later
+  const saveForLaterHandler = async () => {
     if (user) {
-      setDropDownInterview(true);
-    } else {
-      setModal(true);
-    }
-  };
-
-  const saveForLaterHandler = () => {
-    if (user) {
-      console.log("User Here");
+      if (uniqueFav) {
+        return toast.error("Maid already in your favourite list");
+      } else {
+        await addDoc(collection(db, "users", user?.email, "favourite"), {
+          userId: user.email,
+          maidId: data[0].number,
+          createdAt: serverTimestamp(),
+        }).then(() => {
+          toast.success("Added");
+        });
+      }
     } else {
       setModal2(true);
     }
   };
+  console.log(uniqueFav);
   return (
     <div>
+      <Toaster position="top-right" />
       {data ? (
         <div>
           <div className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row lg:space-x-20 md:space-x-5 xs:space-x-8 xxs:space-x-5 space-x-3 justify-center md:mt-20 mt-10">
@@ -193,14 +222,18 @@ const MaidProfile = () => {
                           </div>
                           <TimePicker
                             showSecond={false}
-                            defaultValue={moment().hour(0).minute(0)}
+                            defaultValue={moment().hour(9).minute(0)}
                             onChange={(value) => {
                               setStartTime(value && value.format("HH:mm"));
                               setTimeChanged(!timeChanged);
                             }}
                             format={"h:mm a"}
                             inputReadOnly
+                            minuteStep={15}
                             clearIcon={""}
+                            disabledHours={() => [
+                              0, 1, 2, 3, 4, 5, 6, 7, 8, 22, 23,
+                            ]}
                           />
                         </div>
                       </div>
@@ -271,20 +304,28 @@ const MaidProfile = () => {
               )}
             </div>
             <div>
-              <button
-                disabled={user ? false : true}
-                className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
-              >
-                {t("call")}
-              </button>
+              <a href={`tel:+${data[0].tel_mobile_no}`}>
+                <button
+                  disabled={user ? false : true}
+                  className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+                >
+                  {t("call")}
+                </button>
+              </a>
             </div>
             <div>
-              <button
-                disabled={user ? false : true}
-                className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+              <a
+                target="_blank"
+                href={`https://api.whatsapp.com/send?phone=${data[0].tel_mobile_no}`}
+                rel="noreferrer"
               >
-                Whatsapp
-              </button>
+                <button
+                  disabled={user ? false : true}
+                  className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+                >
+                  Whatsapp
+                </button>
+              </a>
             </div>
           </div>
           <div className="2xl:max-w-7xl xl:max-w-6xl lg:max-w-4xl md:max-w-[700px] xs:max-w-sm xxs:max-w-[340px] max-w-[300px] mx-auto md:mt-20 mt-10">

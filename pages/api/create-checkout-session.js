@@ -30,7 +30,7 @@ export default async (req, res) => {
     line_items: transformedMaid,
     mode: "payment",
     success_url: `${process.env.HOST}/success`,
-    cancel_url: `${process.env.HOST}/profile/${maid[0].id}`,
+    cancel_url: `${process.env.HOST}/profile/${maid[0].number}`,
     customer_email: email,
     metadata: {
       email: email,

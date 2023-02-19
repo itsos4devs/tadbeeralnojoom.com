@@ -10,11 +10,12 @@ import {
 } from "react-firebase-hooks/firestore";
 import { useTranslation } from "react-i18next";
 import { useUser } from "../auth/useUser";
+import withAuth from "../auth/withAuth";
 import { db } from "../config";
 import { getMaid } from "../fetching/getMaid";
 import maidPhoto from "../public/maidPhoto.png";
 
-const MaidFire = ({ id }) => {
+const MaidUpcoming = ({ id }) => {
   const { user, logout } = useUser();
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -27,10 +28,23 @@ const MaidFire = ({ id }) => {
       id
     )
   );
-
   const { data } = useQuery(["getMaid", value?.maidId], getMaid, {
     staleTime: Infinity,
   });
+
+  function setDateAsUTC(d) {
+    let date = new Date(d);
+    return new Date(
+      Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes()
+      )
+    );
+  }
+
   return (
     <div>
       {data?.map((item) => (
@@ -56,15 +70,31 @@ const MaidFire = ({ id }) => {
           <h1 className="md:text-sm text-xs first-letter:uppercase lowercase">
             {item.nationality}
           </h1>
+          <h1 className="md:text-sm text-xs first-letter:uppercase lowercase">
+            {setDateAsUTC(
+              value?.date
+                .replaceAll("/", "-")
+                .replace("2023", value?.date.slice(0, 2))
+                .replace(value?.date.slice(0, 2), "2023") +
+                " " +
+                value?.time
+            )
+              .toLocaleString("en-IN")
+              .replaceAll(":00", "")}
+          </h1>
           <button
             onClick={() => {
               router.push({
-                pathname: `profile/${item.number.toLowerCase()}`,
+                pathname: `interview/${value?.interviewId}`,
               });
             }}
-            className={`clickButton bg-[#E48100] md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-md`}
+            className={`clickButton ${
+              new Date().getTime() <= value?.order
+                ? "bg-[#F9B730]"
+                : "bg-[#EE2424]"
+            } md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-md`}
           >
-            {t("maidViewProfile")}
+            {new Date().getTime() <= value?.order ? "Upcoming" : "History"}
           </button>
         </div>
       ))}
@@ -72,4 +102,4 @@ const MaidFire = ({ id }) => {
   );
 };
 
-export default MaidFire;
+export default withAuth(MaidUpcoming);

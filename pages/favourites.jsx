@@ -11,19 +11,27 @@ import withAuth from "../auth/withAuth";
 import { useUser } from "../auth/useUser";
 import { useQuery } from "@tanstack/react-query";
 import { getMaids } from "../fetching/getMaids";
+import MaidFavourite from "../components/MaidFavourite";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { collection, orderBy, query } from "firebase/firestore";
+import { db } from "../config";
 
 const favourites = () => {
   const { user, logout } = useUser();
 
   const { t } = useTranslation();
 
-  const { data } = useQuery(["getMaids"], getMaids, {
-    staleTime: Infinity,
-  });
-  console.log(data);
-  const [nationality, setNationality] = useState("all");
-  const [experience, setExperience] = useState("all");
-  const [countryStatus, setCountryStatus] = useState("all");
+  const [snapshot] = useCollection(
+    query(
+      collection(
+        db,
+        "users",
+        user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+        "favourite"
+      ),
+      orderBy("createdAt", "desc")
+    )
+  );
   return (
     <div>
       <Head>
@@ -50,12 +58,12 @@ const favourites = () => {
             nostrud oratio aperiri legimus eu.
           </p>
         </div>
-        <Maids
-          data={data}
-          nationalityFilter={nationality}
-          experience={experience}
-          countryStatus={countryStatus}
-        />
+        <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5">
+          {user?.email &&
+            snapshot?.docs.map((maid) => (
+              <MaidFavourite key={maid.id} id={maid.id} />
+            ))}
+        </div>
       </div>
       <Footer />
     </div>

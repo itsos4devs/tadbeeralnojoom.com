@@ -84,9 +84,10 @@ const MaidUpcoming = ({ id }) => {
           </h1>
           <button
             onClick={() => {
-              router.push({
-                pathname: `interview/${value?.interviewId}`,
-              });
+              new Date().getTime() <= value?.order &&
+                router.push({
+                  pathname: `interview/${value?.interviewId}`,
+                });
             }}
             className={`clickButton ${
               new Date().getTime() <= value?.order

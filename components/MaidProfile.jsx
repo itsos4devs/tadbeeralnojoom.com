@@ -51,19 +51,14 @@ const MaidProfile = () => {
       )
     )
   );
-  // onclick outside hide siginin dropDownSaveForLater
-
-  const dropDownSaveForLater = useRef(null);
-
-  useOnClickOutside(dropDownSaveForLater, () => {
-    setModal2(false);
-  });
 
   const requestInterviewHandler = () => {
     if (user) {
       setDropDownInterview(true);
     } else {
-      setModal(true);
+      router.push({
+        pathname: "/signin",
+      });
     }
   };
 
@@ -94,10 +89,8 @@ const MaidProfile = () => {
     let newDate = date.setDate(date.getDate() + 1);
     return new Date(newDate);
   });
-  const [startTime, setStartTime] = useState("00:00");
+  const [startTime, setStartTime] = useState("11:00");
   const [timeChanged, setTimeChanged] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [modal2, setModal2] = useState(false);
   const [uniqueFav, setUniqueFav] = useState(false);
   // functions for interview
   function getTimeZone() {
@@ -107,10 +100,7 @@ const MaidProfile = () => {
   }
 
   useEffect(() => {
-    if (parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()) < 0) {
-      let lol = parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone()) + 12;
-      setStartTime(`${lol}:${startTime.slice(3, startTime.length)}`);
-    } else {
+    if (startTime) {
       let lol = parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone());
       lol <= 9
         ? setStartTime(`0${lol}:${startTime.slice(3, startTime.length)}`)
@@ -145,9 +135,9 @@ const MaidProfile = () => {
       ).getTime(),
     });
 
-    router.push({
-      pathname: `/upcomingInterviews`,
-    });
+    // router.push({
+    //   pathname: `/upcomingInterviews`,
+    // });
   };
 
   // Save for Later
@@ -165,10 +155,11 @@ const MaidProfile = () => {
         });
       }
     } else {
-      setModal2(true);
+      router.push({
+        pathname: "/signin",
+      });
     }
   };
-  console.log(uniqueFav);
   return (
     <div>
       <Toaster position="top-right" />
@@ -256,52 +247,14 @@ const MaidProfile = () => {
                   </div>
                 </div>
               </div>
-              {modal && (
-                <div
-                  tabIndex={1}
-                  aria-hidden="true"
-                  className={
-                    modal
-                      ? "absolute bottom-10 z-50 w-fit h-fit justify-center items-center"
-                      : "hidden"
-                  }
-                >
-                  <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-                    <div className="relative bg-gray-500 rounded-lg shadow p-3">
-                      <h1 className="font-lato font-bold text-white">
-                        Please Sign in first
-                      </h1>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
-            <div className="relative" ref={dropDownSaveForLater}>
+            <div className="relative">
               <button
                 onClick={saveForLaterHandler}
                 className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px]"
               >
                 {t("saveLater")}
               </button>
-              {modal2 && (
-                <div
-                  tabIndex={1}
-                  aria-hidden="true"
-                  className={
-                    modal2
-                      ? "absolute bottom-10 z-50 w-fit h-fit justify-center items-center"
-                      : "hidden"
-                  }
-                >
-                  <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-                    <div className="relative bg-gray-500 rounded-lg shadow p-3">
-                      <h1 className="font-lato font-bold text-white">
-                        Please Sign in first
-                      </h1>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
             <div>
               <a href={`tel:+${data[0].tel_mobile_no}`}>

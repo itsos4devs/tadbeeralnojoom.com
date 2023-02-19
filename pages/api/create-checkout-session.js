@@ -16,7 +16,7 @@ export default async (req, res) => {
       unit_amount: 100 * 100,
     },
     quantity: 1,
-    tax_rates: ["txr_1MSfdMEuz1yMNGtKd0osgiFF"],
+    // tax_rates: ["txr_1MSfdMEuz1yMNGtKd0osgiFF"],
   }));
 
   const session = await stripe.checkout.sessions.create({

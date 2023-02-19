@@ -14,12 +14,18 @@ import MaidFire from "../components/MaidFire";
 
 const upcomingInterviews = () => {
   const { user, logout } = useUser();
+  console.log(user?.email);
   const { t } = useTranslation();
-  const [snapshot] =
-    user &&
-    useCollection(
-      query(collection(db, "users", user?.email, "upcomingInterviews"))
-    );
+  const [snapshot] = useCollection(
+    query(
+      collection(
+        db,
+        "users",
+        user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+        "upcomingInterviews"
+      )
+    )
+  );
 
   return (
     <div>

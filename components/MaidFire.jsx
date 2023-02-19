@@ -18,11 +18,15 @@ const MaidFire = ({ id }) => {
   const { user, logout } = useUser();
   const { t, i18n } = useTranslation();
   const router = useRouter();
-  const [value] =
-    user &&
-    useDocumentDataOnce(
-      doc(db, "users", user?.email, "upcomingInterviews", id)
-    );
+  const [value] = useDocumentDataOnce(
+    doc(
+      db,
+      "users",
+      user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+      "upcomingInterviews",
+      id
+    )
+  );
 
   const { data } = useQuery(["getMaid", value?.maidId], getMaid, {
     staleTime: Infinity,

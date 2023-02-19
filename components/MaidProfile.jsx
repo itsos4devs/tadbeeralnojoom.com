@@ -64,13 +64,13 @@ const MaidProfile = () => {
 
   const createCheckoutSession = async () => {
     const stripe = await stripePromise;
-
+    console.log(stripe);
     // call backend to create a checkout session...
     const checkoutSession = await axios.post("/api/create-checkout-session", {
       maid: data,
       email: user.email,
     });
-
+    console.log(checkoutSession);
     // redirect user to checkout
     const result = await stripe.redirectToCheckout({
       sessionId: checkoutSession.data.id,

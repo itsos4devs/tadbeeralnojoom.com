@@ -66,3 +66,12 @@ img, video {
 .firebaseui-error {
   @apply md:text-[12px] text-[8px] !important
 }
+
+.e-float-text {
+  @apply text-[#2f3c49] md:text-sm text-[7px] !important
+}
+
+.e-control {
+  @apply text-[#2f3c49] md:text-sm font-semibold text-[7px] !important
+}
+

@@ -71,16 +71,7 @@ const MaidUpcoming = ({ id }) => {
             {item.nationality}
           </h1>
           <h1 className="md:text-sm text-xs first-letter:uppercase lowercase">
-            {setDateAsUTC(
-              value?.date
-                .replaceAll("/", "-")
-                .replace("2023", value?.date.slice(0, 2))
-                .replace(value?.date.slice(0, 2), "2023") +
-                " " +
-                value?.time
-            )
-              .toLocaleString("en-IN")
-              .replaceAll(":00", "")}
+            {new Date(value?.date).toLocaleString("en-NZ")}
           </h1>
           <button
             onClick={() => {

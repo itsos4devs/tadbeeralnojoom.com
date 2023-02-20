@@ -1,8 +1,5 @@
 import Image from "next/image";
-import React, { useRef, useEffect, useState } from "react";
-import maidProfile from "../public/maidProfile.jpeg";
-import thumbnail from "../public/video.png";
-import play from "../public/playButton.png";
+import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import { useUser } from "../auth/useUser";
 import withAuth from "../auth/withAuth";
@@ -12,17 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import { getMaid } from "../fetching/getMaid";
 import { useQuery } from "@tanstack/react-query";
-import moment from "moment";
-import TimePicker from "rc-time-picker";
-import DatePicker from "react-datepicker";
-import "rc-time-picker/assets/index.css";
-import "react-datepicker/dist/react-datepicker.css";
-import { useOnClickOutside } from "usehooks-ts";
-import {
-  CalendarDaysIcon,
-  ClockIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import PageNotFound from "./PageNotFound";
 import { db } from "../config";
 import { addDoc, collection, query, serverTimestamp } from "firebase/firestore";
@@ -31,6 +18,13 @@ import { useCollection } from "react-firebase-hooks/firestore";
 const stripePromise = loadStripe(
   "pk_live_51MZd1bGuhdYVsXxBupuvnlseWLwkXZWCumg839Dfb1XvxKYuTPLXo42V6vcGn3ocwAlhhiQHFoaDvCcFrtigSGH000dFLHPUGY"
 );
+import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
+import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
 
 const MaidProfile = () => {
   const { user, logout } = useUser();
@@ -40,9 +34,12 @@ const MaidProfile = () => {
   const router = useRouter();
   const maidId = router.query.pid;
 
+  // Get Maid By Id
   const { data } = useQuery(["getMaid", maidId], getMaid, {
     staleTime: Infinity,
   });
+
+  // Get data from firestore: Save For Later
   const [snapshot] = useCollection(
     query(
       collection(
@@ -54,25 +51,26 @@ const MaidProfile = () => {
     )
   );
 
-  const requestInterviewHandler = () => {
-    if (user) {
-      setDropDownInterview(true);
-    } else {
-      router.push({
-        pathname: "/signin",
-      });
-    }
-  };
+  // Get data from firestore: Upcoming Interviews
+  const [upcoming] = useCollection(
+    query(
+      collection(
+        db,
+        "users",
+        user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+        "upcomingInterviews"
+      )
+    )
+  );
 
+  // Stripe
   const createCheckoutSession = async () => {
     const stripe = await stripePromise;
-    console.log(stripe);
     // call backend to create a checkout session...
     const checkoutSession = await axios.post("/api/create-checkout-session", {
       maid: data,
       email: user.email,
     });
-    console.log(checkoutSession);
     // redirect user to checkout
     const result = await stripe.redirectToCheckout({
       sessionId: checkoutSession.data.id,
@@ -83,63 +81,60 @@ const MaidProfile = () => {
     }
   };
 
+  // States
+  const minDate = new Date(new Date().setHours(new Date().getHours() + 2));
+  const [startDate, setStartDate] = useState(minDate);
+  const [uniqueFav, setUniqueFav] = useState(false);
+  const [uniqueInter, setUniqueInter] = useState(false);
   const [dropDownInterview, setDropDownInterview] = useState(false);
 
-  // States
-  const [startDate, setStartDate] = useState(() => {
-    let date = new Date();
-    let newDate = date.setDate(date.getDate() + 1);
-    return new Date(newDate);
-  });
-  const [startTime, setStartTime] = useState("11:00");
-  const [timeChanged, setTimeChanged] = useState(false);
-  const [uniqueFav, setUniqueFav] = useState(false);
   // functions for interview
-  function getTimeZone() {
-    var offset = new Date().getTimezoneOffset(),
-      o = Math.abs(offset);
-    return (offset > 0 ? "+" : "-") + Math.floor(o / 60);
-  }
-
   useEffect(() => {
-    if (startTime) {
-      let lol = parseInt(startTime.slice(0, 2)) + parseInt(getTimeZone());
-      lol <= 9
-        ? setStartTime(`0${lol}:${startTime.slice(3, startTime.length)}`)
-        : setStartTime(`${lol}:${startTime.slice(3, startTime.length)}`);
-    }
     snapshot?.docs?.map((item) => {
       if (item.data().maidId === maidId) setUniqueFav(true);
     });
-  }, [timeChanged, snapshot]);
+    upcoming?.docs?.map((item) => {
+      if (item.data().maidId === maidId) setUniqueInter(true);
+    });
+  }, [snapshot, upcoming]);
+
+  const requestInterviewHandler = () => {
+    if (user) {
+      setDropDownInterview(true);
+    } else {
+      router.push({
+        pathname: "/signin",
+      });
+    }
+  };
 
   const createRoom = async () => {
-    const options = {
-      method: "POST",
-      url: "https://sfu.mirotalk.com/api/v1/meeting",
-      headers: { authorization: "mirotalksfu_default_secret" },
-    };
+    if (uniqueInter) {
+      return toast.error("Maid already in your Upcoming list");
+    } else {
+      const options = {
+        method: "POST",
+        url: "https://sfu.mirotalk.com/api/v1/meeting",
+        headers: { authorization: "mirotalksfu_default_secret" },
+      };
 
-    const res = await axios.request(options);
-    const id = res.data.meeting.substring(
-      res.data.meeting.indexOf("join/") + 5,
-      res.data.meeting.length
-    );
+      const res = await axios.request(options);
+      const id = res.data.meeting.substring(
+        res.data.meeting.indexOf("join/") + 5,
+        res.data.meeting.length
+      );
 
-    await addDoc(collection(db, "users", user?.email, "upcomingInterviews"), {
-      userId: user.email,
-      time: startTime,
-      date: startDate.toLocaleDateString("en-GB"),
-      interviewId: id,
-      maidId: data[0].number,
-      order: new Date(
-        startDate.toLocaleDateString("en-GB").replaceAll("/", " ")
-      ).getTime(),
-    });
-
-    router.push({
-      pathname: `/upcomingInterviews`,
-    });
+      await addDoc(collection(db, "users", user?.email, "upcomingInterviews"), {
+        userId: user.email,
+        date: new Date(startDate).toUTCString(),
+        interviewId: id,
+        maidId: data[0].number,
+        order: new Date(startDate).getTime(),
+      }).then(() => {
+        toast.success("Your Interview is added to upcoming Interviews");
+        setDropDownInterview(false);
+      });
+    }
   };
 
   // Save for Later
@@ -153,7 +148,7 @@ const MaidProfile = () => {
           maidId: data[0].number,
           createdAt: serverTimestamp(),
         }).then(() => {
-          toast.success("Added");
+          toast.success("Maid added to your favourite list");
         });
       }
     } else {
@@ -162,6 +157,7 @@ const MaidProfile = () => {
       });
     }
   };
+
   return (
     <div>
       <Toaster position="top-right" />
@@ -195,40 +191,17 @@ const MaidProfile = () => {
                     </div>
                     <div className="space-y-1">
                       <div className="flex justify-center md:space-x-2 space-x-1 w-full">
-                        <div className="relative">
-                          <div className="absolute z-20 md:inset-y-0 md:right-4 top-1 bottom-0 right-0.5 flex items-center md:pl-3 pl-1 pointer-events-none">
-                            <CalendarDaysIcon className="md:h-5 md:w-5 h-2 w-2 text-[#234F7E]" />
-                          </div>
-                          <DatePicker
-                            className="md:h-12 h-5 w-full md:text-lg text-[7px] text-[#234F7E] font-semibold rounded-lg cursor-pointer md:pl-2 pl-1"
-                            selected={startDate}
-                            dateFormat="dd/MM/yyyy"
-                            minDate={new Date().setDate(
-                              new Date().getDate() + 1
-                            )}
-                            onChange={(date) => setStartDate(date)}
-                          />
-                        </div>
-                        <div className="relative">
-                          <div className="absolute z-20 md:inset-y-0 md:right-4 top-1 bottom-0 right-2 flex items-center md:pl-3 pl-1 pointer-events-none">
-                            <ClockIcon className="md:h-5 md:w-5 h-2 w-2 text-[#234F7E]" />
-                          </div>
-                          <TimePicker
-                            showSecond={false}
-                            defaultValue={moment().hour(9).minute(0)}
-                            onChange={(value) => {
-                              setStartTime(value && value.format("HH:mm"));
-                              setTimeChanged(!timeChanged);
-                            }}
-                            format={"h:mm a"}
-                            inputReadOnly
-                            minuteStep={15}
-                            clearIcon={""}
-                            disabledHours={() => [
-                              0, 1, 2, 3, 4, 5, 6, 7, 8, 22, 23,
-                            ]}
-                          />
-                        </div>
+                        <DateTimePickerComponent
+                          value={startDate}
+                          min={minDate}
+                          onChange={(value) => setStartDate(value.value)}
+                          id="datetimepicker"
+                          floatLabelType="Auto"
+                          placeholder="Select a date and time"
+                          format="dd/MM/yyyy hh:mm a"
+                          step={15}
+                          timeFormat="hh:mm a"
+                        />
                       </div>
                       <p className="md:text-xs text-[5px] font-semibold">
                         We’ll try and match your chosen time, but will be in
@@ -243,7 +216,14 @@ const MaidProfile = () => {
                     >
                       Submit
                     </button>
-                    <button className="clickButton border border-[#234F7E] md:p-3 p-1 text-[#234F7E] md:text-base text-[7px] font-bold rounded-xl">
+                    <button
+                      onClick={() =>
+                        router.push({
+                          pathname: "/upcomingInterviews",
+                        })
+                      }
+                      className="clickButton border border-[#234F7E] md:p-3 p-1 text-[#234F7E] md:text-base text-[7px] font-bold rounded-xl"
+                    >
                       View results
                     </button>
                   </div>

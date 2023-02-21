@@ -25,6 +25,7 @@ import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
 import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
 import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
 import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
+import Error from "next/error";
 
 const MaidProfile = () => {
   const { user, logout } = useUser();
@@ -94,7 +95,11 @@ const MaidProfile = () => {
       if (item.data().maidId === maidId) setUniqueFav(true);
     });
     upcoming?.docs?.map((item) => {
-      if (item.data().maidId === maidId) setUniqueInter(true);
+      if (
+        item.data().maidId === maidId &&
+        item.data().order > new Date().setMinutes(new Date().getMinutes() - 31)
+      )
+        setUniqueInter(true);
     });
   }, [snapshot, upcoming]);
 
@@ -132,7 +137,6 @@ const MaidProfile = () => {
         order: new Date(startDate).getTime(),
       }).then(() => {
         toast.success("Your Interview is added to upcoming Interviews");
-        setDropDownInterview(false);
       });
     }
   };
@@ -161,7 +165,7 @@ const MaidProfile = () => {
   return (
     <div>
       <Toaster position="top-right" />
-      {data ? (
+      {data && (
         <div>
           <div className="xl:max-w-5xl md:max-w-3xl max-w-[300px] mx-auto flex flex-row lg:space-x-20 md:space-x-5 xs:space-x-8 xxs:space-x-5 space-x-3 justify-center md:mt-20 mt-10">
             <div className="relative">
@@ -486,8 +490,6 @@ const MaidProfile = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <PageNotFound />
       )}
       <Footer />
     </div>

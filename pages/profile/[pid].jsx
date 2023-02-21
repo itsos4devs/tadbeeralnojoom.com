@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Banner from "../../components/Banner";
 import MaidProfile from "../../components/MaidProfile";

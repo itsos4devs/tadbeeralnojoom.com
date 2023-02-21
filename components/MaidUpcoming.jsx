@@ -8,6 +8,7 @@ import {
   useDocumentData,
   useDocumentDataOnce,
 } from "react-firebase-hooks/firestore";
+import { toast, Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useUser } from "../auth/useUser";
 import withAuth from "../auth/withAuth";
@@ -44,9 +45,24 @@ const MaidUpcoming = ({ id }) => {
       )
     );
   }
+  function getTimeRemaining(endtime) {
+    const total = Date.parse(endtime) - Date.parse(new Date());
+    const seconds = Math.floor((total / 1000) % 60);
+    const minutes = Math.floor((total / 1000 / 60) % 60);
+    const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+    const days = Math.floor(total / (1000 * 60 * 60 * 24));
 
+    return {
+      total,
+      days,
+      hours,
+      minutes,
+      seconds,
+    };
+  }
   return (
     <div>
+      <Toaster position="top-right" />
       {data?.map((item) => (
         <div
           key={item.nummber}
@@ -71,22 +87,51 @@ const MaidUpcoming = ({ id }) => {
             {item.nationality}
           </h1>
           <h1 className="md:text-sm text-xs first-letter:uppercase lowercase">
-            {new Date(value?.date).toLocaleString("en-NZ")}
+            {new Date(value?.date).toLocaleString(["en-NZ"], {
+              dateStyle: "medium",
+              timeStyle: "short",
+            })}
           </h1>
           <button
             onClick={() => {
-              new Date().getTime() <= value?.order &&
-                router.push({
-                  pathname: `interview/${value?.interviewId}`,
-                });
+              value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
+                ? toast.error("Sorry This interview is outdated")
+                : value?.order >
+                  new Date().setMinutes(new Date().getMinutes() + 31)
+                ? toast.error(
+                    `The Interview will start after ${
+                      getTimeRemaining(value?.date).days != 0
+                        ? getTimeRemaining(value?.date).days + " days and"
+                        : ""
+                    } ${
+                      getTimeRemaining(value?.date).hours != 0
+                        ? getTimeRemaining(value?.date).hours + " hours and"
+                        : ""
+                    }  ${
+                      getTimeRemaining(value?.date).minutes != 0
+                        ? getTimeRemaining(value?.date).minutes + " minutes"
+                        : ""
+                    } `
+                  )
+                : router.push({
+                    pathname: `/interview/${value?.interviewId}`,
+                  });
             }}
             className={`clickButton ${
-              new Date().getTime() <= value?.order
+              value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
+                ? "bg-[#EE2424]"
+                : value?.order >
+                  new Date().setMinutes(new Date().getMinutes() + 31)
                 ? "bg-[#F9B730]"
-                : "bg-[#EE2424]"
+                : "bg-[#68B34A]"
             } md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-md`}
           >
-            {new Date().getTime() <= value?.order ? "Upcoming" : "History"}
+            {value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
+              ? "History"
+              : value?.order >
+                new Date().setMinutes(new Date().getMinutes() + 31)
+              ? "Upcoming"
+              : "Live"}
           </button>
         </div>
       ))}

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import Banner from "../components/Banner";
 import upcomingInterview from "../public/upcomingInterviews.jpeg";
 import { useTranslation } from "react-i18next";
@@ -10,11 +10,10 @@ import { useUser } from "../auth/useUser";
 import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "../config";
 import { useCollection } from "react-firebase-hooks/firestore";
+import LoadingSpinner from "../components/LoadingSpinner";
 import MaidUpcoming from "../components/MaidUpcoming";
-
 const upcomingInterviews = () => {
   const { user, logout } = useUser();
-  console.log(user?.email);
   const { t } = useTranslation();
   const [snapshot] = useCollection(
     query(
@@ -49,16 +48,15 @@ const upcomingInterviews = () => {
           <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
             {t("upcomingTitle")}
           </h1>
-          <p className="md:w-[500px] sm:w-[300px] w-[250px] md:text-sm sm:text-xs text-[10px] mx-auto">
-            Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
-            nostrud oratio aperiri legimus eu.
-          </p>
         </div>
         <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5">
-          {user?.email &&
+          {user?.email && snapshot ? (
             snapshot?.docs.map((maid) => (
               <MaidUpcoming key={maid.id} id={maid.id} />
-            ))}
+            ))
+          ) : (
+            <LoadingSpinner />
+          )}
         </div>
       </div>
       <Footer />

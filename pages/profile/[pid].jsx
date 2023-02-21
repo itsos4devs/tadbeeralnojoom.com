@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import Banner from "../../components/Banner";
 import MaidProfile from "../../components/MaidProfile";
 import profileDetails from "../../public/profileDetails.jpeg";
-import withAuth from "../../auth/withAuth";
 const pid = () => {
   const { t } = useTranslation();
 
@@ -30,4 +29,4 @@ const pid = () => {
   );
 };
 
-export default withAuth(pid);
+export default pid;

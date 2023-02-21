@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import Team from "../components/Team";
-import withAuth from "../auth/withAuth";
 
 const ourTeam = () => {
   const { t, i18n } = useTranslation();
@@ -33,4 +32,4 @@ const ourTeam = () => {
   );
 };
 
-export default withAuth(ourTeam);
+export default ourTeam;

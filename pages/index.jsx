@@ -7,16 +7,9 @@ import Testimonial from "../components/Testimonial";
 import banner from "../public/banner.jpeg";
 import { useTranslation } from "react-i18next";
 import PopupVideo from "../components/PopupVideo";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { getMaids } from "../fetching/getMaids";
-// TODO: implement findMaids next page *(DONE)*
-// TODO: implement findMaids filters *(DONE)* #waiting proffesion#
-// TODO: implement findMaids experience *(DONE)*
-// FIXME: wait maid/id api
-// FIXME: wait photo | job | id | country status from maid api
-// FIXME: remove stripe and implement a popup window onclick book now showing terms and when clicked email
-// TODO: find maids experience arabic change align *(DONE)*
+
 export default function Home() {
   const { t } = useTranslation();
   const { data } = useQuery(["getMaids"], getMaids, {
@@ -39,7 +32,6 @@ export default function Home() {
           imageUlt={"Home Banner"}
           text1={t("life")}
           text2={t("help")}
-          text3={t("bannerDesc")}
           textPosition={"top-1/3 xl:right-60 md:right-20 right-5"}
         />
       </section>

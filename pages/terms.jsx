@@ -6,8 +6,8 @@ import about from "../public/about.jpeg";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import withAuth from "../auth/withAuth";
 import { useRouter } from "next/router";
+
 const terms = () => {
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -1606,4 +1606,4 @@ const terms = () => {
   );
 };
 
-export default withAuth(terms);
+export default terms;

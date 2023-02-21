@@ -1,22 +1,19 @@
 import Image from "next/image";
 import React, { useRef, useState } from "react";
 import logo from "../public/logo.png";
-import { PhoneArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { useOnClickOutside } from "usehooks-ts";
 import Link from "next/link";
-import withAuth from "../auth/withAuth.js";
-import { useUser } from "../auth/useUser.js";
-import Signin from "../components/Signin";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Header = () => {
+  const { data: session } = useSession();
   const [dropDown, setDropDown] = useState(false);
   const dropDownRef = useRef(null);
   useOnClickOutside(dropDownRef, () => setDropDown(false));
   const router = useRouter();
   const { t, i18n } = useTranslation();
-  const { user, logout } = useUser();
 
   return (
     <div className="bg-[#000]/50 md:h-[71px] h-[20px] absolute left-0 right-0">
@@ -118,27 +115,27 @@ const Header = () => {
           </div>
           {/* User handler */}
           <div className="relative" ref={dropDownRef}>
-            {user?.email ? (
+            {session?.user?.email ? (
               <div
                 className="w-4 h-4 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-blue-500 relative rounded-full select-none cursor-pointer"
                 onClick={() => setDropDown(!dropDown)}
               >
                 <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white md:text-xl text-[8px] font-lato font-bold uppercase">
-                  {user.email[0]}
+                  {session.user.email[0]}
                 </h1>
               </div>
             ) : (
               <div className="md:w-24 sm:w-16 w-8 flex items-center justify-center">
                 <button
                   className="clickButton bg-gray-500 md:w-20 sm:w-16 w-8 mx-auto md:py-1 py-0.5 md:text-base text-[5px] rounded-full text-white"
-                  onClick={() => setDropDown(!dropDown)}
+                  onClick={() => signIn("google")}
                 >
                   {t("signIn")}
                 </button>
               </div>
             )}
             {/* DropDown */}
-            {user?.email ? (
+            {session?.user?.email && (
               <div
                 className={
                   dropDown
@@ -149,7 +146,9 @@ const Header = () => {
                 {/* Email and name */}
                 <div className="md:py-3 md:px-4 py-2 px-2 md:text-sm text-[8px] text-gray-900 dark:text-white">
                   <div>
-                    <h1 className="font-medium truncate">{user.email}</h1>
+                    <h1 className="font-medium truncate">
+                      {session.user.email}
+                    </h1>
                   </div>
                   {/* <div className="font-medium truncate">name@flowbite.com</div> */}
                 </div>
@@ -178,22 +177,12 @@ const Header = () => {
                 {/* Sign out */}
                 <div className="md:py-1 py-0">
                   <button
-                    onClick={() => logout()}
+                    onClick={() => signOut()}
                     className="block md:py-2 md:px-4 py-1 w-full px-2 md:text-sm text-[8px] text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     {t("signOut")}
                   </button>
                 </div>
-              </div>
-            ) : (
-              <div
-                className={
-                  dropDown
-                    ? "z-10 absolute right-0 md:top-14 top-5 md:w-72 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                    : "hidden"
-                }
-              >
-                <Signin />
               </div>
             )}
           </div>
@@ -203,7 +192,7 @@ const Header = () => {
   );
 };
 
-export default withAuth(Header);
+export default Header;
 
 {
   /* Language Dropdown */

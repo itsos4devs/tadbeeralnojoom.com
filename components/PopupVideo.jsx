@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import withAuth from "../auth/withAuth";
 const PopupVideo = () => {
   const [openVideo, setOpenVideo] = useState(false);
   const [activeDrags, setActiveDrags] = useState({
@@ -57,4 +56,4 @@ const PopupVideo = () => {
   );
 };
 
-export default withAuth(PopupVideo);
+export default PopupVideo;

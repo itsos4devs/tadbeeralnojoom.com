@@ -1,30 +1,27 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useQuery } from "@tanstack/react-query";
 import { doc } from "firebase/firestore";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import {
-  useDocumentData,
-  useDocumentDataOnce,
-} from "react-firebase-hooks/firestore";
+import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import { toast, Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-import { useUser } from "../auth/useUser";
-import withAuth from "../auth/withAuth";
 import { db } from "../config";
 import { getMaid } from "../fetching/getMaid";
 import maidPhoto from "../public/maidPhoto.png";
 
 const MaidUpcoming = ({ id }) => {
-  const { user, logout } = useUser();
+  const { data: session } = useSession();
+
   const { t, i18n } = useTranslation();
   const router = useRouter();
   const [value] = useDocumentDataOnce(
     doc(
       db,
       "users",
-      user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+      session.user?.email ? session.user?.email : "karimkhaledelmawe@gmail.com",
       "upcomingInterviews",
       id
     )
@@ -138,4 +135,4 @@ const MaidUpcoming = ({ id }) => {
   );
 };
 
-export default withAuth(MaidUpcoming);
+export default MaidUpcoming;

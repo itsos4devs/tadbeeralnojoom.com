@@ -1,20 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Banner from "../../components/Banner";
 import ourService from "../../public/ourServices.jpeg";
-import thumbnail from "../../public/video.png";
-import play from "../../public/playButton.png";
 import Footer from "../../components/Footer";
 import { useRouter } from "next/router";
-import withAuth from "../../auth/withAuth";
-import {
-  ArrowPathIcon,
-  CheckCircleIcon,
-  ClockIcon,
-} from "@heroicons/react/24/solid";
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
+
 const pid = () => {
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -976,4 +969,4 @@ const pid = () => {
   );
 };
 
-export default withAuth(pid);
+export default pid;

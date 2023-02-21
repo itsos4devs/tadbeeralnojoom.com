@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import Map, { Marker } from "react-map-gl";
-import withAuth from "../auth/withAuth";
 
 const contactUs = () => {
   const { t, i18n } = useTranslation();
@@ -185,4 +184,4 @@ const contactUs = () => {
   );
 };
 
-export default withAuth(contactUs);
+export default contactUs;

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import withAuth from "../auth/withAuth";
 import servicePhoto from "../public/servicePhoto.png";
 const ServiceSection = () => {
   const { t, i18n } = useTranslation();
@@ -103,4 +102,4 @@ const ServiceSection = () => {
   );
 };
 
-export default withAuth(ServiceSection);
+export default ServiceSection;

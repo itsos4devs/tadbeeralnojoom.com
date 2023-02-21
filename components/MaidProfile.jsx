@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
-import { useUser } from "../auth/useUser";
-import withAuth from "../auth/withAuth";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
@@ -10,7 +8,6 @@ import { useRouter } from "next/router";
 import { getMaid } from "../fetching/getMaid";
 import { useQuery } from "@tanstack/react-query";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import PageNotFound from "./PageNotFound";
 import { db } from "../config";
 import { addDoc, collection, query, serverTimestamp } from "firebase/firestore";
 import { toast, Toaster } from "react-hot-toast";
@@ -25,11 +22,11 @@ import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
 import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
 import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
 import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
-import Error from "next/error";
+import { signIn, useSession } from "next-auth/react";
 
 const MaidProfile = () => {
-  const { user, logout } = useUser();
-
+  const { data: session } = useSession();
+  console.log(session?.user?.email);
   const { t, i18n } = useTranslation();
 
   const router = useRouter();
@@ -46,7 +43,9 @@ const MaidProfile = () => {
       collection(
         db,
         "users",
-        user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+        session?.user?.email
+          ? session?.user?.email
+          : "karimkhaledelmawe@gmail.com",
         "favourite"
       )
     )
@@ -58,7 +57,9 @@ const MaidProfile = () => {
       collection(
         db,
         "users",
-        user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+        session?.user?.email
+          ? session?.user?.email
+          : "karimkhaledelmawe@gmail.com",
         "upcomingInterviews"
       )
     )
@@ -74,11 +75,11 @@ const MaidProfile = () => {
       },
     });
     const stripe = await stripePromise;
-    // call backend to create a checkout session...
+    // call backend to create a checkout session?...
     const checkoutSession = await axios
       .post("/api/create-checkout-session", {
         maid: data,
-        email: user.email,
+        email: session.user.email,
       })
       .then((res) => {
         toast.success("Redirected", {
@@ -127,15 +128,13 @@ const MaidProfile = () => {
       )
         setUniqueInter(true);
     });
-  }, [snapshot, upcoming]);
+  }, [maidId, snapshot, upcoming]);
 
   const requestInterviewHandler = () => {
-    if (user) {
+    if (session.user) {
       setDropDownInterview(true);
     } else {
-      router.push({
-        pathname: "/signin",
-      });
+      signIn();
     }
   };
 
@@ -149,6 +148,13 @@ const MaidProfile = () => {
         },
       });
     } else {
+      const notification = toast.loading("Requesting your interview...", {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
       const options = {
         method: "POST",
         url: "https://sfu.mirotalk.com/api/v1/meeting",
@@ -161,14 +167,18 @@ const MaidProfile = () => {
         res.data.meeting.length
       );
 
-      await addDoc(collection(db, "users", user?.email, "upcomingInterviews"), {
-        userId: user.email,
-        date: new Date(startDate).toUTCString(),
-        interviewId: id,
-        maidId: data[0].number,
-        order: new Date(startDate).getTime(),
-      }).then(() => {
+      await addDoc(
+        collection(db, "users", session.user.email, "upcomingInterviews"),
+        {
+          userId: session.user.email,
+          date: new Date(startDate).toUTCString(),
+          interviewId: id,
+          maidId: data[0].number,
+          order: new Date(startDate).getTime(),
+        }
+      ).then(() => {
         toast.success("Your Interview is added to upcoming Interviews", {
+          id: notification,
           style: {
             borderRadius: "10px",
             background: "#333",
@@ -181,7 +191,7 @@ const MaidProfile = () => {
 
   // Save for Later
   const saveForLaterHandler = async () => {
-    if (user) {
+    if (session?.user) {
       if (uniqueFav) {
         return toast.error("Maid already in your favourite list", {
           style: {
@@ -191,12 +201,23 @@ const MaidProfile = () => {
           },
         });
       } else {
-        await addDoc(collection(db, "users", user?.email, "favourite"), {
-          userId: user.email,
-          maidId: data[0].number,
-          createdAt: serverTimestamp(),
-        }).then(() => {
+        const notification = toast.loading("Saving...", {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        await addDoc(
+          collection(db, "users", session.user?.email, "favourite"),
+          {
+            userId: session.user.email,
+            maidId: data[0].number,
+            createdAt: serverTimestamp(),
+          }
+        ).then(() => {
           toast.success("Maid added to your favourite list", {
+            id: notification,
             style: {
               borderRadius: "10px",
               background: "#333",
@@ -206,9 +227,7 @@ const MaidProfile = () => {
         });
       }
     } else {
-      router.push({
-        pathname: "/signin",
-      });
+      signIn();
     }
   };
 
@@ -295,7 +314,7 @@ const MaidProfile = () => {
             <div>
               <a href={`tel:+${data[0].tel_mobile_no}`}>
                 <button
-                  disabled={user ? false : true}
+                  disabled={session?.user ? false : true}
                   className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
                 >
                   {t("call")}
@@ -309,7 +328,7 @@ const MaidProfile = () => {
                 rel="noreferrer"
               >
                 <button
-                  disabled={user ? false : true}
+                  disabled={session?.user ? false : true}
                   className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
                 >
                   Whatsapp
@@ -388,7 +407,7 @@ const MaidProfile = () => {
                   </div>
                   <button
                     onClick={createCheckoutSession}
-                    disabled={user ? false : true}
+                    disabled={session?.user ? false : true}
                     className="clickButton button disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100 md:w-44 md:py-1.5 w-16 py-0 md:text-base text-[6px]"
                   >
                     {i18n.language === "ar" ? "احجز الان" : "Book Now"}
@@ -546,4 +565,4 @@ const MaidProfile = () => {
   );
 };
 
-export default withAuth(MaidProfile);
+export default MaidProfile;

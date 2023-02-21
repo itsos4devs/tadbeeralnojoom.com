@@ -6,7 +6,6 @@ import about from "../public/about.jpeg";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import withAuth from "../auth/withAuth";
 import { useRouter } from "next/router";
 const faq = () => {
   const { t, i18n } = useTranslation();
@@ -828,4 +827,4 @@ const faq = () => {
   );
 };
 
-export default withAuth(faq);
+export default faq;

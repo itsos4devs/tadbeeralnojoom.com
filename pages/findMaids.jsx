@@ -5,20 +5,17 @@ import Maids from "../components/Maids";
 import findMaid from "../public/findMaids.jpeg";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
-import withAuth from "../auth/withAuth";
-import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { useEffectOnce } from "usehooks-ts";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useOnClickOutside } from "usehooks-ts";
 import { getMaids } from "../fetching/getMaids";
 import { useQuery } from "@tanstack/react-query";
+
 const findMaids = () => {
   const { t, i18n } = useTranslation();
   const { data } = useQuery(["getMaids"], getMaids, {
     staleTime: Infinity,
   });
-  console.log(data);
   // DropDown
   const [dropDownCountry, setDropDownCountry] = useState(false);
   const [dropDownProfession, setDropDownProfession] = useState(false);
@@ -333,4 +330,4 @@ const findMaids = () => {
   );
 };
 
-export default withAuth(findMaids);
+export default findMaids;

@@ -2,9 +2,8 @@
 import React from "react";
 import Header from "./Header";
 import Image from "next/image";
-import withAuth from "../auth/withAuth";
 
-const Banner = ({ imageSrc, imageUlt, text1, text2, text3, textPosition }) => {
+const Banner = ({ imageSrc, imageUlt, text1, text2, textPosition }) => {
   return (
     <div className="relative">
       {/* a blue color on top of the image */}
@@ -33,12 +32,9 @@ const Banner = ({ imageSrc, imageUlt, text1, text2, text3, textPosition }) => {
         <h1 className="text-white lg:text-7xl md:text-5xl sm:text-2xl text-lg font-lato font-black">
           {text2}
         </h1>
-        <p className="lg:text-3xl md:text-xl sm:text-sm text-[10px] lg:w-[500px] md:w-[400px] sm:w-[250px] w-[150px] text-white">
-          {text3}
-        </p>
       </div>
     </div>
   );
 };
 
-export default withAuth(Banner);
+export default Banner;

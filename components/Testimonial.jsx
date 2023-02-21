@@ -2,7 +2,6 @@ import Image from "next/image";
 import React from "react";
 import clientPhoto from "../public/clientPhoto.png";
 import { useTranslation } from "react-i18next";
-import withAuth from "../auth/withAuth";
 // TODO: update the testimonials with the real one
 const Testimonial = () => {
   const { t, i18n } = useTranslation();
@@ -26,9 +25,6 @@ const Testimonial = () => {
         <h1 className="text-[#E48100] font-lato font-bold md:text-4xl sm:text-3xl text-xl">
           {t("testimonials")}
         </h1>
-        <p className="md:w-[500px] sm:w-[300px] w-[200px] sm:text-base text-sm mx-auto">
-          {t("testimonialsDesc")}
-        </p>
       </div>
       <div className="flex md:flex-row flex-col md:space-y-0 space-y-5 md:mt-10 mt-5">
         {arr.map((item) => (
@@ -101,4 +97,4 @@ const Testimonial = () => {
   );
 };
 
-export default withAuth(Testimonial);
+export default Testimonial;

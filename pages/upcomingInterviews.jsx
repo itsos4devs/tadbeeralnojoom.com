@@ -1,26 +1,29 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { Suspense } from "react";
+import React from "react";
 import Banner from "../components/Banner";
 import upcomingInterview from "../public/upcomingInterviews.jpeg";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import withAuth from "../auth/withAuth";
-import { useUser } from "../auth/useUser";
 import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "../config";
 import { useCollection } from "react-firebase-hooks/firestore";
 import LoadingSpinner from "../components/LoadingSpinner";
 import MaidUpcoming from "../components/MaidUpcoming";
+import { useSession } from "next-auth/react";
+
 const upcomingInterviews = () => {
-  const { user, logout } = useUser();
+  const { data: session } = useSession();
+
   const { t } = useTranslation();
   const [snapshot] = useCollection(
     query(
       collection(
         db,
         "users",
-        user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+        session?.user?.email
+          ? session?.user?.email
+          : "karimkhaledelmawe@gmail.com",
         "upcomingInterviews"
       ),
       orderBy("order", "desc")
@@ -43,28 +46,30 @@ const upcomingInterviews = () => {
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
       />
-      <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-44 mb-16">
-        <div className="text-center xl:mt-36 md:mt-20 mt-10 space-y-2">
-          <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
-            {t("upcomingTitle")}
-          </h1>
+      {session && (
+        <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-44 mb-16">
+          <div className="text-center xl:mt-36 md:mt-20 mt-10 space-y-2">
+            <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
+              {t("upcomingTitle")}
+            </h1>
+          </div>
+          <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5">
+            {session.user?.email && snapshot ? (
+              snapshot?.docs.map((maid) => (
+                <MaidUpcoming key={maid.id} id={maid.id} />
+              ))
+            ) : (
+              <LoadingSpinner />
+            )}
+          </div>
         </div>
-        <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5">
-          {user?.email && snapshot ? (
-            snapshot?.docs.map((maid) => (
-              <MaidUpcoming key={maid.id} id={maid.id} />
-            ))
-          ) : (
-            <LoadingSpinner />
-          )}
-        </div>
-      </div>
+      )}
       <Footer />
     </div>
   );
 };
 
-export default withAuth(upcomingInterviews);
+export default upcomingInterviews;
 
 // up={"Upcoming"}
 // live={"Live"}

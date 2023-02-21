@@ -1,11 +1,7 @@
-import {
-  ChevronDownIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useOnClickOutside } from "usehooks-ts";
-import withAuth from "../auth/withAuth";
 
 const SearchMaids = ({ nationalities, filterData }) => {
   const { t, i18n } = useTranslation();
@@ -199,4 +195,4 @@ const SearchMaids = ({ nationalities, filterData }) => {
   );
 };
 
-export default withAuth(SearchMaids);
+export default SearchMaids;

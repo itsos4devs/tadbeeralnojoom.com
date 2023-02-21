@@ -5,7 +5,6 @@ import ourService from "../public/ourServices.jpeg";
 import ServiceSection from "../components/ServiceSection";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import withAuth from "../auth/withAuth";
 import { useTranslation } from "react-i18next";
 
 const ourServices = () => {
@@ -33,4 +32,4 @@ const ourServices = () => {
   );
 };
 
-export default withAuth(ourServices);
+export default ourServices;

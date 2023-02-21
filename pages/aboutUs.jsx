@@ -6,7 +6,6 @@ import about from "../public/about.jpeg";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import withAuth from "../auth/withAuth";
 
 const aboutUs = () => {
   const { t, i18n } = useTranslation();
@@ -481,4 +480,4 @@ const aboutUs = () => {
   );
 };
 
-export default withAuth(aboutUs);
+export default aboutUs;

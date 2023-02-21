@@ -5,8 +5,6 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { useRouter } from "next/router";
 import { useEffectOnce } from "usehooks-ts";
-import withAuth from "../../auth/withAuth";
-import { useUser } from "../../auth/useUser";
 const servers = {
   iceServers: [
     {
@@ -18,7 +16,6 @@ const servers = {
 
 let pc;
 const pid = () => {
-  const { user, logout } = useUser();
   const router = useRouter();
   const { pid } = router.query;
   useEffectOnce(() => {
@@ -57,4 +54,4 @@ const pid = () => {
   );
 };
 
-export default withAuth(pid);
+export default pid;

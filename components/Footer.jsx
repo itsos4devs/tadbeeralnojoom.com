@@ -3,7 +3,6 @@ import React from "react";
 import icon from "../public/icon.png";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
-import withAuth from "../auth/withAuth";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -163,4 +162,4 @@ const Footer = () => {
   );
 };
 
-export default withAuth(Footer);
+export default Footer;

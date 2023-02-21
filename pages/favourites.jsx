@@ -1,24 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Banner from "../components/Banner";
-import Maids from "../components/Maids";
 import favourit from "../public/favourit.jpeg";
-import maidPhoto from "../public/maidPhoto.png";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import withAuth from "../auth/withAuth";
-import { useUser } from "../auth/useUser";
-import { useQuery } from "@tanstack/react-query";
-import { getMaids } from "../fetching/getMaids";
 import MaidFavourite from "../components/MaidFavourite";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "../config";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { signIn, useSession } from "next-auth/react";
 
 const favourites = () => {
-  const { user, logout } = useUser();
+  const { data: session } = useSession();
 
   const { t } = useTranslation();
 
@@ -27,12 +22,15 @@ const favourites = () => {
       collection(
         db,
         "users",
-        user?.email ? user?.email : "karimkhaledelmawe@gmail.com",
+        session?.user?.email
+          ? session?.user?.email
+          : "karimkhaledelmawe@gmail.com",
         "favourite"
       ),
       orderBy("createdAt", "desc")
     )
   );
+
   return (
     <div>
       <Head>
@@ -49,28 +47,30 @@ const favourites = () => {
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
       />
-      <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-44 mb-16">
-        <div className="text-center xl:mt-36 md:mt-20 mt-10 space-y-2">
-          <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
-            {t("favouriteTitle")}
-          </h1>
+      {session && (
+        <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-44 mb-16">
+          <div className="text-center xl:mt-36 md:mt-20 mt-10 space-y-2">
+            <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
+              {t("favouriteTitle")}
+            </h1>
+          </div>
+          <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5">
+            {session?.user?.email ? (
+              snapshot?.docs.map((maid) => (
+                <MaidFavourite key={maid.id} id={maid.id} />
+              ))
+            ) : (
+              <LoadingSpinner />
+            )}
+          </div>
         </div>
-        <div className="grid lg:grid-cols-5 grid-cols-3 xl:gap-x-10 lg:gap-x-2 md:gap-y-28 gap-y-10 pt-5">
-          {user?.email ? (
-            snapshot?.docs.map((maid) => (
-              <MaidFavourite key={maid.id} id={maid.id} />
-            ))
-          ) : (
-            <LoadingSpinner />
-          )}
-        </div>
-      </div>
+      )}
       <Footer />
     </div>
   );
 };
 
-export default withAuth(favourites);
+export default favourites;
 
 // viewProfile={t("maidViewProfile")}
 //             viewProfileColor={"bg-[#E48100]"}

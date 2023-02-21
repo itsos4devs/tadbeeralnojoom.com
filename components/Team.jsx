@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import withAuth from "../auth/withAuth";
 import teamPhoto1 from "../public/teamPhoto1.jpeg";
 import teamPhoto2 from "../public/teamPhoto2.jpeg";
 import teamPhoto3 from "../public/teamPhoto3.jpeg";
@@ -19,10 +18,6 @@ const Team = () => {
         <h1 className="text-[#E48100] font-lato font-bold md:text-4xl md:w-[600px] mx-auto text-xl">
           {t("teamTitle")}
         </h1>
-        <p className="md:w-[400px] sm:w-[300px] w-[250px] md:text-sm sm:text-xs text-[8px] mx-auto">
-          Lorem ipsum dolor sit amet, ut sed velit euismod vulputate, cum
-          nostrud oratio aperiri legimus eu.
-        </p>
       </div>
       <div className="grid md:grid-cols-3 grid-cols-2 md:gap-y-16 gap-y-5 xl:gap-x-20 lg:gap-x-10 md:gap-x-2 xs:gap-x-5 gap-x-2 text-center mx-auto w-max">
         <div className="lg:w-[300px] md:w-[250px] w-[150px] bg-[#DBE9F8] lg:h-[350px] md:h-[300px] h-[200px] md:space-y-2 space-y-1 rounded-lg">
@@ -218,4 +213,4 @@ const Team = () => {
   );
 };
 
-export default withAuth(Team);
+export default Team;

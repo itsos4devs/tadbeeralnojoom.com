@@ -66,19 +66,45 @@ const MaidProfile = () => {
 
   // Stripe
   const createCheckoutSession = async () => {
+    const notification = toast.loading("Redirecting...", {
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
     const stripe = await stripePromise;
     // call backend to create a checkout session...
-    const checkoutSession = await axios.post("/api/create-checkout-session", {
-      maid: data,
-      email: user.email,
-    });
+    const checkoutSession = await axios
+      .post("/api/create-checkout-session", {
+        maid: data,
+        email: user.email,
+      })
+      .then((res) => {
+        toast.success("Redirected", {
+          id: notification,
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        return res;
+      });
     // redirect user to checkout
     const result = await stripe.redirectToCheckout({
       sessionId: checkoutSession.data.id,
     });
 
     if (result.error) {
-      console.log(result.error.message);
+      return toast.error("You can't book this maid", {
+        id: notification,
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
     }
   };
 
@@ -115,7 +141,13 @@ const MaidProfile = () => {
 
   const createRoom = async () => {
     if (uniqueInter) {
-      return toast.error("Maid already in your Upcoming list");
+      return toast.error("Maid already in your Upcoming list", {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
     } else {
       const options = {
         method: "POST",
@@ -136,7 +168,13 @@ const MaidProfile = () => {
         maidId: data[0].number,
         order: new Date(startDate).getTime(),
       }).then(() => {
-        toast.success("Your Interview is added to upcoming Interviews");
+        toast.success("Your Interview is added to upcoming Interviews", {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
       });
     }
   };
@@ -145,14 +183,26 @@ const MaidProfile = () => {
   const saveForLaterHandler = async () => {
     if (user) {
       if (uniqueFav) {
-        return toast.error("Maid already in your favourite list");
+        return toast.error("Maid already in your favourite list", {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
       } else {
         await addDoc(collection(db, "users", user?.email, "favourite"), {
           userId: user.email,
           maidId: data[0].number,
           createdAt: serverTimestamp(),
         }).then(() => {
-          toast.success("Maid added to your favourite list");
+          toast.success("Maid added to your favourite list", {
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
         });
       }
     } else {

@@ -33,22 +33,10 @@ const MaidUpcoming = ({ id }) => {
     staleTime: Infinity,
   });
 
-  function setDateAsUTC(d) {
-    let date = new Date(d);
-    return new Date(
-      Date.UTC(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        date.getHours(),
-        date.getMinutes()
-      )
-    );
-  }
   function getTimeRemaining(endtime) {
     const total = Date.parse(endtime) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
-    const minutes = Math.floor((total / 1000 / 60) % 60);
+    const minutes = Math.floor((total / 1000 / 60) % 60) + 1;
     const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
     const days = Math.floor(total / (1000 * 60 * 60 * 24));
 
@@ -60,6 +48,7 @@ const MaidUpcoming = ({ id }) => {
       seconds,
     };
   }
+
   return (
     <div>
       <Toaster position="top-right" />
@@ -95,9 +84,14 @@ const MaidUpcoming = ({ id }) => {
           <button
             onClick={() => {
               value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
-                ? toast.error("Sorry This interview is outdated")
-                : value?.order >
-                  new Date().setMinutes(new Date().getMinutes() + 31)
+                ? toast.error("Sorry This interview is outdated", {
+                    style: {
+                      borderRadius: "10px",
+                      background: "#333",
+                      color: "#fff",
+                    },
+                  })
+                : value?.order > new Date()
                 ? toast.error(
                     `The Interview will start after ${
                       getTimeRemaining(value?.date).days != 0
@@ -110,8 +104,15 @@ const MaidUpcoming = ({ id }) => {
                     }  ${
                       getTimeRemaining(value?.date).minutes != 0
                         ? getTimeRemaining(value?.date).minutes + " minutes"
-                        : ""
-                    } `
+                        : "Refresh The page"
+                    } `,
+                    {
+                      style: {
+                        borderRadius: "10px",
+                        background: "#333",
+                        color: "#fff",
+                      },
+                    }
                   )
                 : router.push({
                     pathname: `/interview/${value?.interviewId}`,
@@ -120,16 +121,14 @@ const MaidUpcoming = ({ id }) => {
             className={`clickButton ${
               value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
                 ? "bg-[#EE2424]"
-                : value?.order >
-                  new Date().setMinutes(new Date().getMinutes() + 31)
+                : value?.order > new Date()
                 ? "bg-[#F9B730]"
                 : "bg-[#68B34A]"
             } md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-md`}
           >
             {value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
               ? "History"
-              : value?.order >
-                new Date().setMinutes(new Date().getMinutes() + 31)
+              : value?.order > new Date()
               ? "Upcoming"
               : "Live"}
           </button>

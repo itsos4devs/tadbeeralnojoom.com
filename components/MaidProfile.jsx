@@ -166,18 +166,28 @@ const MaidProfile = () => {
         res.data.meeting.indexOf("join/") + 5,
         res.data.meeting.length
       );
-
-      await addDoc(
-        collection(db, "users", session.user.email, "upcomingInterviews"),
-        {
-          userId: session.user.email,
-          date: new Date(startDate).toUTCString(),
-          interviewId: id,
-          maidId: data[0].number,
-          order: new Date(startDate).getTime(),
-        }
-      ).then(() => {
-        toast.success("Your Interview is added to upcoming Interviews", {
+      if (startDate >= minDate) {
+        await addDoc(
+          collection(db, "users", session.user.email, "upcomingInterviews"),
+          {
+            userId: session.user.email,
+            date: new Date(startDate).toUTCString(),
+            interviewId: id,
+            maidId: data[0].number,
+            order: new Date(startDate).getTime(),
+          }
+        ).then(() => {
+          toast.success("Your Interview is added to upcoming Interviews", {
+            id: notification,
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        });
+      } else {
+        toast.error("You can't pick this date", {
           id: notification,
           style: {
             borderRadius: "10px",
@@ -185,7 +195,7 @@ const MaidProfile = () => {
             color: "#fff",
           },
         });
-      });
+      }
     }
   };
 
@@ -274,6 +284,7 @@ const MaidProfile = () => {
                           format="dd/MM/yyyy hh:mm a"
                           step={15}
                           timeFormat="hh:mm a"
+                          allowEdit={false}
                         />
                       </div>
                       <p className="md:text-xs text-[5px] font-semibold">

@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import {
+  useCollection,
+  useDocumentDataOnce,
+} from "react-firebase-hooks/firestore";
+import { db } from "../config";
+import { collection, doc } from "firebase/firestore";
 const PopupVideo = () => {
   const [openVideo, setOpenVideo] = useState(false);
   const [activeDrags, setActiveDrags] = useState({
@@ -30,6 +36,8 @@ const PopupVideo = () => {
       clearInterval(timePopup);
     };
   }, []);
+  const [snapshot] = useCollection(collection(db, "popupVideo"));
+
   return (
     <div className="z-50 absolute right-0 lg:top-[800px] md:top-96 top-56 ">
       {openVideo && (
@@ -39,7 +47,9 @@ const PopupVideo = () => {
               className="lg:w-[363px] md:w-[250px] w-[200px]"
               width="320"
               controls
-              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              src={snapshot?.docs?.map((item) => {
+                return item.data().src;
+              })}
               autoPlay
               muted
             ></video>

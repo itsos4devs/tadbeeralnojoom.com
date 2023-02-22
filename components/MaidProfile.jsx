@@ -166,7 +166,9 @@ const MaidProfile = () => {
         res.data.meeting.indexOf("join/") + 5,
         res.data.meeting.length
       );
-      if (startDate >= minDate) {
+      if (
+        startDate >= new Date(new Date().setHours(new Date().getHours() + 1))
+      ) {
         await addDoc(
           collection(db, "users", session.user.email, "upcomingInterviews"),
           {

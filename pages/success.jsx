@@ -26,9 +26,9 @@ const success = () => {
             </h1>
             <p className="md:text-lg text-xs font-roboto font-semibold text-gray-600">
               Thank you for choosing{" "}
-              <span className="underline decoration-yellow-500 text-black">
+              <h4 className="underline decoration-yellow-500 text-black">
                 Tadbeer Alnujoom
-              </span>
+              </h4>
               {", "}
               we will reach you soon
             </p>

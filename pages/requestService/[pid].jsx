@@ -82,19 +82,17 @@ const pid = () => {
                       : "flex items-start space-x-1 max-w-6xl"
                   }
                 >
-                  <span className="md:text-base xs:text-[10px] text-[7px]">
-                    🔵
-                  </span>
+                  <h4 className="md:text-base xs:text-[10px] text-[7px]">🔵</h4>
                   <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                    <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                    <h4 className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
                       {t("traditional")}
                       {": "}
-                    </span>
-                    <span className="md:text-base xs:text-[10px] text-[7px]">
+                    </h4>
+                    <h4 className="md:text-base xs:text-[10px] text-[7px]">
                       {i18n.language === "ar"
                         ? "خدمات استقدام عامل مساعد من خارج الدولة يسجل على ملف صاحب العمل ويقيم لديه خلال فترة التعاقد"
                         : "Recruitment services for a domestic worker from in or outside the country where the domestic worker is sponsored by the employer and stays with them during the contract period."}
-                    </span>
+                    </h4>
                   </h1>
                 </div>
                 <div
@@ -104,19 +102,17 @@ const pid = () => {
                       : "flex items-start space-x-1 max-w-6xl"
                   }
                 >
-                  <span className="md:text-base xs:text-[10px] text-[7px]">
-                    🔵
-                  </span>
+                  <h4 className="md:text-base xs:text-[10px] text-[7px]">🔵</h4>
                   <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                    <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                    <h4 className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
                       {t("temporary")}
                       {": "}
-                    </span>
-                    <span className="md:text-base xs:text-[10px] text-[7px]">
+                    </h4>
+                    <h4 className="md:text-base xs:text-[10px] text-[7px]">
                       {i18n.language === "ar"
                         ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل لفترة تعاقدية يسمح من بعدها بانتقال العامل كعامل مساعد مقيم ومسجل بملف صاحب العمل في حال موافقة الأطراف المعنية"
                         : "This service is providing a domestic worker sponsored by Tadbeer service center to work for a contractual period. After which the worker is or is not allowed to transfer as a resident domestic worker sponsored by the employer if the concerned parties agree."}
-                    </span>
+                    </h4>
                   </h1>
                 </div>
                 <div
@@ -126,19 +122,17 @@ const pid = () => {
                       : "flex items-start space-x-1 max-w-6xl"
                   }
                 >
-                  <span className="md:text-base xs:text-[10px] text-[7px]">
-                    🔵
-                  </span>
+                  <h4 className="md:text-base xs:text-[10px] text-[7px]">🔵</h4>
                   <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                    <span className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                    <h4 className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
                       {t("flexible")}
                       {": "}
-                    </span>
-                    <span className="md:text-base xs:text-[10px] text-[7px]">
+                    </h4>
+                    <h4 className="md:text-base xs:text-[10px] text-[7px]">
                       {i18n.language === "ar"
                         ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل بنظام مرن (ساعات، أيام، أسبوع)"
                         : " Domestic worker sponsored by Tadbeer service center to work on a flexible system (hours, days, week)"}
-                    </span>
+                    </h4>
                   </h1>
                 </div>
               </div>

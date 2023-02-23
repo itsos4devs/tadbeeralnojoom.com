@@ -35,7 +35,7 @@ const PageNotFound = () => {
                 />
               </svg>
 
-              <span
+              <h4
                 onClick={() =>
                   router.push({
                     pathname: "/findMaids",
@@ -43,7 +43,7 @@ const PageNotFound = () => {
                 }
               >
                 Go back
-              </span>
+              </h4>
             </button>
 
             <button

@@ -95,3 +95,7 @@ img, video {
 .react-tel-input .country-list {
   @apply xs:w-fit xs:text-[10px] md:w-[300px] md:text-[14px] !important
 }
+
+div:has(> span) {
+  @apply hidden !important
+}

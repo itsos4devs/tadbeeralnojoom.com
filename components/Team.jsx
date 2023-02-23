@@ -176,8 +176,8 @@ const Team = () => {
             </h2>
             <h3 className="md:text-lg text-xs font-lato font-bold">
               {i18n.language === "ar"
-                ? "سكرتير اندونيسيا"
-                : " Indonesia Secertary"}
+                ? "سكرتير اندونيسيا / فلبين"
+                : " Indonesia Secertary / Philippines"}
             </h3>
             <h2 className="text-[#E48100] md:text-base text-xs">
               +971 544664001
@@ -200,8 +200,8 @@ const Team = () => {
             </h2>
             <h3 className="md:text-lg text-xs font-lato font-bold">
               {i18n.language === "ar"
-                ? "سكرتير اثيوبيا"
-                : " Ethiopia Secertary"}
+                ? "سكرتير اثيوبيا / فلبين"
+                : " Ethiopia Secertary / Philippines"}
             </h3>
             <h2 className="text-[#E48100] md:text-base text-xs">
               +971 504664093

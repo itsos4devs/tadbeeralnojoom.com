@@ -13,7 +13,7 @@ export default async (req, res) => {
         images: [item.image],
         description: item.description,
       },
-      unit_amount: 100 * 100,
+      unit_amount: 500 * 100,
     },
     quantity: 1,
     // tax_rates: ["txr_1MSfdMEuz1yMNGtKd0osgiFF"],

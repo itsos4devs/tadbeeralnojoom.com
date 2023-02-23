@@ -45,10 +45,14 @@ const MaidUpcoming = ({ id }) => {
       seconds,
     };
   }
-
+  console.log(
+    value?.maidId,
+    new Date(value?.order),
+    new Date(new Date().setHours(new Date().getHours() - 2))
+  );
   return (
     <div>
-      <Toaster position="top-right" />
+      <Toaster position={i18n.language === "ar" ? "top-left" : "top-right"} />
       {data?.map((item) => (
         <div
           key={item.nummber}
@@ -80,27 +84,43 @@ const MaidUpcoming = ({ id }) => {
           </h1>
           <button
             onClick={() => {
-              value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
-                ? toast.error("Sorry This interview is outdated", {
-                    style: {
-                      borderRadius: "10px",
-                      background: "#333",
-                      color: "#fff",
-                    },
-                  })
+              value?.order <
+              new Date(new Date().setHours(new Date().getHours() - 2))
+                ? toast.error(
+                    i18n.language === "ar"
+                      ? "نأسف تم الانتهاء من هذة المقابلة"
+                      : "Sorry This interview is outdated",
+                    {
+                      style: {
+                        borderRadius: "10px",
+                        background: "#333",
+                        color: "#fff",
+                      },
+                    }
+                  )
                 : value?.order > new Date()
                 ? toast.error(
-                    `The Interview will start after ${
+                    `${
+                      i18n.language === "ar"
+                        ? "هذة المقابلة ستبدأ بعد"
+                        : "The Interview will start after"
+                    } ${
                       getTimeRemaining(value?.date).days != 0
-                        ? getTimeRemaining(value?.date).days + " days and"
+                        ? i18n.language === "ar"
+                          ? `${getTimeRemaining(value?.date).days} يوم و`
+                          : `${getTimeRemaining(value?.date).days} days and`
                         : ""
                     } ${
                       getTimeRemaining(value?.date).hours != 0
-                        ? getTimeRemaining(value?.date).hours + " hours and"
+                        ? i18n.language === "ar"
+                          ? `${getTimeRemaining(value?.date).hours} ساعة و`
+                          : `${getTimeRemaining(value?.date).hours} hours and`
                         : ""
                     }  ${
                       getTimeRemaining(value?.date).minutes != 0
-                        ? getTimeRemaining(value?.date).minutes + " minutes"
+                        ? i18n.language === "ar"
+                          ? `${getTimeRemaining(value?.date).minutes} دقيقة`
+                          : `${getTimeRemaining(value?.date).minutes} minutes`
                         : "Refresh The page"
                     } `,
                     {
@@ -116,17 +136,25 @@ const MaidUpcoming = ({ id }) => {
                   });
             }}
             className={`clickButton ${
-              value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
+              value?.order <
+              new Date(new Date().setHours(new Date().getHours() - 2))
                 ? "bg-[#EE2424]"
                 : value?.order > new Date()
                 ? "bg-[#F9B730]"
                 : "bg-[#68B34A]"
             } md:px-3 px-2 py-0.5 md:text-base sm:text-xs text-[7px] text-white rounded-md`}
           >
-            {value?.order < new Date().setMinutes(new Date().getMinutes() - 31)
-              ? "History"
+            {value?.order <
+            new Date(new Date().setHours(new Date().getHours() - 2))
+              ? i18n.language === "ar"
+                ? "منتهية"
+                : "History"
               : value?.order > new Date()
-              ? "Upcoming"
+              ? i18n.language === "ar"
+                ? "القادمة"
+                : "Upcoming"
+              : i18n.language === "ar"
+              ? "جارية"
               : "Live"}
           </button>
         </div>

@@ -75,3 +75,23 @@ img, video {
   @apply text-[#2f3c49] md:text-sm font-semibold text-[7px] !important
 }
 
+
+.form-control {
+  @apply  xs:w-fit md:w-[300px] xs:text-[10px] md:text-[14px] xs:h-fit md:h-[35px] !important
+
+}
+.invalid-number-message {
+  @apply xs:text-[7px] md:text-[13px] xs:w-fit xs:left-0 md:left-10 !important
+}
+
+.e-datetime-wrapper .e-input-group-icon.e-date-icon {
+  @apply xs:text-[10px] md:text-[16px] !important
+}
+
+.e-datetime-wrapper .e-input-group-icon.e-time-icon {
+  @apply xs:text-[10px] md:text-[16px] !important
+}
+
+.react-tel-input .country-list {
+  @apply xs:w-fit xs:text-[10px] md:w-[300px] md:text-[14px] !important
+}

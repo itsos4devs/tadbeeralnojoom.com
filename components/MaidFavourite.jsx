@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
-import { doc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
+import { toast, Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { db } from "../config";
 import { getMaid } from "../fetching/getMaid";
@@ -29,19 +31,48 @@ const MaidFavourite = ({ id }) => {
     staleTime: Infinity,
   });
 
+  const deleteFavourite = async () => {
+    await deleteDoc(
+      doc(
+        db,
+        "users",
+        session.user?.email
+          ? session.user?.email
+          : "karimkhaledelmawe@gmail.com",
+        "favourite",
+        id
+      )
+    );
+    return toast.success(
+      i18n.language === "ar" ? "حذفت بنجاح" : "Deleted Successfully",
+      {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      }
+    );
+  };
+
   return (
-    <div>
+    <div className="relative">
+      <Toaster position={i18n.language === "ar" ? "top-left" : "top-right"} />
+      <XMarkIcon
+        className="h-6 w-6 text-red-500 cursor-pointer absolute right-0"
+        onClick={deleteFavourite}
+      />
       {data?.map((item) => (
         <div
           key={item.nummber}
-          className="flex flex-col items-center space-y-1 group"
+          className="flex flex-col items-center space-y-1"
         >
           {/* Image */}
           <div className="md:h-28 md:w-28 sm:h-16 sm:w-16 h-10 w-10">
             <Image
               src={item.photo || maidPhoto}
               alt="Maid Photo"
-              className={`rounded-full group-hover:border-2 group-hover:border-yellow-500`}
+              className={`rounded-full`}
               width={117}
               height={117}
             />

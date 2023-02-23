@@ -26,9 +26,9 @@ const ServiceSection = () => {
             />
           </div>
         </div>
-        <div className="xl:w-[650px] xl:mt-8 md:mt-2 mt-1 lg:w-[500px] md:w-[300px] sm:w-[200px] w-fit mx-2 md:mx-auto lg:space-y-5">
+        <div className="xl:w-[650px] xl:mt-8 md:mt-2 mt-1 lg:w-[500px] md:w-[280px] sm:w-[200px] w-fit mx-2 md:mx-auto md:px-5 lg:space-y-5">
           <h1
-            className="xl:text-5xl lg:text-3xl md:text-xl cursor-pointer  sm:text-sm text-[10px]  font-lato font-bold text-[#F48830]"
+            className="xl:text-5xl lg:text-3xl md:text-xl cursor-pointer  sm:text-sm text-[10px] font-lato font-bold text-[#F48830]"
             onClick={() =>
               router.push({
                 pathname: `/requestService/Domestic workers Service Line`,
@@ -57,7 +57,7 @@ const ServiceSection = () => {
         </div>
       </div>
       <div className="grid grid-cols-2">
-        <div className="xl:w-[650px] xl:mt-8 md:mt-2 mt-1 lg:w-[500px] md:w-[300px] sm:w-[200px] w-fit mx-2 md:mx-auto lg:space-y-5 text-right">
+        <div className="xl:w-[650px] xl:mt-8 md:mt-2 mt-1 lg:w-[500px] md:w-[280px] sm:w-[200px] w-fit  md:px-5 mx-2 md:mx-auto lg:space-y-5 text-right">
           <h1
             onClick={() =>
               router.push({

@@ -123,6 +123,7 @@ const MaidProfile = () => {
   const [uniqueInter, setUniqueInter] = useState(false);
   const [dropDownInterview, setDropDownInterview] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneMatch, setPhoneMatch] = useState(false);
   // functions for interview
   useEffect(() => {
     snapshot?.docs?.map((item) => {
@@ -160,7 +161,7 @@ const MaidProfile = () => {
         }
       );
     } else {
-      if (phoneNumber.length > 9) {
+      if (phoneNumber.length === 12 && phoneMatch) {
         const notification = toast.loading(
           i18n.language === "ar"
             ? "...طلب مقابلة"
@@ -366,7 +367,7 @@ const MaidProfile = () => {
                           country={"ae"}
                           onlyCountries={["ae"]}
                           placeholder={"+971 55 676 1213"}
-                          isValid={(value, country) => {
+                          isValid={(value) => {
                             if (
                               value.match(/97151/) ||
                               value.match(/97153/) ||
@@ -381,10 +382,59 @@ const MaidProfile = () => {
                               value.match(/9718/) ||
                               value.match(/9719/)
                             ) {
-                              return "Invalid value: " + value;
+                              setPhoneMatch(false);
+                              return i18n.language === "ar"
+                                ? ":الرقم خاطئ"
+                                : "Wrong Number: " + value;
                             } else if (value.match(/9710/)) {
-                              return "Remove 0 after 971: " + value;
+                              setPhoneMatch(false);
+                              return i18n.language === "ar"
+                                ? ":امسح ال0 بعد 971"
+                                : "Remove 0 after 971: " + value;
+                            } else if (
+                              value.match(/0/) ||
+                              value.match(/1/) ||
+                              value.match(/2/) ||
+                              value.match(/3/) ||
+                              value.match(/4/) ||
+                              value.match(/5/) ||
+                              value.match(/6/) ||
+                              value.match(/7/) ||
+                              value.match(/8/)
+                            ) {
+                              setPhoneMatch(false);
+                              if (value.match(/971/)) {
+                                setPhoneMatch(true);
+                                return true;
+                              } else if (
+                                value.match(/97151/) ||
+                                value.match(/97153/) ||
+                                value.match(/97157/) ||
+                                value.match(/97159/) ||
+                                value.match(/9711/) ||
+                                value.match(/9712/) ||
+                                value.match(/9713/) ||
+                                value.match(/9714/) ||
+                                value.match(/9716/) ||
+                                value.match(/9717/) ||
+                                value.match(/9718/) ||
+                                value.match(/9719/)
+                              ) {
+                                setPhoneMatch(false);
+                                return i18n.language === "ar"
+                                  ? ":الرقم خاطئ"
+                                  : "Wrong Number: " + value;
+                              } else if (value.match(/9710/)) {
+                                setPhoneMatch(false);
+                                return i18n.language === "ar"
+                                  ? ":امسح ال0 بعد 971"
+                                  : "Remove 0 after 971: " + value;
+                              }
+                              return i18n.language === "ar"
+                                ? ":رقم اماراتي فقط"
+                                : "Only UAE Number: " + value;
                             } else {
+                              setPhoneMatch(true);
                               return true;
                             }
                           }}

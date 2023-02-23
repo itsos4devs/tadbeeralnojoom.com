@@ -195,7 +195,7 @@ const MaidProfile = () => {
               interviewId: id,
               maidId: data[0].number,
               order: new Date(startDate).getTime(),
-              phoneNumber: phoneNumber,
+              phoneNumber: `+${phoneNumber}`,
             }
           ).then(() => {
             toast.success(
@@ -429,32 +429,40 @@ const MaidProfile = () => {
               </button>
             </div>
             <div>
-              <a href={`tel:+${data[0].tel_mobile_no}`}>
-                <button
-                  disabled={session?.user ? false : true}
-                  className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
-                >
-                  {t("call")}
-                </button>
-              </a>
+              <ul>
+                <li>
+                  <a href={`tel:+${data[0].tel_mobile_no}`}>
+                    <button
+                      disabled={session?.user ? false : true}
+                      className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+                    >
+                      {t("call")}
+                    </button>
+                  </a>
+                </li>
+              </ul>
             </div>
             <div>
-              <a
-                target="_blank"
-                href={`https://api.whatsapp.com/send?phone=${data[0].tel_mobile_no}`}
-                rel="noreferrer"
-              >
-                <button
-                  disabled={session?.user ? false : true}
-                  className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
-                >
-                  Whatsapp
-                </button>
-              </a>
+              <ul>
+                <li>
+                  <a
+                    target="_blank"
+                    href={`https://api.whatsapp.com/send?phone=${data[0].tel_mobile_no}`}
+                    rel="noreferrer"
+                  >
+                    <button
+                      disabled={session?.user ? false : true}
+                      className="button clickButton w-16 md:w-44 xl:w-60 md:text-base text-[6px] disabled:bg-gray-500 disabled:opacity-50 disabled:active:scale-100"
+                    >
+                      Whatsapp
+                    </button>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="2xl:max-w-7xl xl:max-w-6xl lg:max-w-4xl md:max-w-[700px] xs:max-w-sm xxs:max-w-[340px] max-w-[300px] mx-auto md:mt-20 mt-10">
-            <div className="grid grid-cols-3 space-x-5">
+            <div className="grid grid-cols-3 space-x-5 md:gap-x-20 gap-x-5">
               {/* First div */}
               <div
                 className={`${
@@ -490,7 +498,7 @@ const MaidProfile = () => {
                   >
                     <div
                       className={`md:space-y-2 space-y-1 ${
-                        i18n.language === "ar" && "md:ml-20 ml-6"
+                        i18n.language === "ar" && "md:ml-20 ml-4"
                       }`}
                     >
                       <h3 className="font-lato lg:text-base md:text-sm xs:text-[8px] text-[5px]">
@@ -563,7 +571,7 @@ const MaidProfile = () => {
                 }`}
               >
                 {/* Name */}
-                <h1 className="md:text-5xl xs:text-2xl font-lato font-bold text-[#F48830] first-letter:uppercase">
+                <h1 className="md:text-5xl xs:text-xl font-lato font-bold text-[#F48830] first-letter:uppercase">
                   {data[0].name}
                 </h1>
                 {/* Passport Details */}

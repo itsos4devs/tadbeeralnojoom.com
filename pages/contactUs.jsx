@@ -88,12 +88,16 @@ const contactUs = () => {
                 <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
                   {t("email")}
                 </h2>
-                <a
-                  href="mailto:Alnujoomshj@gmail.com"
-                  className="lg:text-base text-xs text-[7px] underline"
-                >
-                  Alnujoomshj@gmail.com
-                </a>
+                <ul>
+                  <li>
+                    <a
+                      href="mailto:Alnujoomshj@gmail.com"
+                      className="lg:text-base text-xs text-[7px] underline"
+                    >
+                      Alnujoomshj@gmail.com
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

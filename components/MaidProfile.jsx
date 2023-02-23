@@ -132,7 +132,7 @@ const MaidProfile = () => {
     upcoming?.docs?.map((item) => {
       if (
         item.data().maidId === maidId &&
-        item.data().order > new Date().setMinutes(new Date().getMinutes() - 31)
+        item.data().order > new Date().setHours(new Date().getHours() - 2)
       )
         setUniqueInter(true);
     });

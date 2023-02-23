@@ -84,18 +84,10 @@ img, video {
   @apply xs:text-[7px] md:text-[13px] xs:w-fit xs:left-0 md:left-10 !important
 }
 
-.e-datetime-wrapper .e-input-group-icon.e-date-icon {
-  @apply xs:text-[10px] md:text-[16px] !important
-}
-
-.e-datetime-wrapper .e-input-group-icon.e-time-icon {
-  @apply xs:text-[10px] md:text-[16px] !important
-}
 
 .react-tel-input .country-list {
   @apply xs:w-fit xs:text-[10px] md:w-[300px] md:text-[14px] !important
 }
-
 
 div:has(> a) {
   @apply hidden !important

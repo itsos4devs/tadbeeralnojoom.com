@@ -5,9 +5,12 @@ import Banner from "../../components/Banner";
 import ourService from "../../public/ourServices.jpeg";
 import Footer from "../../components/Footer";
 import { useRouter } from "next/router";
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import {
+  CheckCircleIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
-
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 const pid = () => {
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -182,11 +185,13 @@ const pid = () => {
             {/* Basic */}
             {basic && (
               <div className="space-y-10">
+                {/* Description */}
                 <p className="text-center md:text-base text-xs mt-10 font-semibold">
                   {i18n.language === "ar"
-                    ? "خدمات استقدام عامل مساعد من خارج الدولة يسجل على ملف صاحب العمل ويقيم لديه خلال فترة التعاقد"
-                    : "Recruitment services for a domestic worker from in or outside the country where the domestic worker is sponsored by the employer and stays with them during the contract period."}
+                    ? "وهي توفير خدمة استقدام عامل مساعد من خارج أو داخل الدولة حسب متطلبات الأسرة وأصحاب العمل يُسجل على ملف صاحب العمل، ويقيم لديه خلال فترة التعاقد ومدتها عامين"
+                    : "It is a provision of a service to recruit a domestic worker from outside or within the country according to the needs of the family or employer, register the worker on the employer’s immigration file and stays with them during the contract period of two years."}
                 </p>
+                {/* Advantages */}
                 <div className="space-y-3">
                   <div
                     className={
@@ -226,11 +231,31 @@ const pid = () => {
                     <CheckCircleIcon className="h-4 w-4 text-green-600" />
                     <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
                       {i18n.language === "ar"
-                        ? "ضمان على العامل المساعد خلال الفترة التجريبيه ( انقطاع العامل عن العمل ع- دم كفاءة العامل مهنيا وسلوكيا - عدم لباقة العامل الصحة - انهاء العقد لاسباب من العامل )"
-                        : "A guarantee for the helper during the trial period (the worker’s interruption from work - lack of professional and behavioral competence of the worker - the worker’s lack of tact, health - termination of the contract for reasons on the part of the worker)"}
+                        ? "ضمان على العامل المساعد خلال الفترة التعاقدية"
+                        : "A guarantee on the worker during the contractual period"}
                     </h4>
                   </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "تدريب العامل المساعد قبل استلامة من قبل صاحب العمل"
+                        : "Training of the domestic worker before receiving them by the employer"}
+                    </h4>
+                  </div>
+                  <p className="md:text-base text-xs font-bold mr-2">
+                    {i18n.language === "ar"
+                      ? "الأسعار: تندرج قائمة الأسعار بجسب جنسية العامل المساعد، التالي قائمة بسقف الأسعار المحددة من قبل وزارة الموارد البشرية والتوطين"
+                      : "Prices: The price list is listed according to nationality of the domestic worker. The following is a list of the prices defined by Ministry of Human Resources and Emiratization “Mohre”"}
+                  </p>
                 </div>
+                {/* Prices */}
                 <table className="w-fit mx-auto border border-blue-500">
                   <thead className="text-center">
                     {i18n.language === "ar" ? (
@@ -256,7 +281,7 @@ const pid = () => {
                   {i18n.language === "ar" ? (
                     <tbody className="text-center">
                       <tr>
-                        <td className="border border-blue-500 p-2.5">14,000</td>
+                        <td className="border border-blue-500 p-2.5">12,000</td>
                         <td className="border border-blue-500 p-2.5">
                           الفلبين{" "}
                         </td>
@@ -274,7 +299,15 @@ const pid = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border border-blue-500 p-2.5">7,500</td>
+                        <td className="border border-blue-500 p-2.5">14,500</td>
+                        <td className="border border-blue-500 p-2.5">نيبال </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">12,000</td>
+                        <td className="border border-blue-500 p-2.5">الهند </td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">7,000</td>
                         <td className="border border-blue-500 p-2.5">
                           بنجلاديش{" "}
                         </td>
@@ -284,24 +317,16 @@ const pid = () => {
                         <td className="border border-blue-500 p-2.5">كينيا </td>
                       </tr>
                       <tr>
-                        <td className="border border-blue-500 p-2.5">9,000</td>
-                        <td className="border border-blue-500 p-2.5">
-                          اثيوبيا{" "}
-                        </td>
-                      </tr>
-                      <tr>
                         <td className="border border-blue-500 p-2.5">6,500</td>
                         <td className="border border-blue-500 p-2.5">
                           اوغندا{" "}
                         </td>
                       </tr>
                       <tr>
-                        <td className="border border-blue-500 p-2.5">14,500</td>
-                        <td className="border border-blue-500 p-2.5">نيبال </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-blue-500 p-2.5">12,000</td>
-                        <td className="border border-blue-500 p-2.5">الهند </td>
+                        <td className="border border-blue-500 p-2.5">5,000</td>
+                        <td className="border border-blue-500 p-2.5">
+                          اثيوبيا{" "}
+                        </td>
                       </tr>
                     </tbody>
                   ) : (
@@ -310,7 +335,7 @@ const pid = () => {
                         <td className="border border-blue-500 p-2.5">
                           Philippines{" "}
                         </td>
-                        <td className="border border-blue-500 p-2.5">14,000</td>
+                        <td className="border border-blue-500 p-2.5">12,000</td>
                       </tr>
                       <tr>
                         <td className="border border-blue-500 p-2.5">
@@ -325,11 +350,19 @@ const pid = () => {
                         <td className="border border-blue-500 p-2.5">15,000</td>
                       </tr>
                       <tr>
+                        <td className="border border-blue-500 p-2.5">Nepal </td>
+                        <td className="border border-blue-500 p-2.5">14,500</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-blue-500 p-2.5">India </td>
+                        <td className="border border-blue-500 p-2.5">12,000</td>
+                      </tr>
+                      <tr>
                         {" "}
                         <td className="border border-blue-500 p-2.5">
                           Bangladesh{" "}
                         </td>
-                        <td className="border border-blue-500 p-2.5">7,500</td>
+                        <td className="border border-blue-500 p-2.5">7,000</td>
                       </tr>
                       <tr>
                         <td className="border border-blue-500 p-2.5">Kenya </td>
@@ -339,7 +372,7 @@ const pid = () => {
                         <td className="border border-blue-500 p-2.5">
                           Ethiopia{" "}
                         </td>
-                        <td className="border border-blue-500 p-2.5">9,000</td>
+                        <td className="border border-blue-500 p-2.5">5,000</td>
                       </tr>
                       <tr>
                         <td className="border border-blue-500 p-2.5">
@@ -347,27 +380,158 @@ const pid = () => {
                         </td>
                         <td className="border border-blue-500 p-2.5">6,500</td>
                       </tr>
-                      <tr>
-                        <td className="border border-blue-500 p-2.5">Nepal </td>
-                        <td className="border border-blue-500 p-2.5">14,500</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-blue-500 p-2.5">India </td>
-                        <td className="border border-blue-500 p-2.5">12,000</td>
-                      </tr>
                     </tbody>
                   )}
                 </table>
+                {/* Info */}
+                <div className="space-y-3">
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <InformationCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "يتحمل صاحب العمل قيمة الضريبة المضافة"
+                        : "Above prices does not include the VAT"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <InformationCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "يتحمل صاحب العمل كافة مصاريف التأشيرة والإقام"
+                        : "Sponsor to handle work permit and all visa related expenses"}
+                    </h4>
+                  </div>
+                </div>
+                {/* Terms */}
+                <div className="space-y-3">
+                  <h1 className="text-lg font-bold font-roboto">
+                    {i18n.language === "ar"
+                      ? ":الشروط والاحكام"
+                      : "Terms and Conditions:"}
+                  </h1>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "طريقة الدفع والدفعات: دفع نسبة (50%) عند استلام إذن الدخول او توقيع عقد التجريبة  ونسبة (50%) المتبقية عند اشعار صاحب العمل بوضع العامل تحت تصرفه"
+                        : "Payment method: Pay (50%) upon receipt of the entry permit or signing the trial contract and the remaining (50%) upon notifying the employer of placing the worker at his disposal"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "أن يرد لصاحب العمل كافة المبالغ التي دفعها أو جزء منها حسبما تحددة الأنظمة  القانونية المعمول بها في وزارة الموارد البشرية والتوطين، عند قيام العامل بعد فترة التجربة بالتالي"
+                        : "Refund to the employer all or part of the amounts paid thereof as determined by the legal regulations in force at the Ministry of Human Resources and Emiratization, when the worker after the probation period does the following:"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center mr-10"
+                        : "flex items-center space-x-2 ml-10"
+                    }
+                  >
+                    <InformationCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "فسخ العقد لأسباب لا تتعلق بصاحب العمل"
+                        : "Termination of the contract for reasons unrelated to the employer"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center mr-10"
+                        : "flex items-center space-x-2 ml-10"
+                    }
+                  >
+                    <InformationCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "ترك العمل بدون سبب مقبول"
+                        : "Leaving work without an acceptable reason"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "يوجد ضمان شهر على العامل المساعد خلال فترة التجربة، حيث في حالة وجود أسباب تتعلق بالعامل يتم إلغاء العقد وإبرام عقد جديد أو استرجاع المبلغ بالكامل"
+                        : "There is a one-month guarantee on domestic worker during the probationary period. In the event of reasons related to the worker, the contract will be canceled. Employer has option to have a new contract is offered or the full amount is refunded"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "يتحمل صاحب العمل ( السكن – نهاية الخدمة – المستحقات – الرسوم الحكومية )"
+                        : "Employer to be responsible for (Accommodation – End of service benefit– Government service fees)"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "يحصل صاحب العمل على مبلغ ( 100 ) درهم يوميا وبحد أقصى ( 1000 ) درهم في حال تأخير المركز من استقدام العامل"
+                        : "The employer gets an amount of (100) dirhams per day, with a maximum of (1000) dirhams, in case the delays the worker's recruitment"}
+                    </h4>
+                  </div>
+                </div>
               </div>
             )}
             {/* Standard */}
             {standard && (
               <div className="space-y-10">
+                {/* Description */}
                 <p className="text-center md:text-base text-xs mt-10 font-semibold">
                   {i18n.language === "ar"
-                    ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل لفترة تعاقدية يسمح من بعدها بانتقال العامل كعامل مساعد مقيم ومسجل بملف صاحب العمل في حال موافقة الأطراف المعنية"
-                    : "This service is providing a domestic worker sponsored by Tadbeer service center to work for a contractual period. After which the worker is or is not allowed to transfer as a resident domestic worker sponsored by the employer if the concerned parties agree."}
+                    ? "وهي توفير عامل مساعد مسجل على المركز للعمل لفترة تعاقدية مدتها ستة اشهر يسمح أو لا يسمح بعدها بانتقاله كعامل مساعد مقيم ومسجل بملف صاحب العمل في حالة موافقة الاطراف المعنية"
+                    : "It is a provision of a service where a trained and qualified domestic worker is provided within 24 hours, and this worker is registered with the office for a contractual period during which the worker is or is not allowed to move, being a resident assistant worker with the employer"}
                 </p>
+                {/* Advantages */}
                 <div className="space-y-3">
                   <div
                     className={
@@ -467,7 +631,13 @@ const pid = () => {
                         : "The cost includes (basic salary - return ticket - end of service and dues - government service fees)"}
                     </h4>
                   </div>
+                  <p className="md:text-base text-xs font-bold mr-2">
+                    {i18n.language === "ar"
+                      ? "الأسعار: تندرج قائمة الأسعار بجسب جنسية العامل المساعد، التالي قائمة بسقف الأسعار المحددة من قبل وزارة الموارد البشرية والتوطين"
+                      : "The price list is listed according to nationality of the domestic worker. The following is a list of the prices defined by Ministry of Human Resources and Emiratization “Mohre”"}
+                  </p>
                 </div>
+                {/* Prices */}
                 <table className="w-fit mx-auto border border-blue-500">
                   <thead className="text-center">
                     {i18n.language === "ar" ? (
@@ -505,7 +675,7 @@ const pid = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td className="border border-blue-500 p-2.5">2,500</td>
+                        <td className="border border-blue-500 p-2.5">2,300</td>
                         <td className="border border-blue-500 p-2.5">
                           سيرلانكا{" "}
                         </td>
@@ -559,7 +729,7 @@ const pid = () => {
                         <td className="border border-blue-500 p-2.5">
                           Sri Lanka{" "}
                         </td>
-                        <td className="border border-blue-500 p-2.5">2,500</td>
+                        <td className="border border-blue-500 p-2.5">2,300</td>
                       </tr>
                       <tr>
                         <td className="border border-blue-500 p-2.5">
@@ -594,16 +764,113 @@ const pid = () => {
                     </tbody>
                   )}
                 </table>
+                {/* Info */}
+                {/* <div className="space-y-3">
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <InformationCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "يتحمل صاحب العمل قيمة الضريبة المضافة"
+                        : "Above prices does not include the VAT"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <InformationCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "يتحمل صاحب العمل كافة مصاريف التأشيرة والإقام"
+                        : "Sponsor to handle work permit and all visa related expenses"}
+                    </h4>
+                  </div>
+                </div> */}
+                {/* Terms */}
+                <div className="space-y-3">
+                  <h1 className="text-lg font-bold font-roboto">
+                    {i18n.language === "ar"
+                      ? ":الشروط والاحكام"
+                      : "Terms and Conditions:"}
+                  </h1>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "طريقة الدفع والدفعات: يدفع صاحب العمل للمركز دفعة مقدمة عن كل شهر، كما يلتزم بدفع بقية الأشهر (نقدا – شيكات – بطاقات ائتمانية ) تعادل مدة العقد، على أن يتم الخصم بشكل شهري"
+                        : "Payment methods: The employer pays the center a down payment for each month and is obligated to pay the rest of the months (Cash - Cheques - Credit card) equivalent to the duration of the contract, provided that the deduction is made monthly"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "توفير عامل بديل بنفس المؤهلات والخبرات، وذلك بناء على رغبة صاحب العمل في أي وقت أو لأسباب ترجع للعامل. وذلك خلال 48 ساعة من وقت إبلاغ المركز بذلك"
+                        : "Providing a substitute worker with the same qualifications and experience, based on the desire of the employer at any time or for reasons attributable to the worker. Within 48 hours from the time the center was informed"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "عدم استبدال العامل إلا بعد أخذ الموافقة الكتابية من صاحب العمل"
+                        : "Not to replace the worker except after obtaining the written consent of the employer"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "يتحمل صاحب العمل سكن العامل المساعد خلال فترة التعاقد"
+                        : "The employer shall bear the accommodation of the domestic worker during the contract period"}
+                    </h4>
+                  </div>
+                </div>
               </div>
             )}
             {/* Premium */}
             {premium && (
               <div className="space-y-10">
+                {/* Description */}
                 <p className="text-center md:text-base text-xs mt-10 font-semibold">
                   {i18n.language === "ar"
-                    ? "خدمة توفير عامل مساعد مسجل على مركز الخدمة تدبير للعمل لفترة تعاقدية يسمح من بعدها بانتقال العامل كعامل مساعد مقيم ومسجل بملف صاحب العمل في حال موافقة الأطراف المعنية"
-                    : "This service is providing a domestic worker sponsored by Tadbeer service center to work for a contractual period. After which the worker is or is not allowed to transfer as a resident domestic worker sponsored by the employer if the concerned parties agree."}
+                    ? "وهي توفير عامل مساعد مسجل على المركز للعمل بنظام الساعة أو اليوم أو الأسبوع أو الشهر إلخ"
+                    : "It is the provision of a registered domestic worker who’s on the center sponsorship to work on an hourly, day, week, month, etc"}
                 </p>
+                {/* Advantages */}
                 <div className="space-y-3">
                   <div
                     className={
@@ -703,7 +970,13 @@ const pid = () => {
                         : "The cost includes (basic salary - return ticket - end of service and dues - government service fees)"}
                     </h4>
                   </div>
+                  <p className="md:text-base text-xs font-bold mr-2">
+                    {i18n.language === "ar"
+                      ? "الأسعار: تندرج قائمة الأسعار بجسب جنسية العامل المساعد، التالي قائمة بسقف الأسعار المحددة من قبل وزارة الموارد البشرية والتوطين"
+                      : "The price list is listed according to nationality of the domestic worker. The following is a list of the prices defined by Ministry of Human Resources and Emiratization “Mohre”"}
+                  </p>
                 </div>
+                {/* Prices */}
                 <table className="w-fit mx-auto border border-blue-500">
                   <thead className="text-center">
                     {i18n.language === "ar" ? (
@@ -802,62 +1075,510 @@ const pid = () => {
                     </tbody>
                   )}
                 </table>
+                {/* Terms */}
+                <div className="space-y-3">
+                  <h1 className="text-lg font-bold font-roboto">
+                    {i18n.language === "ar"
+                      ? ":الشروط والاحكام"
+                      : "Terms and Conditions:"}
+                  </h1>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? ":طريقة الدفع والدفعات حسب نوع مدة العقد كالتالي"
+                        : "Method of payment: Payments by type of contract period are as follows:"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center mr-10"
+                        : "flex items-center space-x-2 ml-10"
+                    }
+                  >
+                    <InformationCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "ساعات / أيام / أسبوع: دفع التكلفة الإجمالية مقدما قبل أداء الخدمة المطلوبه (نقدا – بطاقة ائتمانية)"
+                        : "Hours/Days/Week: Pay the total cost in advance before performing the required service (Cash - Cheques - Credit card)"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center mr-10"
+                        : "flex items-center space-x-2 ml-10"
+                    }
+                  >
+                    <InformationCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "الأشهر: دفعه مقدمة عن كل شهر، كمل يلتزم بدفع بقية الأشهر (نقدا – شيكات – بطاقات ائتمانية ) تعادل مدة التعاقد. على أن يتم الخصم بشكل شهري"
+                        : "Months: Down payment for each month, as well as committing to pay the rest of the months (Cash - Cheques - Credit card) equivalent to the duration of the contract. The discount is made monthly"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "مدة العقد: حسب الإتفاق (الساعة – اليوم – الإسبوع – الشهر)"
+                        : "Contract duration: according to the agreement (hour - day - week - month)"}
+                    </h4>
+                  </div>
+                  <div
+                    className={
+                      i18n.language === "ar"
+                        ? "flex flex-row-reverse items-center"
+                        : "flex items-center space-x-2"
+                    }
+                  >
+                    <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                    <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                      {i18n.language === "ar"
+                        ? "توفير عامل بديل بنفس المؤهلات والخبرات، وذلك بناء على رغبة صاحب العمل في أي وقت أو لأسباب ترجع للعامل. وذلك خلال 48 ساعة من وقت إبلاغ المركز بذلك"
+                        : "Providing a substitute worker with the same qualifications and experience, based on the desire of the employer at any time or for reasons attributable to the worker. Within 48 hours from the time the center was informed"}
+                    </h4>
+                  </div>
+                </div>
               </div>
             )}
           </div>
         </div>
       ) : (
-        <div
-          className={`flex flex-col md:m-20 m-10 mt-5 md:space-y-10 space-y-1 ${
-            i18n.language === "ar" ? "text-right" : "text-left"
-          }`}
-        >
-          <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
-            {t("clearance")}
-          </h1>
-          <p className="md:text-lg xs:text-[10px] text-[7px]">
-            {t("clearanceDesc")}
-          </p>
-          <div className="ml-5 md:space-y-5 space-y-0">
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar" ? "تصريح الدخول" : "🔵 Entry Permit"}
+        <div>
+          <div
+            className={`flex flex-col md:m-20 m-10 mt-5 md:space-y-10 space-y-1 ${
+              i18n.language === "ar" ? "text-right" : "text-left"
+            }`}
+          >
+            <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
+              {t("clearance")}
             </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar" ? "تغيير الحالة" : "🔵 Change of Status"}
-            </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar"
-                ? "الهوية الإماراتية / الهوية الوطنية"
-                : "🔵 Emirates Identity / National ID"}
-            </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar"
-                ? "الفحص الطبي"
-                : "🔵 Government and Medical Insurance"}
-            </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar"
-                ? "التأمين الحكومي والطبي"
-                : "🔵 Medical Test"}
-            </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar"
-                ? "طلب ختم تأشيرة الإقامة"
-                : "🔵 Residency Visa Stamping Application"}
-            </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar"
-                ? "تجديد تأشيرة العمالة المساعدة"
-                : "🔵 Domestic Worker Visa Renewal"}
-            </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar"
-                ? "إلغاء تأشيرة العمالة المساعدة"
-                : "🔵 Domestic Worker Visa Cancellation"}
-            </h1>
-            <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
-              {i18n.language === "ar" ? "بلاغ الهروب" : ""}
-            </h1>
+            <p className="md:text-lg xs:text-[10px] text-[7px]">
+              {t("clearanceDesc")}
+            </p>
+            <div className="ml-5 md:space-y-5 space-y-0">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar" ? "تصريح الدخول 🔵" : "🔵 Entry Permit"}
+              </h1>
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar"
+                  ? "تغيير الحالة 🔵"
+                  : "🔵 Change of Status"}
+              </h1>
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar"
+                  ? "الهوية الإماراتية / الهوية الوطنية 🔵"
+                  : "🔵 Emirates Identity / National ID"}
+              </h1>
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar"
+                  ? "الفحص الطبي 🔵"
+                  : "🔵 Government and Medical Insurance"}
+              </h1>
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar"
+                  ? "التأمين الحكومي والطبي 🔵"
+                  : "🔵 Medical Test"}
+              </h1>
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar"
+                  ? "طلب ختم تأشيرة الإقامة 🔵"
+                  : "🔵 Residency Visa Stamping Application"}
+              </h1>
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar"
+                  ? "تجديد تأشيرة العمالة المساعدة 🔵"
+                  : "🔵 Domestic Worker Visa Renewal"}
+              </h1>
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar"
+                  ? "إلغاء تأشيرة العمالة المساعدة 🔵"
+                  : "🔵 Domestic Worker Visa Cancellation"}
+              </h1>
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+                {i18n.language === "ar" ? "بلاغ الهروب 🔵" : ""}
+              </h1>
+            </div>
+          </div>
+          <div
+            className={`border-white border max-w-3xl mx-auto ${
+              i18n.language === "ar" ? "text-right" : "text-left"
+            }`}
+          >
+            <div className="space-y-10">
+              {/* Description */}
+              <p className="text-center md:text-base text-xs mt-10 font-semibold">
+                {i18n.language === "ar"
+                  ? "إذا كنت تبحث عن مركز متخصص في تخليص كافة المعاملات الحكومية المتمركزة حول العمالة المساعدة فإن النجوم هو المكان المناسب لذلك. يسعدنا أن نقوم بكافة أعمال الطباعة وتخليص المعاملات ومساعتك لتقديمها الى الى الدوائر الحكومية والخاصة لذلك، لدينا مجموعة من الخدمات لمختلف الدوائر كوزارة الموارد البشرية والتوطين، الهيئة الإتحادية للهوية والجنسية والجمارك وأمن المنافذ، مراكز الفحص الطبي، دبي للتأمين وغيرها"
+                  : "If you are looking for a center specialized in clearing all government transactions centered around domestic workers, Al Nujoom is the right place to be. We are pleased to do all printing and clearing transactions and help you to submit them to government and private sectors, therefore, we have a range of services for various departments such as the Ministry of Human Resources and Emiratization, the Federal Authority for Identity, Citizenship, Customs and Ports Security, Medical Examination Centers, Dubai Insurance, and others"}
+              </p>
+              {/* Advantages */}
+              <div className="space-y-3">
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "توفير خدمة الطباعة والمتابعة للعملاء"
+                      : "Providing typing and follow-up service to customers"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "توفير الوقت والجهد لتقديم المعاملات"
+                      : "Save time and effort to submit applications"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "إنجاز المعاملات بدقة وكفاءة"
+                      : "Accurate and efficient transaction submissions"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "تخليص كافة المعاملات المتعلقة بوزارة الموارد البشرية والتوطين مثل"
+                      : "Clearing all typing transactions related to the Ministry of Human Resources and Emiratization such as"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "فتح ملف صاحب عمل"
+                      : "Open an employer file"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "إصدار أو تجديد أو تعديل أو إلغاء على عقود عمل"
+                      : "Issuing, renewing, amending, or canceling employment contracts."}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "التقديم على شكوى إو سحب الإنقطاع عن العمل"
+                      : "Submit a complaint or withdraw the interruption from work"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar" ? "دفع الغرامات" : "Pay fines"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar" ? "تعديل بيانات" : "Modify data"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar" ? "...وغيرها" : "And others..."}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "تخليص كافة المعاملات المتعلقة بالهيئة الإتحادية للهوية والجنسية والجمارك وأمن المنافذ مثل"
+                      : "Clearing all Typing transactions related to the Federal Authority for Identity, Citizenship, Customs and Port Security, such as"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar" ? "إذونات الدخول" : "Entry permits"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar" ? "تعديل الوضع" : "Change Status"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar" ? "دفع الغرامات" : "Pay fines"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "الغاء إقامه"
+                      : "Cancellation of his residency"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center mr-10"
+                      : "flex items-center space-x-2 ml-10"
+                  }
+                >
+                  <InformationCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar" ? "...وغيرها" : "And others..."}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "تخليص معاملات الفحص الطبي للعمالة المساعدة"
+                      : "Clearing medical examination transactions for domestic workers"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "انجاز معاملات بطاقة الهوية"
+                      : "Completion of ID card transactions"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "التقديم على معاملات دبي للتأمين والتأمين الصحي"
+                      : "Apply for Dubai Insurance & Health Insurance transactions"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "خيارات مختلفة للدفع"
+                      : "Different payment options"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <CheckCircleIcon className="h-4 w-4 text-green-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "متابعة المعاملة والتواصل مع صاحب العمل للمستجدات"
+                      : "Follow up the transaction and communicate with the employer for updates"}
+                  </h4>
+                </div>
+                <p className="md:text-base text-xs font-bold mr-2">
+                  {i18n.language === "ar"
+                    ? "تختلف الأسعار بجسب نوع المعاملة، سقف الأسعار المحددة من قبل الدوائر الحكومية المتخصصة"
+                    : "Prices vary according to the type of transaction, the ceiling of the prices set by the specialized government departments"}
+                </p>
+              </div>
+              {/* Terms */}
+              <div className="space-y-3">
+                <h1 className="text-lg font-bold font-roboto">
+                  {i18n.language === "ar"
+                    ? ":الشروط والاحكام"
+                    : "Terms and Conditions:"}
+                </h1>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "طريقة الدفع والدفعات حسب نوع المعاملة والمحدد من قبل الجهة الحكومية"
+                      : "Payment method and payments according to the type of transaction specified by the government entity"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "الدفع مقدم للمعاملة عن كل معاملة شامل كلفه الرسوم الحكوميه والأتعاب"
+                      : "Advance payment for each transaction including government fees and fees"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "المركز غير مسؤوول عن الموافقات الحكومية للمعاملات"
+                      : "The Center is not responsible for government approvals on applications"}
+                  </h4>
+                </div>
+                <div
+                  className={
+                    i18n.language === "ar"
+                      ? "flex flex-row-reverse items-center"
+                      : "flex items-center space-x-2"
+                  }
+                >
+                  <QuestionMarkCircleIcon className="h-4 w-4 text-gray-600" />
+                  <h4 className="md:text-base text-xs font-bold mr-2 w-fit">
+                    {i18n.language === "ar"
+                      ? "لا تسترجع الرسوم والأتعاب للمعاملات المقدمة"
+                      : "No refunds will be made for submitted transactions"}
+                  </h4>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

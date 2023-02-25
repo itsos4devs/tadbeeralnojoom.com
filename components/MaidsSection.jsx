@@ -7,9 +7,13 @@ const MaidsSection = ({ data }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation();
   return (
-    <div className="lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-32 mb-10">
+    <div
+      className={`lg:max-w-6xl md:max-w-2xl mx-auto md:space-y-20 sm:space-y-8 space-y-5 md:mb-32 mb-10 ${
+        i18n.language === "ar" ? "font-cairo" : "font-lato"
+      }`}
+    >
       <div className="text-center xl:mt-36 md:mt-20  mt-10 space-y-5">
-        <h1 className="text-[#E48100] font-lato font-bold md:text-5xl text-2xl">
+        <h1 className="text-[#E48100] font-bold md:text-5xl text-2xl">
           {t("maid")}
         </h1>
       </div>

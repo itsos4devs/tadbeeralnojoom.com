@@ -7,7 +7,10 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import paymentSuccess from "../public/paymentSuccess.png";
+import { useTranslation } from "react-i18next";
 const success = () => {
+  const { t, i18n } = useTranslation();
+
   const router = useRouter();
   return (
     <div className={`${i18n.language === "ar" ? "font-cairo" : "font-lato"}`}>
@@ -25,11 +28,10 @@ const success = () => {
               Payment successful
             </h1>
             <p className="md:text-lg text-xs  font-semibold text-gray-600">
-              Thank you for choosing{" "}
+              Thank you for choosing
               <h4 className="underline decoration-yellow-500 text-black">
-                Tadbeer Alnujoom
+                Tadbeer Alnujoom,
               </h4>
-              {", "}
               we will reach you soon
             </p>
           </div>

@@ -9,9 +9,21 @@ import { getMaid } from "../fetching/getMaid";
 import { useQuery } from "@tanstack/react-query";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { db } from "../config";
-import { addDoc, collection, query, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  query,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { toast, Toaster } from "react-hot-toast";
-import { useCollection } from "react-firebase-hooks/firestore";
+import {
+  useCollection,
+  useCollectionData,
+  useCollectionDataOnce,
+  useDocumentDataOnce,
+} from "react-firebase-hooks/firestore";
 const stripePromise = loadStripe(
   "pk_live_51MZd1bGuhdYVsXxBupuvnlseWLwkXZWCumg839Dfb1XvxKYuTPLXo42V6vcGn3ocwAlhhiQHFoaDvCcFrtigSGH000dFLHPUGY"
 );
@@ -66,6 +78,18 @@ const MaidProfile = () => {
     )
   );
 
+  // Get data from firestore: user
+  const [userPhone] = useDocumentDataOnce(
+    query(
+      doc(
+        db,
+        "users",
+        session?.user?.email
+          ? session?.user?.email
+          : "karimkhaledelmawe@gmail.com"
+      )
+    )
+  );
   // Stripe
   const createCheckoutSession = async () => {
     const notification = toast.loading(
@@ -98,6 +122,16 @@ const MaidProfile = () => {
           }
         );
         return res;
+      })
+      .catch(() => {
+        toast.error(i18n.language === "ar" ? "فشل إعادة التوجية" : "Failed", {
+          id: notification,
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
       });
     // redirect user to checkout
     const result = await stripe.redirectToCheckout({
@@ -124,6 +158,7 @@ const MaidProfile = () => {
   const [dropDownInterview, setDropDownInterview] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneMatch, setPhoneMatch] = useState(false);
+  const [changeNumber, setChangeNumber] = useState(false);
   // functions for interview
   useEffect(() => {
     snapshot?.docs?.map((item) => {
@@ -188,21 +223,11 @@ const MaidProfile = () => {
         if (
           startDate >= new Date(new Date().setHours(new Date().getHours() + 1))
         ) {
-          await addDoc(
-            collection(db, "users", session.user.email, "upcomingInterviews"),
-            {
-              userId: session.user.email,
-              date: new Date(startDate).toUTCString(),
-              interviewId: id,
-              maidId: data[0].number,
-              order: new Date(startDate).getTime(),
-              phoneNumber: `+${phoneNumber}`,
-            }
-          ).then(() => {
-            toast.success(
+          if (userPhone?.phoneNumber !== `+${phoneNumber}` && !changeNumber) {
+            toast.error(
               i18n.language === "ar"
-                ? "مقابلتك الان في القائمة"
-                : "Your Interview is added to upcoming Interviews",
+                ? "هذا الرقم ليس الذي سجلت به اخر مره , اذا اردت الاكمال اضغط احجز مرة اخرى"
+                : "This phone number is not the same as last one, If you want to proceed click request again",
               {
                 id: notification,
                 style: {
@@ -212,7 +237,38 @@ const MaidProfile = () => {
                 },
               }
             );
-          });
+            setChangeNumber(true);
+          } else {
+            await addDoc(
+              collection(db, "users", session.user.email, "upcomingInterviews"),
+              {
+                userId: session.user.email,
+                date: new Date(startDate).toUTCString(),
+                interviewId: id,
+                maidId: data[0].number,
+                order: new Date(startDate).getTime(),
+                phoneNumber: `+${phoneNumber}`,
+              }
+            ).then(() => {
+              toast.success(
+                i18n.language === "ar"
+                  ? "مقابلتك الان في القائمة"
+                  : "Your Interview is added to upcoming Interviews",
+                {
+                  id: notification,
+                  style: {
+                    borderRadius: "10px",
+                    background: "#333",
+                    color: "#fff",
+                  },
+                }
+              );
+            });
+            // Add phone number to data
+            await setDoc(doc(db, "users", session.user.email), {
+              phoneNumber: `+${phoneNumber}`,
+            });
+          }
         } else {
           toast.error(
             i18n.language === "ar"

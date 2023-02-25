@@ -9,9 +9,9 @@ export default async (req, res) => {
     price_data: {
       currency: "aed",
       product_data: {
-        name: item.name,
-        images: [item.image],
-        description: item.description,
+        name: item.name.toUpperCase(),
+        images: [item.photo],
+        description: `Monthly Salary: ${item.monthly_salary} | Nationality: ${item.nationality} | Age: ${item.age} | Religion: ${item.religion}`,
       },
       unit_amount: 500 * 100,
     },
@@ -34,7 +34,7 @@ export default async (req, res) => {
     customer_email: email,
     metadata: {
       email: email,
-      images: JSON.stringify(maid.map((item) => item.image)),
+      images: JSON.stringify(maid.map((item) => item.photo)),
     },
   });
   res.status(200).json({ id: session.id });

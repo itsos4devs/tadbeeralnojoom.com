@@ -45,11 +45,6 @@ const MaidUpcoming = ({ id }) => {
       seconds,
     };
   }
-  console.log(
-    value?.maidId,
-    new Date(value?.order),
-    new Date(new Date().setHours(new Date().getHours() - 2))
-  );
   return (
     <div>
       <Toaster position={i18n.language === "ar" ? "top-left" : "top-right"} />

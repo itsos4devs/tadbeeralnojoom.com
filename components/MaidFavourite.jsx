@@ -56,7 +56,11 @@ const MaidFavourite = ({ id }) => {
   };
 
   return (
-    <div className="relative">
+    <div
+      className={`relative ${
+        i18n.language === "ar" ? "font-cairo" : "font-lato"
+      }`}
+    >
       <Toaster position={i18n.language === "ar" ? "top-left" : "top-right"} />
       <XMarkIcon
         className="h-6 w-6 text-red-500 cursor-pointer absolute right-0"

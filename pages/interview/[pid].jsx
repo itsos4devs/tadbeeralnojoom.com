@@ -46,7 +46,7 @@ const pid = () => {
       {/* Room */}
       <iframe
         allow="camera; microphone; fullscreen; display-capture; clipboard-read; clipboard-write; autoplay;"
-        src={`https://c2c.mirotalk.com?room=${pid}`}
+        src={`https://sfu.mirotalk.com/join/${pid}?notify=0`}
         className="h-screen w-full md:pt-[71px] pt-[20px]"
       ></iframe>
       <Footer />

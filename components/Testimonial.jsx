@@ -5,17 +5,30 @@ import { useTranslation } from "react-i18next";
 // TODO: update the testimonials with the real one
 const Testimonial = () => {
   const { t, i18n } = useTranslation();
-  const data = {
-    img: clientPhoto,
-    name: "Alice Brown",
-    rate: 4,
-    contentHeader: "“Awesome Service”",
-    description:
-      "At simul malorum has, tibique moderatius scribentur duo eu. Enim libris pri ad, tantas ridens perpetua ne vim. Eam molestie voluptatum et, commodo suavitate eam ut. An habeo homero graeco vis.",
-  };
-  const arr = Array.apply(null, Array(3)).map(function (x, i) {
-    return i;
-  });
+  const data = [
+    {
+      img: "https://lh3.googleusercontent.com/a-/ACB-R5RHjxC3yMRbjEH4Z5LzaDqw0PaaksfETHnfUjNX=w36-h36-p-c0x00000000-rp-mo-br100",
+      name: "Ali Al Abdouli",
+      rate: 5,
+      contentHeader: "“Awesome Service”",
+      description:
+        "I’m thankful for the excellent service. I had good experience started by reception explaining and supporting me to select the maid, then office staff helping with the interview, gave me time to check and after four days they made all the needful for the visa. All of this ably from one visit to the office. I was not asked to come again. After the selection event thing was done for me.",
+    },
+    {
+      img: "https://lh3.googleusercontent.com/a/AGNmyxbdtFgeBiRGjBCrM_gGbCrfHNIdFXXnxarlkJ3D=w36-h36-p-c0x00000000-rp-mo-br100",
+      name: "Bo Zayed",
+      rate: 5,
+      contentHeader: "“Best place”",
+      description: "Best place to bring workers with an easy process.",
+    },
+    {
+      img: "https://lh3.googleusercontent.com/a-/ACB-R5QZufL2OnuNdRkWjHH-FTgBQWGBhoFM3eOu8uQu_A=w36-h36-p-c0x00000000-rp-mo-ba3-br100",
+      name: "Khalfan Alnaqbi",
+      rate: 5,
+      contentHeader: "“معاملة راقية”",
+      description: "تعامل سريع وراقي",
+    },
+  ];
   const rate = Array.apply(null, Array(5)).map(function (x, i) {
     return i;
   });
@@ -27,33 +40,33 @@ const Testimonial = () => {
         </h1>
       </div>
       <div className="flex md:flex-row flex-col md:space-y-0 space-y-5 md:mt-10 mt-5">
-        {arr.map((item) => (
+        {data.map((item) => (
           <div
             key={item}
             className="bg-[#234F7E] flex flex-col space-y-3 p-5 lg:w-80 md:w-56 w-44 mx-auto"
           >
             <div className="flex items-center space-x-5 lg:w-20 md:w-14 w-12">
               <Image
-                src={data.img}
+                src={item.img}
                 alt="Client Photo"
                 className="rounded-full"
-                width={82}
-                height={82}
+                width={100}
+                height={30}
               />
               <div className="flex flex-col space-y-2 md:col-span-2">
                 {/* Name */}
                 <h1 className="text-white lg:text-2xl md:text-lg text-sm">
-                  {data.name}
+                  {item.name}
                 </h1>
                 {/* Rate */}
-                <div className="flex items-center" title={data.rate}>
+                <div className="flex items-center" title={item.rate}>
                   {/* Catching the rate from data and loop on them */}
-                  {rate.map((item) => {
-                    if (item < data.rate) {
+                  {rate.map((rating) => {
+                    if (rating < item.rate) {
                       return (
                         // Star
                         <svg
-                          key={item}
+                          key={rating}
                           aria-hidden="true"
                           className="md:w-5 md:h-5 w-2 h-2 text-yellow-400"
                           fill="currentColor"
@@ -67,7 +80,7 @@ const Testimonial = () => {
                       return (
                         // Not star
                         <svg
-                          key={item}
+                          key={rating}
                           aria-hidden="true"
                           className="md:w-5 md:h-5 w-2 h-2 text-gray-300"
                           fill="currentColor"
@@ -84,11 +97,11 @@ const Testimonial = () => {
             </div>
             {/* Content header */}
             <h1 className="text-white lg:text-2xl md:text-lg text-xs text-left">
-              {data.contentHeader}
+              {item.contentHeader}
             </h1>
             {/* Description */}
             <p className="text-white lg:text-base md:text-sm text-xs">
-              {data.description}
+              {item.description}
             </p>
           </div>
         ))}

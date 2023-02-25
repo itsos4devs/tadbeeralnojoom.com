@@ -25,7 +25,7 @@ const contactUs = () => {
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         }
       />
-      <div className="grid grid-cols-2 bg-[#E7EDF3] md:mb-32 mb-10">
+      <div className="grid grid-cols-3 bg-[#E7EDF3] md:mb-32 mb-10">
         <div>
           <Map
             mapStyle="mapbox://styles/mapbox/streets-v12"
@@ -48,7 +48,7 @@ const contactUs = () => {
           </Map>
         </div>
         <div
-          className={`md:my-10 xs:my-2 lg:space-y-10 md:space-y-7 xl:max-w-xl w-full mx-auto ${
+          className={`md:my-10 col-span-2 xs:my-2 lg:space-y-10 md:space-y-7 xl:max-w-xl w-full mx-auto ${
             i18n.language === "ar" ? "text-right" : "text-left"
           }`}
         >
@@ -66,12 +66,10 @@ const contactUs = () => {
               <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
                 {t("location")}
               </h2>
-              <p className="lg:text-base text-xs text-[6px] ">
-                Agriculture Building,
-              </p>
+              <p className="lg:text-base text-xs text-[6px] ">Maleha St</p>
               <p className="lg:text-base text-xs text-[6px] ">
                 {" "}
-                Stores land, Maliha Road,
+                Warehouses Lands,
               </p>
               <p className="lg:text-base text-xs text-[6px] ">Sharjah, UAE.</p>
             </div>
@@ -81,7 +79,7 @@ const contactUs = () => {
                   {t("callCenter")}
                 </h2>
                 <p className="lg:text-base text-xs text-[7px] ">
-                  06-767-4222 / 054-992-9926
+                  <a href="tel:0549953973">054 995 3973</a>
                 </p>
               </div>
               <div>
@@ -94,7 +92,7 @@ const contactUs = () => {
                       href="mailto:Alnujoomshj@gmail.com"
                       className="lg:text-base text-xs text-[7px] underline"
                     >
-                      Alnujoomshj@gmail.com
+                      Info@tadbeeralnujoom.com
                     </a>
                   </li>
                 </ul>

@@ -28,16 +28,16 @@ const aboutUs = () => {
       {i18n.language === "ar" ? (
         <div className="h-full md:mb-44 mb-16 lg:max-w-4xl md:max-w-2xl max-w-sm mx-auto md:space-y-20 space-y-10">
           <div className="space-y-5 xl:mt-28 md:mt-20 mt-5 text-right">
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E] text-center">
               تتولى مراكز تدبير مسؤولية تقديم خدمات استقدام وتشغيل عمال الخدمات
               المساعدة، وتخدم هذه المراكز المنتشرة في كافة أنحاء الدولة، الأسر
               المواطنة والمقيمة بإشراف من الوزارة وبما يحقق راحة المتعاملين
             </h1>
             <div className="space-y-1">
-              <h1 className="text-[10px] md:text-lg font-roboto font-semibold">
-                :وتشمل تلك الخدمات ما يلي{"• "}
+              <h1 className="text-[10px] md:text-lg font-cairo font-semibold">
+                :وتشمل تلك الخدمات ما يلي
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2">
+              <div className="text-[10px] text-[#234F7E] md:text-base font-cairo font-semibold ml-2">
                 <p>
                   {
                     "خدمات وزارة الموارد البشرية والتوطين المتعلقة بقطاع العمالة المساعدة التي تقدم بالمركز •"
@@ -51,12 +51,12 @@ const aboutUs = () => {
               </div>
             </div>
             <div className="space-y-1">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 النجوم للعمالة المساعدة هي ثمرة تطوير قطاع العمالة المساعدة
                 بالدولة. تأسس المركز بداية عام 2022 ضمن شراكه استراتيجيه واندماج
                 تضم أربع مكاتب ذات خبره في المجال تمتد ما بين 20 الى 30 عام وهي
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                 <p>مكتب الشرق للخدمات •</p>
                 <p>مكتب سمارت للخدمات •</p>
                 <p>لولو للخدمات العامة •</p>
@@ -64,23 +64,23 @@ const aboutUs = () => {
               </div>
             </div>
             <div className="space-y-3">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 فقد قررت المكاتب الأربعة الانضمام إلى هذه المهمة للتجمع للتغلب
                 على التحديات العالمية الحالية على العمالة المنزلية وضمان تقديم
                 خدمات ممتازة لمجتمعنا وعملائنا بما يتماشى مع قانون العمل
                 الإماراتي وإرشادات وزارة الموارد البشرية والتوطين
               </h1>
               <div className="space-y-3">
-                <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+                <h1 className="text-[10px] text-[#234F7E] md:text-base font-cairo font-semibold">
                   الرؤية: تقديم خدمات عمالة مساعدة شاملة بمستوى جودة غير مسبوق
                 </h1>
-                <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+                <h1 className="text-[10px] md:text-base font-cairo font-semibold">
                   المهمة: توفير خدمات شامله ذات سياق آمن وسهل لمجال العمالة
                   المساعدة وأرباب العمل وتيسير تواصلهم لتحسين مجال الأعمال ضمن
                   نطاق يسوده الاحترام المتبادل ويعكس رضى عن مستوى الخدمات
                   المقدمة{" "}
                 </h1>
-                <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+                <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                   <p>الجودة في تقديم الخدمات •</p>
                   <p>الابتداع •</p>
                   <p>الاحترام •</p>
@@ -90,12 +90,12 @@ const aboutUs = () => {
               </div>
             </div>
             <div className="space-y-3">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 نتطلع إلى المشاركة في تقديم خدمة آمنة وممتازة لمجتمعنا وعملائنا
                 والعمالة المنزلية. تنقسم خدماتنا الى فئتين أساسيتين وهما
               </h1>
               <div>
-                <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+                <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                   <p>
                     ١- خدمات العمالة المساعد والتي تندرج الى ثلاث
                     باقاترئيسيةالتقليدية، المرنة والمؤقتة
@@ -105,7 +105,7 @@ const aboutUs = () => {
               </div>
             </div>
             <div className="space-y-2">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 وبالتفصيل مراكز تدبير هي مراكز خدمة تم ترخيصها من قبل وزارة
                 الموارد البشرية والتوطين في الإمارات، حيث جاءت نتيجة تعاون بين
                 القطاع الحكومي والخاص بهدف تيسير استقدام العمالة إلى الدولة،
@@ -114,10 +114,10 @@ const aboutUs = () => {
                 الوظائف، منها الحراسة الأمنية، والمربية المنزلية، والتدبير
                 والنظافة المنزلية، والسائقين وغيرها الكثير من كلا الجنسين
               </h1>
-              <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+              <h1 className="text-[10px] md:text-base font-cairo font-semibold">
                 سيقدم المركز الخدمات التاليه{" "}
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                 <p>خددمات التوظيف •</p>
                 <p>
                   تلبية احتياجات العملاء للحصول على عاملة منزلية بدوام كامل/ أو
@@ -131,16 +131,16 @@ const aboutUs = () => {
                 <p>إيجاد حلول للمشاكل بين العاملات وأرباب العمل •</p>
               </div>
             </div>
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               مزايا مراكز الخدمة تدبير
             </h1>
             <div className="space-y-2">
-              <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+              <h1 className="text-[10px] md:text-base font-cairo font-semibold">
                 تتنوع الأسباب التي تسوق أصحاب العمل لاختارمراكز الخدمة تدبير في
                 تأمين عمالة منزلية وغيرها من فئات العمالة المساعدة، ومن هذه
                 المزايا نذكر
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                 <p>يتم استقدام العمالة بطرق قانونية وسليمة •</p>
                 <p>
                   مساعدة أصحاب العمل على الحصول على عمالة مساعدة بشكل قانوني دون
@@ -150,17 +150,17 @@ const aboutUs = () => {
                 <p>الموازنة وحفظ حقول العمال وأصحاب العمل •</p>
               </div>
             </div>
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               الفئات التي تستقدمها مراكز تدبير
             </h1>
             <div className="space-y-3">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 توفر مراكز تدبير مربية منزلية وتقوم بتدريبها قبل البدء بعملها
                 توفر تدبير ما يزيد عن 16 فئة من العمالة التي يحتاجها سكان دولة
                 الإمارات في حياتهم اليومية، وتشمل
               </h1>
               <div>
-                <div className="text-[10px] md:flex md:flex-row-reverse md:space-x-10 md:text-base font-roboto font-semibold  ml-2 text-[#234F7E]">
+                <div className="text-[10px] md:flex md:flex-row-reverse md:space-x-10 md:text-base font-cairo font-semibold  ml-2 text-[#234F7E]">
                   <div className="md:space-y-2 md:ml-10">
                     <p>سائق •</p>
                     <p>خادمة •</p>
@@ -181,11 +181,11 @@ const aboutUs = () => {
                 </div>
               </div>
             </div>
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               استراتيجية العمل في تدبير
             </h1>
             <div className="space-y-2">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 تتبع مراكز تدبير استراتيجية معينة تتعلق باستقدام العمالة من
                 مختلف بلدان العالم، وبعد الانتهاء من الوثائق والأعمال القانونية
                 يتم تدريب العمال قبل مباشرة عملهم بطريقة رسمية، علاوةً على تنظيم
@@ -195,18 +195,18 @@ const aboutUs = () => {
                 في هذا المجال، وتضمن توفير إقامة لهم.
               </h1>
             </div>
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               آلية توظيف عامل من مراكز تدبير{" "}
             </h1>
             <div className="space-y-2">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 تعتبر عملية توظيف العمالة المنزلية من خلال مركز النجوم للعمالة
                 المساعدة سهلة وسلسه وبعيدة عن التعقيد و التي تبدأ بالتواصل عبر
                 الهاتف أو الطلب عبر الإنترنت، حيث سنقوم بتوفير ومشاركة العميل
                 بكافة المعلومات وإيجاد أجوبة لكافة التساؤلات لتلبية طلب التوظيف،
                 وتنقسم عملية توظيف عاملة منزلية إلى عدة خطوات
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E] space-y-3">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E] space-y-3">
                 <p>التواصل المباشر بمركز الخدمة لطلب العامل المنزلي •</p>
                 <p>
                   البحث عن طريق الموقع الالكتروني وطلب المقابلة للعامل المساعد •
@@ -234,7 +234,7 @@ const aboutUs = () => {
       ) : (
         <div className="h-full md:mb-44 mb-16 lg:max-w-4xl md:max-w-2xl max-w-sm mx-auto md:space-y-20 space-y-10">
           <div className="space-y-5 xl:mt-28 md:mt-20 mt-5">
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               Tadbeer centers are responsible for providing recruitment and
               employment services for domestic workers. These centers which are
               spread throughout the country serves nationals, residents of
@@ -243,10 +243,10 @@ const aboutUs = () => {
               convenience of customers.
             </h1>
             <div className="space-y-1">
-              <h1 className="text-[10px] md:text-lg font-roboto font-semibold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-semibold">
                 These services include:
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2">
                 <p>
                   - Services related to the domestic workers sector provided at
                   the Centre.
@@ -258,16 +258,16 @@ const aboutUs = () => {
               </div>
             </div>
             <div className="space-y-1">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 Al Nujoom Domestic workers is partnership organization among
                 four UAE nationals. It’s a joint mission between four of the old
                 Domestic Workers Offices which had between 20 and 30 plus years
                 of experience at the field.
               </h1>
-              <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+              <h1 className="text-[10px] md:text-base font-cairo font-semibold">
                 Old offices where under business names of:
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                 <p>- Smart Service office</p>
                 <p>- Lulu General Service</p>
                 <p>- Al Abad Manpower Supply</p>
@@ -275,7 +275,7 @@ const aboutUs = () => {
               </div>
             </div>
             <div className="space-y-3">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 The offices decided to Join this mission to gather to overcome
                 today{"'"}s global challenges on Domestic workers and to ensure
                 provides excellent services to our community and customers in
@@ -283,10 +283,10 @@ const aboutUs = () => {
                 Emiratization guidelines.
               </h1>
               <div>
-                <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+                <h1 className="text-[10px] md:text-base font-cairo font-semibold">
                   Our Values are:
                 </h1>
-                <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+                <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                   <p>- Quality</p>
                   <p>- Excellent Service Delivery</p>
                   <p>- Innovation</p>
@@ -297,13 +297,13 @@ const aboutUs = () => {
               </div>
             </div>
             <div className="space-y-3">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 We are looking forward to participating in providing safe and
                 excellent service to our community, customers, and Domestic
                 workers within our two service lines
               </h1>
               <div>
-                <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+                <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                   <p>
                     1. Providing Domestic workers in three different packages
                     “Traditional, Flexible and temporarily”
@@ -313,7 +313,7 @@ const aboutUs = () => {
               </div>
             </div>
             <div className="space-y-2">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 In details, Tadbeer centers are service centers that have been
                 licensed by the Ministry of Human Resources and Emiratization in
                 the UAE, as they came as a result of cooperation between the
@@ -325,10 +325,10 @@ const aboutUs = () => {
                 security guards, housemaids, housekeeping, drivers, and many
                 others from both sexes.
               </h1>
-              <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+              <h1 className="text-[10px] md:text-base font-cairo font-semibold">
                 The center will provide the following services:
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                 <p>1- Employment services</p>
                 <p>
                   2- Meet client’s needs for a full-time/part-time domestic
@@ -348,20 +348,20 @@ const aboutUs = () => {
                 </p>
               </div>
             </div>
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               WHY TADBEER?
             </h1>
             <div className="space-y-2">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 Tadbeer service centers are approved by Ministry of Human
                 Resources and Emiratization “MOHRE” and they have a transparent
                 system to hire Domestic workers in UAE
               </h1>
-              <h1 className="text-[10px] md:text-base font-roboto font-semibold">
+              <h1 className="text-[10px] md:text-base font-cairo font-semibold">
                 There are several reasons why you should select Tadbeer centres
                 to hire domestic workers in the UAE.{" "}
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                 <p>
                   1- They use legal channels approved by governments to hire
                   domestic workers.
@@ -377,16 +377,16 @@ const aboutUs = () => {
                 </p>
               </div>
             </div>
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               Clasicifications of Domestic workers
             </h1>
             <div className="space-y-3">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 There are 19 categories of domestic household staff that can be
                 employed which includes,
               </h1>
               <div>
-                <div className="text-[10px] md:flex md:space-x-10 md:text-base font-roboto font-semibold ml-2 text-[#234F7E]">
+                <div className="text-[10px] md:flex md:space-x-10 md:text-base font-cairo font-semibold ml-2 text-[#234F7E]">
                   <div className="md:space-y-2">
                     <p>• Housekeeper,</p>
                     <p>• Housemaid,</p>
@@ -411,11 +411,11 @@ const aboutUs = () => {
                 </div>
               </div>
             </div>
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               Tadbeer Business Management strategy
             </h1>
             <div className="space-y-2">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 Al Nujoom Domestic Workers follow a specific strategy related to
                 the recruitment of workers from different countries around the
                 world. After the completion of documents gathering and approvals
@@ -429,17 +429,17 @@ const aboutUs = () => {
                 meeting between employers and employees.
               </h1>
             </div>
-            <h1 className="text-[10px] md:text-xl font-roboto font-bold text-[#234F7E]">
+            <h1 className="text-[10px] md:text-xl font-cairo font-bold text-[#234F7E]">
               Mechanism of recruiting a worker from Al Nujoom center{" "}
             </h1>
             <div className="space-y-2">
-              <h1 className="text-[10px] md:text-lg font-roboto font-bold">
+              <h1 className="text-[10px] md:text-lg font-cairo font-bold">
                 Clints can easily contact us over the phone, visit our Centre or
                 initiate a request for domestic worker by visiting our website
                 www.TadbeerAlnujoom.com The process of hiring a domestic worker
                 is divided into the following.
               </h1>
-              <div className="text-[10px] md:text-base font-roboto font-semibold ml-2 text-[#234F7E] space-y-3">
+              <div className="text-[10px] md:text-base font-cairo font-semibold ml-2 text-[#234F7E] space-y-3">
                 <p>
                   • Direct contact of our staff at Al Nujoom Domestic workers to
                   place a request.

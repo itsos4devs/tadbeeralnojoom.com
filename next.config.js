@@ -5,7 +5,7 @@ const nextConfig = {
     stripe_public_key: process.env.STRIPE_PUBLIC_KEY,
   },
   images: {
-    domains: ["i.ibb.co", "merakiui.com"],
+    domains: ["i.ibb.co", "merakiui.com", "lh3.googleusercontent.com"],
   },
 };
 

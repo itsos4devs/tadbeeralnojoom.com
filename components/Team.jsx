@@ -13,9 +13,13 @@ const Team = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="h-full md:mb-44 lg:max-w-6xl md:max-w-4xl max-w-sm mx-auto md:space-y-20 space-y-10 mb-10">
+    <div
+      className={`h-full md:mb-44 lg:max-w-6xl md:max-w-4xl max-w-sm mx-auto md:space-y-20 space-y-10 mb-10 ${
+        i18n.language === "ar" ? "font-cairo" : "font-lato"
+      }`}
+    >
       <div className="text-center xl:mt-32 md:mt-20 mt-10 md:space-y-5 space-y-2">
-        <h1 className="text-[#E48100] font-lato font-bold md:text-4xl md:w-[600px] mx-auto text-xl">
+        <h1 className="text-[#E48100]  font-bold md:text-4xl md:w-[600px] mx-auto text-xl">
           {t("teamTitle")}
         </h1>
       </div>
@@ -31,10 +35,10 @@ const Team = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+            <h2 className="md:text-2xl text-sm  text-[#234F7E] font-bold">
               {i18n.language === "ar" ? "لاروس" : "Rose"}
             </h2>
-            <h3 className="md:text-lg text-xs font-lato font-bold">
+            <h3 className="md:text-lg text-xs  font-bold">
               {i18n.language === "ar"
                 ? "سكرتير اندونيسيا"
                 : " Indonesia Secertary"}
@@ -55,10 +59,10 @@ const Team = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+            <h2 className="md:text-2xl text-sm  text-[#234F7E] font-bold">
               {i18n.language === "ar" ? "محمد نعيم" : "Naeem"}
             </h2>
-            <h3 className="md:text-lg text-xs font-lato font-bold">
+            <h3 className="md:text-lg text-xs  font-bold">
               {i18n.language === "ar" ? "محاسب" : "Accountant"}
             </h3>
             <h2 className="text-[#E48100] md:text-base text-xs">
@@ -77,10 +81,10 @@ const Team = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+            <h2 className="md:text-2xl text-sm  text-[#234F7E] font-bold">
               {i18n.language === "ar" ? "ريفاواتي اسحاق " : "Rifa"}
             </h2>
-            <h3 className="md:text-lg text-xs font-lato font-bold">
+            <h3 className="md:text-lg text-xs  font-bold">
               {i18n.language === "ar"
                 ? "سكرتير اندونيسيا"
                 : " Indonesia Secertary"}
@@ -101,10 +105,10 @@ const Team = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+            <h2 className="md:text-2xl text-sm  text-[#234F7E] font-bold">
               {i18n.language === "ar" ? "فريدة نالووج" : "Farida Naloog"}
             </h2>
-            <h3 className="md:text-lg text-xs font-lato font-bold">
+            <h3 className="md:text-lg text-xs  font-bold">
               {i18n.language === "ar" ? "سكرتير اوغندا" : " Uganda Secertary"}
             </h3>
             <h2 className="text-[#E48100] md:text-base text-xs">
@@ -123,10 +127,10 @@ const Team = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+            <h2 className="md:text-2xl text-sm  text-[#234F7E] font-bold">
               {i18n.language === "ar" ? "خليفتول حسناه" : "Sanna"}
             </h2>
-            <h3 className="md:text-lg text-xs font-lato font-bold">
+            <h3 className="md:text-lg text-xs  font-bold">
               {i18n.language === "ar"
                 ? "سكرتير اندونيسيا"
                 : " Indonesia Secertary"}
@@ -147,10 +151,10 @@ const Team = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+            <h2 className="md:text-2xl text-sm  text-[#234F7E] font-bold">
               {i18n.language === "ar" ? "ايم دارشكا" : "Iyomi"}
             </h2>
-            <h3 className="md:text-lg text-xs font-lato font-bold">
+            <h3 className="md:text-lg text-xs  font-bold">
               {i18n.language === "ar"
                 ? "سكرتير سيرلانكا"
                 : " Sir Lanka Secertary"}
@@ -171,10 +175,10 @@ const Team = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+            <h2 className="md:text-2xl text-sm  text-[#234F7E] font-bold">
               {i18n.language === "ar" ? "خودزنه" : "Sari"}
             </h2>
-            <h3 className="md:text-lg text-xs font-lato font-bold">
+            <h3 className="md:text-lg text-xs  font-bold">
               {i18n.language === "ar"
                 ? "سكرتير اندونيسيا / فلبين"
                 : " Indonesia Secertary / Philippines"}
@@ -195,10 +199,10 @@ const Team = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="md:text-2xl text-sm font-lato text-[#234F7E] font-bold">
+            <h2 className="md:text-2xl text-sm  text-[#234F7E] font-bold">
               {i18n.language === "ar" ? "امة الرحمان" : "Ametu Al Rahman"}
             </h2>
-            <h3 className="md:text-lg text-xs font-lato font-bold">
+            <h3 className="md:text-lg text-xs  font-bold">
               {i18n.language === "ar"
                 ? "سكرتير اثيوبيا / فلبين"
                 : " Ethiopia Secertary / Philippines"}

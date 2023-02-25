@@ -20,17 +20,18 @@ import {
 import { toast, Toaster } from "react-hot-toast";
 import {
   useCollection,
-  useCollectionData,
-  useCollectionDataOnce,
   useDocumentDataOnce,
 } from "react-firebase-hooks/firestore";
 const stripePromise = loadStripe(
   "pk_live_51MZd1bGuhdYVsXxBupuvnlseWLwkXZWCumg839Dfb1XvxKYuTPLXo42V6vcGn3ocwAlhhiQHFoaDvCcFrtigSGH000dFLHPUGY"
 );
-import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
+import {
+  DatePickerComponent,
+  DateTimePickerComponent,
+  TimePickerComponent,
+} from "@syncfusion/ej2-react-calendars";
 import "../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
-import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
 import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
 import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
 import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
@@ -151,14 +152,31 @@ const MaidProfile = () => {
   };
 
   // States
-  const minDate = new Date(new Date().setHours(new Date().getHours() + 2));
+  const minDate = new Date();
+  const minTime = new Date(
+    new Date().setMinutes(
+      new Date().getMinutes() + 60 - (new Date().getMinutes() % 60)
+    )
+  );
+  const maxTime = new Date("8/3/2017 9:01 PM");
   const [startDate, setStartDate] = useState(minDate);
+  const [startTime, setStartTime] = useState(minTime);
+  const [dateTime, setDateTime] = useState(
+    new Date(
+      startDate.getFullYear(),
+      startDate.getMonth(),
+      startDate.getDate(),
+      startTime.getHours(),
+      startTime.getMinutes()
+    )
+  );
   const [uniqueFav, setUniqueFav] = useState(false);
   const [uniqueInter, setUniqueInter] = useState(false);
   const [dropDownInterview, setDropDownInterview] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneMatch, setPhoneMatch] = useState(false);
   const [changeNumber, setChangeNumber] = useState(false);
+
   // functions for interview
   useEffect(() => {
     snapshot?.docs?.map((item) => {
@@ -171,7 +189,16 @@ const MaidProfile = () => {
       )
         setUniqueInter(true);
     });
-  }, [maidId, snapshot, upcoming]);
+    setDateTime(
+      new Date(
+        startDate.getFullYear(),
+        startDate.getMonth(),
+        startDate.getDate(),
+        startTime.getHours(),
+        startTime.getMinutes()
+      )
+    );
+  }, [maidId, snapshot, startDate, startTime, upcoming]);
 
   const requestInterviewHandler = () => {
     if (session.user) {
@@ -220,60 +247,11 @@ const MaidProfile = () => {
           res.data.meeting.indexOf("join/") + 5,
           res.data.meeting.length
         );
-        if (
-          startDate >= new Date(new Date().setHours(new Date().getHours() + 1))
-        ) {
-          if (userPhone?.phoneNumber !== `+${phoneNumber}` && !changeNumber) {
-            toast.error(
-              i18n.language === "ar"
-                ? "هذا الرقم ليس الذي سجلت به اخر مره , اذا اردت الاكمال اضغط احجز مرة اخرى"
-                : "This phone number is not the same as last one, If you want to proceed click request again",
-              {
-                id: notification,
-                style: {
-                  borderRadius: "10px",
-                  background: "#333",
-                  color: "#fff",
-                },
-              }
-            );
-            setChangeNumber(true);
-          } else {
-            await addDoc(
-              collection(db, "users", session.user.email, "upcomingInterviews"),
-              {
-                userId: session.user.email,
-                date: new Date(startDate).toUTCString(),
-                interviewId: id,
-                maidId: data[0].number,
-                order: new Date(startDate).getTime(),
-                phoneNumber: `+${phoneNumber}`,
-              }
-            ).then(() => {
-              toast.success(
-                i18n.language === "ar"
-                  ? "مقابلتك الان في القائمة"
-                  : "Your Interview is added to upcoming Interviews",
-                {
-                  id: notification,
-                  style: {
-                    borderRadius: "10px",
-                    background: "#333",
-                    color: "#fff",
-                  },
-                }
-              );
-            });
-            // Add phone number to data
-            await setDoc(doc(db, "users", session.user.email), {
-              phoneNumber: `+${phoneNumber}`,
-            });
-          }
-        } else {
+        if (userPhone?.phoneNumber !== `+${phoneNumber}` && !changeNumber) {
           toast.error(
             i18n.language === "ar"
-              ? "لا يمكنك اختيار هذا التاريخ"
-              : "You can't pick this date",
+              ? "هذا الرقم ليس الذي سجلت به اخر مره , اذا اردت الاكمال اضغط احجز مرة اخرى"
+              : "This phone number is not the same as last one, If you want to proceed click request again",
             {
               id: notification,
               style: {
@@ -283,6 +261,37 @@ const MaidProfile = () => {
               },
             }
           );
+          setChangeNumber(true);
+        } else {
+          await addDoc(
+            collection(db, "users", session.user.email, "upcomingInterviews"),
+            {
+              userId: session.user.email,
+              date: new Date(dateTime).toUTCString(),
+              interviewId: id,
+              maidId: data[0].number,
+              order: new Date(dateTime).getTime(),
+              phoneNumber: `+${phoneNumber}`,
+            }
+          ).then(() => {
+            toast.success(
+              i18n.language === "ar"
+                ? "مقابلتك الان في القائمة"
+                : "Your Interview is added to upcoming Interviews",
+              {
+                id: notification,
+                style: {
+                  borderRadius: "10px",
+                  background: "#333",
+                  color: "#fff",
+                },
+              }
+            );
+          });
+          // Add phone number to data
+          await setDoc(doc(db, "users", session.user.email), {
+            phoneNumber: `+${phoneNumber}`,
+          });
         }
       } else {
         return toast.error(
@@ -399,16 +408,26 @@ const MaidProfile = () => {
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-center md:space-x-2 space-x-1 w-full">
-                        <DateTimePickerComponent
+                        <DatePickerComponent
                           value={startDate}
                           min={minDate}
-                          onChange={(value) => setStartDate(value.value)}
+                          onChange={(value) => {
+                            setStartDate(value.value);
+                          }}
                           id="datetimepicker"
-                          floatLabelType="Auto"
-                          placeholder="Select a date and time"
-                          format="dd/MM/yyyy hh:mm a"
+                          format="dd/MM/yyyy"
+                          allowEdit={false}
+                        />
+                        <TimePickerComponent
+                          id="timepicker"
+                          placeholder="Select a Time"
+                          value={startTime}
+                          onChange={(value) => {
+                            setStartTime(value.value);
+                          }}
+                          min={minTime}
+                          max={maxTime}
                           step={15}
-                          timeFormat="hh:mm a"
                           allowEdit={false}
                         />
                       </div>

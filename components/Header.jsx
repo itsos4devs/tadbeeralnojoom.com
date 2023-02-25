@@ -35,7 +35,11 @@ const Header = () => {
           />
         </div>
         {/* Pages */}
-        <div className="flex xl:space-x-12 lg:space-x-6 md:space-x-3 space-x-2">
+        <div
+          className={`flex xl:space-x-12 lg:space-x-6 md:space-x-3 space-x-2 ${
+            i18n.language === "ar" ? "font-cairo" : "font-lato"
+          }`}
+        >
           <h1
             className="text-white lg:text-base md:text-xs sm:text-[10px] text-[5px] cursor-pointer select-none"
             onClick={() =>

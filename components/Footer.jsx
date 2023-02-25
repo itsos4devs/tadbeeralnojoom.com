@@ -8,7 +8,11 @@ const Footer = () => {
   const { t, i18n } = useTranslation();
   const router = useRouter();
   return (
-    <div className="xl:max-w-6xl lg:max-w-4xl md:max-w-2xl sm:max-w-sm max-w-[300px] mx-auto md:mt-32 mb-10 relative">
+    <div
+      className={`xl:max-w-6xl lg:max-w-4xl md:max-w-2xl sm:max-w-sm max-w-[300px] mx-auto md:mt-32 mb-10 relative ${
+        i18n.language === "ar" ? "font-cairo" : "font-lato"
+      }`}
+    >
       {/* Newsletters */}
       <div
         className={
@@ -17,7 +21,7 @@ const Footer = () => {
             : "bg-[#234F7E] xl:h-52 lg:h-44 md:h-36 h-20 flex flex-row items-center justify-center lg:space-x-20 space-x-5"
         }
       >
-        <h1 className="text-white xl:text-4xl lg:text-3xl md:text-xl  sm:text-xs text-[10px] md:mr-5 mr-2 font-roboto font-normal">
+        <h1 className="text-white xl:text-4xl lg:text-3xl md:text-xl  sm:text-xs text-[10px] md:mr-5 mr-2 font-normal">
           {t("newsletters")}
         </h1>
         <div className="relative">

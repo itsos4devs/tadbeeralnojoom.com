@@ -61,13 +61,15 @@ const pid = () => {
         }
       />
       {pid === "Domestic workers Service Line" ? (
-        <div>
+        <div
+          className={`${i18n.language === "ar" ? "font-cairo" : "font-lato"}`}
+        >
           <div
             className={`flex flex-col md:m-20 m-10 md:space-y-5 space-y-1 ${
               i18n.language === "ar" ? "text-right" : "text-left"
             }`}
           >
-            <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
+            <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100]  font-extrabold">
               {t("domestic")}
             </h1>
             <p className="md:text-lg xs:text-[10px] text-[7px]">
@@ -86,8 +88,8 @@ const pid = () => {
                   }
                 >
                   <h4 className="md:text-base xs:text-[10px] text-[7px]">🔵</h4>
-                  <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                    <h4 className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                  <h1 className="text-[#234F7E] md:text-base  xs:text-[10px] text-[7px] mr-2">
+                    <h4 className=" font-bold md:text-lg xs:text-[10px] text-[7px]">
                       {t("traditional")}
                       {": "}
                     </h4>
@@ -106,8 +108,8 @@ const pid = () => {
                   }
                 >
                   <h4 className="md:text-base xs:text-[10px] text-[7px]">🔵</h4>
-                  <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                    <h4 className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                  <h1 className="text-[#234F7E] md:text-base  xs:text-[10px] text-[7px] mr-2">
+                    <h4 className=" font-bold md:text-lg xs:text-[10px] text-[7px]">
                       {t("temporary")}
                       {": "}
                     </h4>
@@ -126,8 +128,8 @@ const pid = () => {
                   }
                 >
                   <h4 className="md:text-base xs:text-[10px] text-[7px]">🔵</h4>
-                  <h1 className="text-[#234F7E] md:text-base font-roboto xs:text-[10px] text-[7px] mr-2">
-                    <h4 className="font-roboto font-bold md:text-lg xs:text-[10px] text-[7px]">
+                  <h1 className="text-[#234F7E] md:text-base  xs:text-[10px] text-[7px] mr-2">
+                    <h4 className=" font-bold md:text-lg xs:text-[10px] text-[7px]">
                       {t("flexible")}
                       {": "}
                     </h4>
@@ -416,7 +418,7 @@ const pid = () => {
                 </div>
                 {/* Terms */}
                 <div className="space-y-3">
-                  <h1 className="text-lg font-bold font-roboto">
+                  <h1 className="text-lg font-bold ">
                     {i18n.language === "ar"
                       ? ":الشروط والاحكام"
                       : "Terms and Conditions:"}
@@ -797,7 +799,7 @@ const pid = () => {
                 </div> */}
                 {/* Terms */}
                 <div className="space-y-3">
-                  <h1 className="text-lg font-bold font-roboto">
+                  <h1 className="text-lg font-bold ">
                     {i18n.language === "ar"
                       ? ":الشروط والاحكام"
                       : "Terms and Conditions:"}
@@ -1077,7 +1079,7 @@ const pid = () => {
                 </table>
                 {/* Terms */}
                 <div className="space-y-3">
-                  <h1 className="text-lg font-bold font-roboto">
+                  <h1 className="text-lg font-bold ">
                     {i18n.language === "ar"
                       ? ":الشروط والاحكام"
                       : "Terms and Conditions:"}
@@ -1158,58 +1160,60 @@ const pid = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <div
+          className={`${i18n.language === "ar" ? "font-cairo" : "font-lato"}`}
+        >
           <div
             className={`flex flex-col md:m-20 m-10 mt-5 md:space-y-10 space-y-1 ${
               i18n.language === "ar" ? "text-right" : "text-left"
             }`}
           >
-            <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100] font-lato font-extrabold">
+            <h1 className="lg:text-5xl md:text-2xl xs:text-sm text-[10px] text-[#E48100]  font-extrabold">
               {t("clearance")}
             </h1>
             <p className="md:text-lg xs:text-[10px] text-[7px]">
               {t("clearanceDesc")}
             </p>
             <div className="ml-5 md:space-y-5 space-y-0">
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar" ? "تصريح الدخول 🔵" : "🔵 Entry Permit"}
               </h1>
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar"
                   ? "تغيير الحالة 🔵"
                   : "🔵 Change of Status"}
               </h1>
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar"
                   ? "الهوية الإماراتية / الهوية الوطنية 🔵"
                   : "🔵 Emirates Identity / National ID"}
               </h1>
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar"
                   ? "الفحص الطبي 🔵"
                   : "🔵 Government and Medical Insurance"}
               </h1>
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar"
                   ? "التأمين الحكومي والطبي 🔵"
                   : "🔵 Medical Test"}
               </h1>
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar"
                   ? "طلب ختم تأشيرة الإقامة 🔵"
                   : "🔵 Residency Visa Stamping Application"}
               </h1>
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar"
                   ? "تجديد تأشيرة العمالة المساعدة 🔵"
                   : "🔵 Domestic Worker Visa Renewal"}
               </h1>
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar"
                   ? "إلغاء تأشيرة العمالة المساعدة 🔵"
                   : "🔵 Domestic Worker Visa Cancellation"}
               </h1>
-              <h1 className="text-[#234F7E] md:text-base font-bold text-lg font-roboto xs:text-[10px] text-[7px] xs:h-5 h-4">
+              <h1 className="text-[#234F7E] md:text-base font-bold text-lg  xs:text-[10px] text-[7px] xs:h-5 h-4">
                 {i18n.language === "ar" ? "بلاغ الهروب 🔵" : ""}
               </h1>
             </div>
@@ -1516,7 +1520,7 @@ const pid = () => {
               </div>
               {/* Terms */}
               <div className="space-y-3">
-                <h1 className="text-lg font-bold font-roboto">
+                <h1 className="text-lg font-bold ">
                   {i18n.language === "ar"
                     ? ":الشروط والاحكام"
                     : "Terms and Conditions:"}
@@ -1582,7 +1586,11 @@ const pid = () => {
           </div>
         </div>
       )}
-      <div className="md:my-22 my-10 bg-[#E7EDF3] md:p-20 p-10">
+      <div
+        className={`md:my-22 my-10 bg-[#E7EDF3] md:p-20 p-10 ${
+          i18n.language === "ar" ? "font-cairo" : "font-lato"
+        }`}
+      >
         <form
           action=""
           method="post"
@@ -1594,10 +1602,10 @@ const pid = () => {
             {t("serviceRequet")}
           </h1>
           <div className="space-y-3">
-            <h1 className="text-[#234F7E] font-lato font-semibold text-lg">
+            <h1 className="text-[#234F7E]  font-semibold text-lg">
               {i18n.language === "ar" ? "اسم الخدمة" : "Service Name"}
             </h1>
-            <h1 className="text-[#234F7E] md:text-2xl font-lato font-bold xs:text-lg text-sm">
+            <h1 className="text-[#234F7E] md:text-2xl  font-bold xs:text-lg text-sm">
               {pid === "Domestic workers Service Line"
                 ? `${t("domestic")} - ${packageName}`
                 : t("clearance")}

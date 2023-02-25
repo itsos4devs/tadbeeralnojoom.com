@@ -8,9 +8,13 @@ const ServiceSection = () => {
   const router = useRouter();
 
   return (
-    <div className="md:mb-32 mb-10">
+    <div
+      className={`md:mb-32 mb-10 ${
+        i18n.language === "ar" ? "font-cairo" : "font-lato"
+      }`}
+    >
       <div className="text-center xl:mt-44 md:mt-20 mt-10 xl:mb-28 md:mb-16 mb-10">
-        <h1 className="text-[#E48100] mx-auto font-lato font-bold md:w-[700px] xs:w-96 md:text-3xl xs:text-base">
+        <h1 className="text-[#E48100] mx-auto font-bold md:w-[700px] xs:w-96 md:text-3xl xs:text-base">
           {t("serviceTitle")}
         </h1>
       </div>
@@ -28,7 +32,7 @@ const ServiceSection = () => {
         </div>
         <div className="xl:w-[650px] xl:mt-8 md:mt-2 mt-1 lg:w-[500px] md:w-[280px] sm:w-[200px] w-fit mx-2 md:mx-auto md:px-5 lg:space-y-5">
           <h1
-            className="xl:text-5xl lg:text-3xl md:text-xl cursor-pointer  sm:text-sm text-[10px] font-lato font-bold text-[#F48830]"
+            className="xl:text-5xl lg:text-3xl md:text-xl cursor-pointer  sm:text-sm text-[10px] font-bold text-[#F48830]"
             onClick={() =>
               router.push({
                 pathname: `/requestService/Domestic workers Service Line`,
@@ -64,7 +68,7 @@ const ServiceSection = () => {
                 pathname: `/requestService/Clearance and Typing services`,
               })
             }
-            className="xl:text-5xl lg:text-3xl md:text-xl sm:text-sm cursor-pointer text-[10px] font-lato font-bold text-[#F48830] "
+            className="xl:text-5xl lg:text-3xl md:text-xl sm:text-sm cursor-pointer text-[10px] font-bold text-[#F48830] "
           >
             {t("clearance")}
           </h1>

@@ -89,6 +89,12 @@ img, video {
   @apply xs:w-fit xs:text-[10px] md:w-[300px] md:text-[14px] !important
 }
 
+/* For date time calendar licence */
 div:has(> a) {
+  @apply hidden !important
+}
+
+
+.e-float-text{
   @apply hidden !important
 }

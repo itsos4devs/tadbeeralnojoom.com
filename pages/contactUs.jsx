@@ -31,14 +31,14 @@ const contactUs = () => {
             mapStyle="mapbox://styles/mapbox/streets-v12"
             mapboxAccessToken="pk.eyJ1Ijoia2FyaW1raGFsZWRlbG1hd2UiLCJhIjoiY2wxa3l4bDRjMDN6ZDNjb2JnbWpzbGVncSJ9.Hr7IeGn4060vCiHaeJH1Zw"
             initialViewState={{
-              longitude: 55.51717438199587,
-              latitude: 25.256243436006198,
+              longitude: 55.5172173,
+              latitude: 25.2560882,
               zoom: 12,
             }}
           >
             <Marker
-              longitude={55.51717438199587}
-              latitude={25.256243436006198}
+              longitude={55.5172173}
+              latitude={25.2560882}
               anchor="right"
               color="#FF0000"
               style={{
@@ -66,12 +66,17 @@ const contactUs = () => {
               <h2 className="lg:text-xl md:text-base text-[10px] font-roboto text-[#234F7E]">
                 {t("location")}
               </h2>
-              <p className="lg:text-base text-xs text-[6px] ">Maleha St</p>
               <p className="lg:text-base text-xs text-[6px] ">
-                {" "}
-                Warehouses Lands,
+                {i18n.language === "ar" ? "شارع مليحة" : "Maleha St"}
               </p>
-              <p className="lg:text-base text-xs text-[6px] ">Sharjah, UAE.</p>
+              <p className="lg:text-base text-xs text-[6px] ">
+                {i18n.language === "ar"
+                  ? "أرض المستودعات"
+                  : "Warehouses Lands,"}
+              </p>
+              <p className="lg:text-base text-xs text-[6px] ">
+                {i18n.language === "ar" ? "الشارقة, الامارات" : "Sharjah, UAE."}
+              </p>
             </div>
             <div className="space-y-4">
               <div>

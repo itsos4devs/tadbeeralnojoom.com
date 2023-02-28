@@ -26,7 +26,7 @@ const contactUs = () => {
       </Head>
       <Banner
         imageSrc={contact}
-        imageUlt="Contact us banner"
+        imageUlt="ContactUs banner"
         text1={t("contact")}
         textPosition={
           "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"

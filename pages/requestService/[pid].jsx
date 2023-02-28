@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { useForm } from "react-hook-form";
 const pid = () => {
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -39,6 +40,18 @@ const pid = () => {
     setStandard(false);
     setPremium(true);
     setPackageName(t("flexible"));
+  };
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (formData) => {
+    window.location.href = `mailto:Info@tadbeeralnujoom.com?subject=${
+      pid === "Domestic workers Service Line"
+        ? `${t("domestic")} - ${packageName}`
+        : t("clearance")
+    }&body=Hello, my name is ${formData.name}. %0D${formData.message} %0D${
+      formData.email
+    } - ${formData.number}`;
   };
   return (
     <div>
@@ -1592,8 +1605,7 @@ const pid = () => {
         }`}
       >
         <form
-          action=""
-          method="post"
+          onSubmit={handleSubmit(onSubmit)}
           className={`max-w-xl mx-auto space-y-5 ${
             i18n.language === "ar" ? "text-right" : "text-left"
           }`}
@@ -1613,6 +1625,7 @@ const pid = () => {
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
+              {...register("name")}
               type="text"
               className={`block py-2.5 ${
                 i18n.language === "ar" ? "text-right" : "text-left"
@@ -1630,6 +1643,7 @@ const pid = () => {
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
+              {...register("email")}
               type="email"
               className={`block py-2.5 ${
                 i18n.language === "ar" ? "text-right" : "text-left"
@@ -1647,6 +1661,7 @@ const pid = () => {
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <input
+              {...register("number")}
               type="tel"
               className={`block py-2.5 ${
                 i18n.language === "ar" ? "text-right" : "text-left"
@@ -1664,6 +1679,7 @@ const pid = () => {
           </div>
           <div className="relative z-0 w-full mb-6 group">
             <textarea
+              {...register("message")}
               className={`block py-6 px-0 w-full  ${
                 i18n.language === "ar" ? "text-right" : "text-left"
               } xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}

@@ -6,9 +6,16 @@ import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import Map, { Marker } from "react-map-gl";
+import { useForm } from "react-hook-form";
 
 const contactUs = () => {
   const { t, i18n } = useTranslation();
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (formData) => {
+    window.location.href = `mailto:Info@tadbeeralnujoom.com?subject=Support&body=Hello, my name is ${formData.name}. %0D${formData.message} %0D${formData.email} - ${formData.number}`;
+  };
   return (
     <div>
       <Head>
@@ -105,9 +112,13 @@ const contactUs = () => {
             </div>
           </div>
           <div className="bg-[#E7EDF3] py-5 md:px-4 xs:px-2">
-            <form action="" method="post" className="md:space-y-5 space-y-2">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="md:space-y-5 space-y-2"
+            >
               <div className="relative z-0 w-full mb-6 group">
                 <input
+                  {...register("name")}
                   type="text"
                   className={`block py-2.5 ${
                     i18n.language === "ar" ? "text-right" : "text-left"
@@ -125,6 +136,7 @@ const contactUs = () => {
               </div>
               <div className="relative z-0 w-full mb-6 group">
                 <input
+                  {...register("email")}
                   type="email"
                   className={`block py-2.5 ${
                     i18n.language === "ar" ? "text-right" : "text-left"
@@ -144,6 +156,7 @@ const contactUs = () => {
               </div>
               <div className="relative z-0 w-full mb-6 group">
                 <input
+                  {...register("number")}
                   type="tel"
                   className={`block py-2.5 ${
                     i18n.language === "ar" ? "text-right" : "text-left"
@@ -161,6 +174,7 @@ const contactUs = () => {
               </div>
               <div className="relative z-0 w-full mb-6 group">
                 <textarea
+                  {...register("message")}
                   className={`block py-6 px-0 w-full  ${
                     i18n.language === "ar" ? "text-right" : "text-left"
                   } xs:text-sm text-xs text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
